@@ -1,25 +1,11 @@
 .DS_Store
-*.swp
-*~.nib
-*.xib~
-
-build*/
-!BuildPhaseFileLists
-
-*.pbxuser
-*.perspective
-*.perspectivev3
-*.mode1v3
-*.mode2v3
 xcuserdata
-!xcshareddata
-.idea/*
-.metadata
-Cocoa i18n.xcodeproj/project.xcworkspace/xcshareddata/
-DerivedData/*
-
 *.xccheckout
-*.xcscmblueprint
+cocoa-i18n.xcarchive
+cocoa-i18n.xcodeproj
+.build
+build
+DerivedData
 
 # Test Data
 **/*LocalizableStrings.json*
