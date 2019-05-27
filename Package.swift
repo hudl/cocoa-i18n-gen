@@ -4,12 +4,13 @@
 import PackageDescription
 
 let package = Package(
-    name: "cocoa-i18n",
+    name: "CocoaLoco",
     dependencies: [
         .package(url: "https://github.com/kylef/Commander.git", from: "0.8.0"),
     ],
     targets: [
-        .target(name: "cocoa-i18n", dependencies: ["Commander"]),
-        .testTarget(name: "cocoa-i18nTests", dependencies: ["cocoa-i18n"]),
+        .target(name: "CocoaLoco", dependencies: ["CocoaLocoCore"]),
+        .target(name: "CocoaLocoCore", dependencies: ["Commander"]),
+        .testTarget(name: "CocoaLocoTests", dependencies: ["CocoaLocoCore"]),
     ]
 )

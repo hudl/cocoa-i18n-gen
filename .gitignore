@@ -1,8 +1,8 @@
 .DS_Store
 xcuserdata
 *.xccheckout
-cocoa-i18n.xcarchive
-cocoa-i18n.xcodeproj
+CocoaLoco.xcarchive
+CocoaLoco.xcodeproj
 .build
 build
 DerivedData

@@ -1,12 +1,12 @@
 import XCTest
-@testable import cocoa_i18n
+@testable import CocoaLocoCore
 
-final class cocoa_i18nTests: XCTestCase {
+final class CocoaLocoTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(cocoa_i18n().text, "Hello, World!")
+        XCTAssertEqual("Yay".indented(by: 2), "  Yay")
     }
 
     static var allTests = [
