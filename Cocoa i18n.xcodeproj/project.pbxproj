@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D5CD0DF229C5D7E000F4312 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CD0DE229C5D7E000F4312 /* String+Extensions.swift */; };
+		1D5CD0E1229C5DBD000F4312 /* LocalizationNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CD0E0229C5DBC000F4312 /* LocalizationNamespace.swift */; };
+		1D5CD0E3229C5E05000F4312 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CD0E2229C5E05000F4312 /* LocalizedString.swift */; };
+		1D5CD0E5229C5E31000F4312 /* Argument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CD0E4229C5E31000F4312 /* Argument.swift */; };
+		1D5CD0E7229C6101000F4312 /* SwiftOutputFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CD0E6229C6101000F4312 /* SwiftOutputFile.swift */; };
 		1D6F6E12229B645B0096F60A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F6E11229B645B0096F60A /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +28,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1D5CD0DE229C5D7E000F4312 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		1D5CD0E0229C5DBC000F4312 /* LocalizationNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationNamespace.swift; sourceTree = "<group>"; };
+		1D5CD0E2229C5E05000F4312 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		1D5CD0E4229C5E31000F4312 /* Argument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Argument.swift; sourceTree = "<group>"; };
+		1D5CD0E6229C6101000F4312 /* SwiftOutputFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftOutputFile.swift; sourceTree = "<group>"; };
 		1D6F6E0E229B645B0096F60A /* Cocoa i18n */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Cocoa i18n"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D6F6E11229B645B0096F60A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,7 +67,12 @@
 		1D6F6E10229B645B0096F60A /* Cocoa i18n */ = {
 			isa = PBXGroup;
 			children = (
+				1D5CD0E4229C5E31000F4312 /* Argument.swift */,
+				1D5CD0E0229C5DBC000F4312 /* LocalizationNamespace.swift */,
+				1D5CD0E2229C5E05000F4312 /* LocalizedString.swift */,
 				1D6F6E11229B645B0096F60A /* main.swift */,
+				1D5CD0DE229C5D7E000F4312 /* String+Extensions.swift */,
+				1D5CD0E6229C6101000F4312 /* SwiftOutputFile.swift */,
 			);
 			path = "Cocoa i18n";
 			sourceTree = "<group>";
@@ -119,7 +134,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D5CD0DF229C5D7E000F4312 /* String+Extensions.swift in Sources */,
 				1D6F6E12229B645B0096F60A /* main.swift in Sources */,
+				1D5CD0E7229C6101000F4312 /* SwiftOutputFile.swift in Sources */,
+				1D5CD0E3229C5E05000F4312 /* LocalizedString.swift in Sources */,
+				1D5CD0E1229C5DBD000F4312 /* LocalizationNamespace.swift in Sources */,
+				1D5CD0E5229C5E31000F4312 /* Argument.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
