@@ -13,7 +13,7 @@ extension String {
         return String(repeating: " ", count: by) + self
     }
     func capitalizingFirstLetter() -> String {
-        return prefix(1).capitalized + dropFirst()
+        return prefix(1).uppercased() + dropFirst()
     }
     func lowercaseFirstLetter() -> String {
         return prefix(1).lowercased() + dropFirst()
