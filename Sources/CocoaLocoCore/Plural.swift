@@ -9,10 +9,20 @@ import Foundation
 
 struct Plural: CodeGeneratable {
     
+    private static let regex = try! NSRegularExpression(pattern: #"%[^%\s]*\w"#, options: [.caseInsensitive])
     private static var variableCount = 0
     
     enum Transformation {
         case standard, key, pseudo
+        
+        func transform(value: String, namespace: String) -> String {
+            switch self {
+            case .standard: return value
+            case .key: return namespace.split(separator: ".").dropFirst().joined(separator: ".") // Drop LocalizableStrings.
+            // TODO still need to actually run the pseudo generator.
+            case .pseudo: return value
+            }
+        }
     }
     
     let normalizedName: String
@@ -28,6 +38,40 @@ struct Plural: CodeGeneratable {
     let two: String?
     let few: String?
     let many: String?
+    
+    // Calculated
+    private let variableType: String
+    private let variableId: Int
+    
+    init(normalizedName: String,
+         fullNamespace: String,
+         comment: String?,
+         other: String,
+         one: String,
+         zero: String?,
+         two: String?,
+         few: String?,
+         many: String?) {
+        self.normalizedName = normalizedName
+        self.fullNamespace = fullNamespace
+        self.comment = comment
+        self.other = other
+        self.one = one
+        self.zero = zero
+        self.two = two
+        self.few = few
+        self.many = many
+        
+        let nsrange = NSRange(other.startIndex..<other.endIndex, in: other)
+        let matches = Plural.regex.matches(in: other, options: [], range: nsrange)
+        guard let foundRange = matches.first?.range(at: 0), let range = Range(foundRange, in: other) else {
+            fatalError("No variable type found in plural. Add a %i or %lu or something")
+        }
+        
+        variableType = String(other[range].dropFirst())
+        variableId = Plural.variableCount
+        Plural.variableCount += 1
+    }
     
     func toSwiftCode(visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
         let privateVal = "_\(normalizedName)"
@@ -49,19 +93,18 @@ struct Plural: CodeGeneratable {
     }
     
     func toXml(transformation: Transformation) -> String {
-        Plural.variableCount += 1
-        let variableName = "variable_\(Plural.variableCount)"
+        let variableName = "variable_\(variableId)"
         return """
         <key>\(normalizedName)</key>
         <dict>
-        <key>NSStringFormatValueTypeKey</key>
+        <key>NSStringLocalizedFormatKey</key>
         <string>%#@\(variableName)@</string>
         <key>\(variableName)</key>
         <dict>
         <key>NSStringFormatSpecTypeKey</key>
         <string>NSStringPluralRuleType</string>
         <key>NSStringFormatValueTypeKey</key>
-        <string>NEED TO IDENTIFY TYPE</string>
+        <string>\(variableType)</string>
         \(pluralVariationsXml(transformation: transformation))
         </dict>
         </dict>
@@ -69,12 +112,12 @@ struct Plural: CodeGeneratable {
     }
     
     func pluralVariationsXml(transformation: Transformation) -> String {
-        return [(other, "other"), (one, "one"), (zero, "zero"), (two, "two"), (few, "few"), (many, "many")]
+        return [(one, "one"), (other, "other"), (zero, "zero"), (two, "two"), (few, "few"), (many, "many")]
             .compactMap { (value, name) -> String? in
                 guard let value = value else { return nil }
                 return """
                 <key>\(name)</key>
-                <string>\(value)</key>
+                <string>\(transformation.transform(value: value, namespace: fullNamespace))</string>
                 """
             }
             .joined(separator: "\n")

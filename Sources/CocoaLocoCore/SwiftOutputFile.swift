@@ -42,7 +42,6 @@ class SwiftOutputFile {
         """.removeEmptyLines()
         // TODO come back and fix the need for this line.
         
-        // TODO Do I need to make sure parent directories are set up?
         try content.write(to: url, atomically: true, encoding: .utf8)
     }
     
