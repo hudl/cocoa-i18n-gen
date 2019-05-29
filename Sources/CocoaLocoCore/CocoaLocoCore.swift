@@ -24,7 +24,7 @@ public struct CocoaLocoCore {
         let namespace = LocalizationNamespace.parseValue(jsonResult, prefix: "LocalizableStrings", key: "LocalizableStrings")
         
         let outputFile = SwiftOutputFile(namespace: namespace)
-        try! outputFile.write(to: outputURL)
+        try! outputFile.write(to: outputURL, objc: objcSupport, isPublic: isPublic)
         
         print("Execution time - \(Date().timeIntervalSince(start))")
     }
