@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct LocalizedString {
-    let key: String
+struct LocalizedString: CodeGeneratable {
+    let normalizedName: String
     let fullNamespace: String
     let value: String
     let comment: String?
     let arguments: [Argument]
     
     func toSwiftCode(indent: Int, visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
-        let privateVal = "\(swiftEnum.name)._\(key)"
+        let privateVal = "\(swiftEnum.normalizedName)._\(normalizedName)"
         let body: String
         let newValue: String
         if !arguments.isEmpty {
@@ -35,8 +35,8 @@ struct LocalizedString {
 
         // TODO need to find a way to indent each line
         let code = #"""
-        \#(visibility.rawValue) static func \#(key)(\#(arguments.asInput)) -> String { return \#(body) }
-        private static let _\#(key) = Foundation.NSLocalizedString("\#(keyWithoutRootNamespace)", bundle: __bundle, value: "\#(newValue)", comment: "\#(comment ?? "")")
+        \#(visibility.rawValue) static func \#(normalizedName)(\#(arguments.asInput)) -> String { return \#(body) }
+        private static let _\#(normalizedName) = Foundation.NSLocalizedString("\#(keyWithoutRootNamespace)", bundle: __bundle, value: "\#(newValue)", comment: "\#(comment ?? "")")
         """#
         return code
     }
@@ -47,4 +47,23 @@ struct LocalizedString {
         let body = "return \(fullNamespace)(\(arguments.asInvocation))"
         return "\(visibility.rawValue) static func \(name)(\(arguments.asInput)) -> String { \(body) }".indented(by: 2)
     }
+    
+    static func asLocalizedString(normalizedName: String, fullNamespace: String, value: Any) -> LocalizedString? {
+        if let strValue = value as? String {
+            return LocalizedString(normalizedName: normalizedName,
+                                   fullNamespace: fullNamespace,
+                                   value: strValue,
+                                   comment: nil,
+                                   arguments: [])
+        } else if let dictValue = value as? [String: Any], let strValue = dictValue["value"] as? String {
+            let arguments = Argument.parseArgs(strValue: strValue, arguments: dictValue["arguments"] as? [String: String])
+            return LocalizedString(normalizedName: normalizedName,
+                                   fullNamespace: fullNamespace,
+                                   value: strValue,
+                                   comment: dictValue["comment"] as? String,
+                                   arguments: arguments)
+        }
+        return nil
+    }
+
 }

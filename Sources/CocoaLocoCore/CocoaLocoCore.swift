@@ -20,9 +20,6 @@ public struct CocoaLocoCore {
             exit(EXIT_FAILURE)
         }
         
-        // TODO add swift AND typescript support.
-        // TODO plural support
-        
         let jsonData: Any
         do {
             let data = try Data(contentsOf: inputURL, options: .mappedIfSafe)
