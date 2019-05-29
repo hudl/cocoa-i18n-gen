@@ -20,7 +20,7 @@ struct Plural: CodeGeneratable {
             case .standard: return value
             case .key: return namespace.split(separator: ".").dropFirst().joined(separator: ".") // Drop LocalizableStrings.
             // TODO still need to actually run the pseudo generator.
-            case .pseudo: return value
+            case .pseudo: return PseudoLocalizer.coolify(str: value)
             }
         }
     }
@@ -141,6 +141,54 @@ struct Plural: CodeGeneratable {
                       two: dict["two"] as? String,
                       few: dict["few"] as? String,
                       many: dict["many"] as? String)
+    }
+    
+}
+
+// Big thanks to https://github.com/maxnachlinger/node-pseudo-l10n
+private class PseudoLocalizer {
+
+    private static let charMap: [Character: String] = [
+        "a": "ààà", "b": "ƀ", "c": "ç", "d": "ð", "e": "ééé", "f": "ƒ", "g": "ĝ", "h": "ĥ", "i": "îîî", "l": "ļ", "k": "ķ", "j": "ĵ", "m": "ɱ",
+        "n": "ñ", "o": "ôôô", "p": "þ", "q": "ǫ", "r": "ŕ", "s": "š", "t": "ţ", "u": "ûûû", "v": "ṽ", "w": "ŵ", "x": "ẋ", "y": "ý", "z": "ž",
+        "A": "ÀÀÀ", "B": "Ɓ", "C": "Ç", "D": "Ð", "E": "ÉÉÉ", "F": "Ƒ", "G": "Ĝ", "H": "Ĥ", "I": "ÎÎÎ", "L": "Ļ", "K": "Ķ", "J": "Ĵ", "M": "Ṁ",
+        "N": "Ñ", "O": "ÔÔÔ", "P": "Þ", "Q": "Ǫ", "R": "Ŕ", "S": "Š", "T": "Ţ", "U": "ÛÛÛ", "V": "Ṽ", "W": "Ŵ", "X": "Ẋ", "Y": "Ý", "Z": "Ž"
+    ]
+    
+    public static let htmlChars: [Character] = [" ", ",", ":", ";", "?", "!", "[", "/", "-", "(", "<", "{"]
+    
+    public static let ignoreMap: [Character: ((Character) -> Bool)] = [
+        "<": { char -> Bool in
+            return char == ">"
+        },
+        "%": { char -> Bool in
+            return htmlChars.contains(char)
+        }
+    ]
+    
+    static func coolify(str: String) -> String {
+        guard !str.isEmpty else { return str }
+        var output = ""
+        var ignoreFn: ((Character) -> Bool)?
+        
+        str.enumerated().forEach { index, char in
+            var charToAppend = String(char)
+            // if we can stop ignoring
+            if let localIgnoreFn = ignoreFn, localIgnoreFn(char) {
+                ignoreFn = nil
+            }
+            if ignoreFn == nil {
+                // if we need to start ignoring
+                ignoreFn = ignoreMap[char]
+                
+                if let mappedChar = charMap[char], ignoreFn == nil {
+                    charToAppend = mappedChar
+                }
+            }
+            output.append(charToAppend)
+        }
+        
+        return output
     }
     
 }
