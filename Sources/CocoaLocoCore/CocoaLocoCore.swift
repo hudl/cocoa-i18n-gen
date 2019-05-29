@@ -10,21 +10,43 @@ import Foundation
 
 public struct CocoaLocoCore {
     
+    private static let defaultName = "LocalizableStrings"
+    
     public static func run(inputURL: URL, outputURL: URL, isPublic: Bool = false, objcSupport: Bool = false, namePrefix: String? = nil, bundleName: String? = nil) {
         let start = Date()
         
+        guard FileManager.default.fileExists(atPath: inputURL.path) else {
+            print("File not found at \(inputURL.path)")
+            exit(EXIT_FAILURE)
+        }
+        
         // TODO add swift AND typescript support.
-        // TODO make objective-c support optional.
-        // TODO add commander + all the supported commands for the old tool.
         // TODO plural support
         
-        let data = try! Data(contentsOf: inputURL, options: .mappedIfSafe)
-        let jsonResult = try! JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as! [String: Any]
+        let jsonData: Any
+        do {
+            let data = try Data(contentsOf: inputURL, options: .mappedIfSafe)
+            jsonData = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+        } catch {
+            print("Something went wrong parsing the input file - \(error.localizedDescription)")
+            exit(EXIT_FAILURE)
+        }
         
-        let namespace = LocalizationNamespace.parseValue(jsonResult, prefix: "LocalizableStrings", key: "LocalizableStrings")
+        guard let jsonResult = jsonData as? [String: Any] else {
+            print("Input file was not in the expected JSON object format")
+            exit(EXIT_FAILURE)
+        }
         
+        let visibility: Visibility = isPublic ? .public : .internal
+        let namespace = LocalizationNamespace.parseValue(jsonResult, prefix: defaultName, key: defaultName)
         let outputFile = SwiftOutputFile(namespace: namespace)
-        try! outputFile.write(to: outputURL, objc: objcSupport, isPublic: isPublic)
+
+        do {
+            try outputFile.write(to: outputURL, objc: objcSupport, isPublic: isPublic, visibility: visibility)
+        } catch {
+            print("There was an error writing the output file - \(error)")
+            exit(EXIT_FAILURE)
+        }
         
         print("Execution time - \(Date().timeIntervalSince(start))")
     }

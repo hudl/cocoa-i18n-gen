@@ -58,11 +58,11 @@ struct LocalizationNamespace {
         return LocalizationNamespace(name: key, enums: enums, strings: strings)
     }
     
-    func toSwiftCode(indent: Int) -> String {
-        var code = "internal enum \(name) {\n"
+    func toSwiftCode(indent: Int, visibility: Visibility) -> String {
+        var code = "\(visibility.rawValue) enum \(name) {\n"
         code += enums
             .sorted(by: { $0.name < $1.name })
-            .map { $0.toSwiftCode(indent: indent + 2) }
+            .map { $0.toSwiftCode(indent: indent + 2, visibility: visibility) }
             .map { $0.indented(by: indent + 2) }
             .joined(separator: "\n")
         if !enums.isEmpty {
@@ -70,7 +70,7 @@ struct LocalizationNamespace {
         }
         code += strings
             .sorted(by: { $0.key < $1.key })
-            .map { $0.toSwiftCode(indent: indent + 2, swiftEnum: self) }
+            .map { $0.toSwiftCode(indent: indent + 2, visibility: visibility, swiftEnum: self) }
             .joined(separator: "\n")
         if !strings.isEmpty {
             code += "\n"
@@ -79,14 +79,14 @@ struct LocalizationNamespace {
         return code
     }
     
-    func toObjcCode() -> String {
+    func toObjcCode(visibility: Visibility) -> String {
         var code = enums
             .sorted(by: { $0.name < $1.name })
-            .map { $0.toObjcCode() }
+            .map { $0.toObjcCode(visibility: visibility) }
             .joined()
         code += strings
             .sorted(by: { $0.key < $1.key })
-            .map { $0.toObjcCode() }
+            .map { $0.toObjcCode(visibility: visibility) }
             .joined(separator: "\n")
         if !strings.isEmpty {
             code += "\n"
