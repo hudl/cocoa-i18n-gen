@@ -7,5 +7,5 @@
 //
 
 struct CocoaLoco {
-    var text = "Hello, World!"
+    static let version = "1.0.0"
 }
