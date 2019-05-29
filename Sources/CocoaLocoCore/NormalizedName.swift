@@ -7,7 +7,7 @@
 
 import Foundation
 
-let reservedKeywords: [String] = [
+let reservedKeywords: Set<String> = Set([
     "associatedtype", "class", "deinit", "enum", "extension", "fileprivate", "func", "import", "init", "inout", "internal",
     "let", "open", "operator", "private", "protocol", "public", "static", "struct", "subscript", "typealias", "var",
     "break", "case", "continue", "default", "defer", "do", "else", "fallthrough", "for", "guard", "if","in", "repeat",
@@ -15,7 +15,7 @@ let reservedKeywords: [String] = [
     "throw", "throws", "true", "try", "associativity", "convenience", "dynamic", "didSet", "final", "get", "infix", "indirect",
     "lazy", "left", "mutating", "none", "nonmutating", "optional", "override", "postfix", "precedence", "prefix", "Protocol",
     "required", "right", "set", "Type", "unowned", "weak", "willSet"
-];
+])
 
 func normalizeName(rawName: String) -> String {
     if reservedKeywords.contains(rawName) {

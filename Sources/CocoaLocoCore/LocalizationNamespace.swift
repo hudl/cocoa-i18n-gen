@@ -15,26 +15,31 @@ struct LocalizationNamespace: CodeGeneratable {
     let strings: [LocalizedString]
     let plurals: [Plural]
     
-    static func parseValue(_ dict: [String: Any], fullNamespace: String, key: String) -> LocalizationNamespace {
+    static func parseValue(_ dict: [String: Any], fullNamespace: String?, normalizedName: String) -> LocalizationNamespace {
         var namespaces = [LocalizationNamespace]()
         var strings = [LocalizedString]()
         var plurals = [Plural]()
         
         dict.forEach { key, value in
             let normalizedName = normalizeName(rawName: key)
-            let fullNamespace = "\(fullNamespace).\(normalizedName)"
-            if let plural = Plural.asPlural(value, normalizedName: normalizedName, fullNamespace: fullNamespace) {
+            let nextNamespace: String
+            if let fullNamespace = fullNamespace {
+                nextNamespace = "\(fullNamespace).\(normalizedName)"
+            } else {
+                nextNamespace = normalizedName
+            }
+            if let plural = Plural.asPlural(value, normalizedName: normalizedName, fullNamespace: nextNamespace) {
                 plurals.append(plural)
-            } else if let string = LocalizedString.asLocalizedString(normalizedName: normalizedName, fullNamespace: fullNamespace, value: value) {
+            } else if let string = LocalizedString.asLocalizedString(normalizedName: normalizedName, fullNamespace: nextNamespace, value: value) {
                 strings.append(string)
             } else if let dictValue = value as? [String :Any] {
-                namespaces.append(parseValue(dictValue, fullNamespace: fullNamespace, key: normalizedName))
+                namespaces.append(parseValue(dictValue, fullNamespace: nextNamespace, normalizedName: normalizedName))
             } else {
                 fatalError("RIP")
             }
         }
         
-        return LocalizationNamespace(normalizedName: key, namespaces: namespaces, strings: strings, plurals: plurals)
+        return LocalizationNamespace(normalizedName: normalizedName, namespaces: namespaces, strings: strings, plurals: plurals)
     }
     
     func toSwiftCode(indent: Int, visibility: Visibility) -> String {
@@ -47,10 +52,10 @@ struct LocalizationNamespace: CodeGeneratable {
         """
     }
     
-    func toObjcCode(visibility: Visibility) -> String {
+    func toObjcCode(visibility: Visibility, baseName: String) -> String {
         return """
-        \(namespaces.toCode(indent: 0, { $0.toObjcCode(visibility: visibility) }))
-        \(strings.toCode(indent: 2, { $0.toObjcCode(visibility: visibility) }))
+        \(namespaces.toCode(indent: 0, { $0.toObjcCode(visibility: visibility, baseName: baseName) }))
+        \(strings.toCode(indent: 2, { $0.toObjcCode(visibility: visibility, baseName: baseName) }))
         """
     }
 }

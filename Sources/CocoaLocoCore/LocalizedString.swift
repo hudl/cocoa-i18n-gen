@@ -30,20 +30,20 @@ struct LocalizedString: CodeGeneratable {
             body = privateVal
             newValue = value
         }
-        
-        let keyWithoutRootNamespace = fullNamespace.split(separator: ".").dropFirst().joined(separator: ".")
 
         let code = """
         \(visibility.rawValue) static func \(normalizedName)(\(arguments.asInput)) -> String { return \(body) }
-        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(keyWithoutRootNamespace)", bundle: __bundle, value: "\(newValue)", comment: "\(comment ?? "")")
+        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(fullNamespace)", bundle: __bundle, value: "\(newValue)", comment: "\(comment ?? "")")
         """
         return code
     }
     
-    func toObjcCode(visibility: Visibility) -> String {
-        let chunks = fullNamespace.split(separator: ".")
-        let name = chunks.dropFirst().map { String($0).capitalizingFirstLetter() }.joined(separator: "_")
-        let body = "return \(fullNamespace)(\(arguments.asInvocation))"
+    func toObjcCode(visibility: Visibility, baseName: String) -> String {
+        let name = fullNamespace
+            .split(separator: ".")
+            .map { String($0).capitalizingFirstLetter() }
+            .joined(separator: "_")
+        let body = "return \(baseName).\(fullNamespace)(\(arguments.asInvocation))"
         return "\(visibility.rawValue) static func \(name)(\(arguments.asInput)) -> String { \(body) }"
     }
     

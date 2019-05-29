@@ -18,8 +18,7 @@ struct Plural: CodeGeneratable {
         func transform(value: String, namespace: String) -> String {
             switch self {
             case .standard: return value
-            case .key: return namespace.split(separator: ".").dropFirst().joined(separator: ".") // Drop LocalizableStrings.
-            // TODO still need to actually run the pseudo generator.
+            case .key: return namespace
             case .pseudo: return PseudoLocalizer.coolify(str: value)
             }
         }
@@ -75,19 +74,20 @@ struct Plural: CodeGeneratable {
     
     func toSwiftCode(visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
         let privateVal = "_\(normalizedName)"
-        let keyWithoutRootNamespace = fullNamespace.split(separator: ".").dropFirst().joined(separator: ".")
         let body = "String.localizedStringWithFormat(\(privateVal), count)"
         
         let code = """
         \(visibility.rawValue) static func \(normalizedName)(count: Int) -> String { return \(body) }
-        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(keyWithoutRootNamespace)", bundle: __bundle, comment: "\(comment ?? "")")
+        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(fullNamespace)", bundle: __bundle, comment: "\(comment ?? "")")
         """
         return code
     }
     
     func toObjcCode(visibility: Visibility) -> String {
-        let chunks = fullNamespace.split(separator: ".")
-        let name = chunks.dropFirst().map { String($0).capitalizingFirstLetter() }.joined(separator: "_")
+        let name = fullNamespace
+            .split(separator: ".")
+            .map { String($0).capitalizingFirstLetter() }
+            .joined(separator: "_")
         let body = "return \(fullNamespace)(count: count)"
         return "\(visibility.rawValue) static func \(name)(count: Int)) -> String { \(body) }"
     }
@@ -123,8 +123,6 @@ struct Plural: CodeGeneratable {
             .joined(separator: "\n")
     }
     
-    // TODO Should enforce rules somehow. Throw a good error basically.
-    // Required they have a %i or something in there.
     static func asPlural(_ value: Any, normalizedName: String, fullNamespace: String) -> Plural? {
         guard
             let dict = value as? [String: Any],

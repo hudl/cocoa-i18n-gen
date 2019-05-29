@@ -12,7 +12,7 @@ public struct CocoaLocoCore {
     
     private static let defaultName = "LocalizableStrings"
     
-    public static func run(inputURL: URL, outputURL: URL, isPublic: Bool = false, objcSupport: Bool = false, namePrefix: String? = nil, bundleName: String? = nil) {
+    public static func run(inputURL: URL, outputURL: URL, isPublic: Bool = false, objcSupport: Bool = false, namePrefix: String = "", bundleName: String? = nil) {
         let start = Date()
         
         guard FileManager.default.fileExists(atPath: inputURL.path) else {
@@ -41,14 +41,8 @@ public struct CocoaLocoCore {
         }
         
         let visibility: Visibility = isPublic ? .public : .internal
-        let initialName: String
-        if let namePrefix = namePrefix {
-            initialName = "\(namePrefix)\(defaultName)"
-        } else {
-            initialName = defaultName
-        }
-        
-        let namespace = LocalizationNamespace.parseValue(jsonResult, fullNamespace: initialName, key: defaultName)
+        let initialName: String = "\(namePrefix)\(defaultName)"
+        let namespace = LocalizationNamespace.parseValue(jsonResult, fullNamespace: nil, normalizedName: initialName)
         let swiftOutputFile = SwiftOutputFile(namespace: namespace)
         let baseStringsDictFile = StringsDictOutputFile(namespace: namespace)
 
@@ -57,7 +51,9 @@ public struct CocoaLocoCore {
             try swiftOutputFile.write(to: outputURL.appendingPathComponent(initialName).appendingPathExtension("swift"),
                                       objc: objcSupport,
                                       isPublic: isPublic,
-                                      visibility: visibility)
+                                      visibility: visibility,
+                                      prefix: namePrefix,
+                                      bundleName: bundleName)
             try [
                 ("Base", Plural.Transformation.standard),
                 ("en-JP", Plural.Transformation.key),
