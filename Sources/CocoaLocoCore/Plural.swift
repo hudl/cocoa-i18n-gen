@@ -9,6 +9,12 @@ import Foundation
 
 struct Plural: CodeGeneratable {
     
+    private static var variableCount = 0
+    
+    enum Transformation {
+        case standard, key, pseudo
+    }
+    
     let normalizedName: String
     let fullNamespace: String
     let comment: String?
@@ -28,10 +34,10 @@ struct Plural: CodeGeneratable {
         let keyWithoutRootNamespace = fullNamespace.split(separator: ".").dropFirst().joined(separator: ".")
         let body = "String.localizedStringWithFormat(\(privateVal), count)"
         
-        let code = #"""
-        \#(visibility.rawValue) static func \#(normalizedName)(count: Int) -> String { return \#(body) }
-        private static let _\#(normalizedName) = Foundation.NSLocalizedString("\#(keyWithoutRootNamespace)", bundle: __bundle, comment: "\#(comment ?? "")")
-        """#
+        let code = """
+        \(visibility.rawValue) static func \(normalizedName)(count: Int) -> String { return \(body) }
+        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(keyWithoutRootNamespace)", bundle: __bundle, comment: "\(comment ?? "")")
+        """
         return code
     }
     
@@ -39,9 +45,43 @@ struct Plural: CodeGeneratable {
         let chunks = fullNamespace.split(separator: ".")
         let name = chunks.dropFirst().map { String($0).capitalizingFirstLetter() }.joined(separator: "_")
         let body = "return \(fullNamespace)(count: count)"
-        return "\(visibility.rawValue) static func \(name)(count: Int)) -> String { \(body) }".indented(by: 2)
+        return "\(visibility.rawValue) static func \(name)(count: Int)) -> String { \(body) }"
     }
     
+    func toXml(transformation: Transformation) -> String {
+        Plural.variableCount += 1
+        let variableName = "variable_\(Plural.variableCount)"
+        return """
+        <key>\(normalizedName)</key>
+        <dict>
+        <key>NSStringFormatValueTypeKey</key>
+        <string>%#@\(variableName)@</string>
+        <key>\(variableName)</key>
+        <dict>
+        <key>NSStringFormatSpecTypeKey</key>
+        <string>NSStringPluralRuleType</string>
+        <key>NSStringFormatValueTypeKey</key>
+        <string>NEED TO IDENTIFY TYPE</string>
+        \(pluralVariationsXml(transformation: transformation))
+        </dict>
+        </dict>
+        """
+    }
+    
+    func pluralVariationsXml(transformation: Transformation) -> String {
+        return [(other, "other"), (one, "one"), (zero, "zero"), (two, "two"), (few, "few"), (many, "many")]
+            .compactMap { (value, name) -> String? in
+                guard let value = value else { return nil }
+                return """
+                <key>\(name)</key>
+                <string>\(value)</key>
+                """
+            }
+            .joined(separator: "\n")
+    }
+    
+    // TODO Should enforce rules somehow. Throw a good error basically.
+    // Required they have a %i or something in there.
     static func asPlural(_ value: Any, normalizedName: String, fullNamespace: String) -> Plural? {
         guard
             let dict = value as? [String: Any],
@@ -54,7 +94,7 @@ struct Plural: CodeGeneratable {
                       comment: dict["comment"] as? String,
                       other: other,
                       one: one,
-                      zero: dict["other"] as? String,
+                      zero: dict["zero"] as? String,
                       two: dict["two"] as? String,
                       few: dict["few"] as? String,
                       many: dict["many"] as? String)

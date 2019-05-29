@@ -20,6 +20,12 @@ public struct CocoaLocoCore {
             exit(EXIT_FAILURE)
         }
         
+        var isDir : ObjCBool = false
+        guard FileManager.default.fileExists(atPath: outputURL.path, isDirectory: &isDir), isDir.boolValue else {
+            print("Directory not found at \(outputURL.path)")
+            exit(EXIT_FAILURE)
+        }
+        
         let jsonData: Any
         do {
             let data = try Data(contentsOf: inputURL, options: .mappedIfSafe)
@@ -41,11 +47,26 @@ public struct CocoaLocoCore {
         } else {
             initialName = defaultName
         }
+        
         let namespace = LocalizationNamespace.parseValue(jsonResult, fullNamespace: initialName, key: defaultName)
-        let outputFile = SwiftOutputFile(namespace: namespace)
+        let swiftOutputFile = SwiftOutputFile(namespace: namespace)
+        let baseStringsDictFile = StringsDictOutputFile(namespace: namespace)
 
         do {
-            try outputFile.write(to: outputURL, objc: objcSupport, isPublic: isPublic, visibility: visibility)
+            try FileManager.default.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
+            try swiftOutputFile.write(to: outputURL.appendingPathComponent(initialName).appendingPathExtension("swift"),
+                                      objc: objcSupport,
+                                      isPublic: isPublic,
+                                      visibility: visibility)
+            try [
+                ("Base", Plural.Transformation.standard),
+                ("en-JP", Plural.Transformation.key),
+                ("en-RW", Plural.Transformation.pseudo)
+            ].forEach { (name, transformation) in
+                let baseURL = outputURL.appendingPathComponent("\(name).lproj")
+                try FileManager.default.createDirectory(at: baseURL, withIntermediateDirectories: true, attributes: nil)
+                try baseStringsDictFile.write(to: baseURL.appendingPathComponent("Localizable.stringsdict"), transformation: transformation)
+            }
         } catch {
             print("There was an error writing the output file - \(error)")
             exit(EXIT_FAILURE)

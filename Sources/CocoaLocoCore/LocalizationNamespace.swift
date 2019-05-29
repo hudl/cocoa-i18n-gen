@@ -11,12 +11,12 @@ import Foundation
 struct LocalizationNamespace: CodeGeneratable {
     
     let normalizedName: String
-    let enums: [LocalizationNamespace]
+    let namespaces: [LocalizationNamespace]
     let strings: [LocalizedString]
     let plurals: [Plural]
     
     static func parseValue(_ dict: [String: Any], fullNamespace: String, key: String) -> LocalizationNamespace {
-        var enums = [LocalizationNamespace]()
+        var namespaces = [LocalizationNamespace]()
         var strings = [LocalizedString]()
         var plurals = [Plural]()
         
@@ -28,27 +28,29 @@ struct LocalizationNamespace: CodeGeneratable {
             } else if let string = LocalizedString.asLocalizedString(normalizedName: normalizedName, fullNamespace: fullNamespace, value: value) {
                 strings.append(string)
             } else if let dictValue = value as? [String :Any] {
-                enums.append(parseValue(dictValue, fullNamespace: fullNamespace, key: normalizedName))
+                namespaces.append(parseValue(dictValue, fullNamespace: fullNamespace, key: normalizedName))
             } else {
                 fatalError("RIP")
             }
         }
         
-        return LocalizationNamespace(normalizedName: key, enums: enums, strings: strings, plurals: plurals)
+        return LocalizationNamespace(normalizedName: key, namespaces: namespaces, strings: strings, plurals: plurals)
     }
     
     func toSwiftCode(indent: Int, visibility: Visibility) -> String {
-        var code = "\(visibility.rawValue) enum \(normalizedName) {\n"
-        code += enums.toCode(indent: indent, { $0.toSwiftCode(indent: 2, visibility: visibility) })
-        code += plurals.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility, swiftEnum: self) })
-        code += strings.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility, swiftEnum: self) })
-        code += "}"
-        return code
+        return """
+        \(visibility.rawValue) enum \(normalizedName) {
+        \(namespaces.toCode(indent: indent, { $0.toSwiftCode(indent: 2, visibility: visibility) }))
+        \(plurals.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility, swiftEnum: self) }))
+        \(strings.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility, swiftEnum: self) }))
+        }
+        """
     }
     
     func toObjcCode(visibility: Visibility) -> String {
-        var code = enums.toCode(indent: 0, { $0.toObjcCode(visibility: visibility) })
-        code += strings.toCode(indent: 0, { $0.toObjcCode(visibility: visibility) })
-        return code.replacingOccurrences(of: "\n\n", with: "\n")
+        return """
+        \(namespaces.toCode(indent: 0, { $0.toObjcCode(visibility: visibility) }))
+        \(strings.toCode(indent: 2, { $0.toObjcCode(visibility: visibility) }))
+        """
     }
 }

@@ -13,14 +13,10 @@ protocol CodeGeneratable {
 
 extension Array where Element: CodeGeneratable {
     func toCode(indent: Int, _ transform: ((Element) -> String)) -> String {
-        var code = self
+        return self
             .sorted(by: { $0.normalizedName < $1.normalizedName })
             .map { transform($0) }
             .map { $0.indentEachLine(by: indent) }
             .joined(separator: "\n")
-        if !self.isEmpty {
-            code += "\n"
-        }
-        return code
     }
 }

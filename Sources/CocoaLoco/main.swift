@@ -12,7 +12,7 @@ import Commander
 
 let generate = command(
     Argument<String>("inputFile", description: "The json file to parse"),
-    Argument<String>("outputFile", description: "The file path to write the generated file"),
+    Argument<String>("outputFile", description: "The directory to write the generated files in"),
     Flag("public", description: "Make the generated file public"),
     Flag("objc", description: "Add Objective-C compatibility"),
     Option<String>("prefix", default: "", description: "Prefix the file, LocalizableStrings struct, and ObjcLocalizableStrings class with a specific string"),

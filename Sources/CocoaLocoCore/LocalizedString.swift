@@ -33,10 +33,10 @@ struct LocalizedString: CodeGeneratable {
         
         let keyWithoutRootNamespace = fullNamespace.split(separator: ".").dropFirst().joined(separator: ".")
 
-        let code = #"""
-        \#(visibility.rawValue) static func \#(normalizedName)(\#(arguments.asInput)) -> String { return \#(body) }
-        private static let _\#(normalizedName) = Foundation.NSLocalizedString("\#(keyWithoutRootNamespace)", bundle: __bundle, value: "\#(newValue)", comment: "\#(comment ?? "")")
-        """#
+        let code = """
+        \(visibility.rawValue) static func \(normalizedName)(\(arguments.asInput)) -> String { return \(body) }
+        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(keyWithoutRootNamespace)", bundle: __bundle, value: "\(newValue)", comment: "\(comment ?? "")")
+        """
         return code
     }
     
@@ -44,7 +44,7 @@ struct LocalizedString: CodeGeneratable {
         let chunks = fullNamespace.split(separator: ".")
         let name = chunks.dropFirst().map { String($0).capitalizingFirstLetter() }.joined(separator: "_")
         let body = "return \(fullNamespace)(\(arguments.asInvocation))"
-        return "\(visibility.rawValue) static func \(name)(\(arguments.asInput)) -> String { \(body) }".indented(by: 2)
+        return "\(visibility.rawValue) static func \(name)(\(arguments.asInput)) -> String { \(body) }"
     }
     
     static func asLocalizedString(normalizedName: String, fullNamespace: String, value: Any) -> LocalizedString? {
