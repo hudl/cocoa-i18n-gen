@@ -14,7 +14,7 @@ struct LocalizationNamespace {
     let enums: [LocalizationNamespace]
     let strings: [LocalizedString]
     
-    static func parseValue(_ dict: [String: Any], prefix: String, key: String) -> LocalizationNamespace {
+    static func parseValue(_ dict: [String: Any], fullNamespace: String, key: String) -> LocalizationNamespace {
         var enums = [LocalizationNamespace]()
         var strings = [LocalizedString]()
         dict.forEach { key, value in
@@ -29,11 +29,11 @@ struct LocalizationNamespace {
                     }
                 }
                 .joined()
-            let nextPrefix = "\(prefix).\(key)"
+            let nextPrefix = "\(fullNamespace).\(key)"
             if let strValue = value as? String {
                 // it's a value by itself
                 strings.append(LocalizedString(key: key,
-                                               prefix: nextPrefix,
+                                               fullNamespace: nextPrefix,
                                                value: strValue,
                                                comment: nil,
                                                arguments: []))
@@ -42,13 +42,13 @@ struct LocalizationNamespace {
                     // it's a value / comment pair
                     let arguments = Argument.parseArgs(strValue: strValue, arguments: dictValue["arguments"] as? [String: String])
                     strings.append(LocalizedString(key: key,
-                                                   prefix: nextPrefix,
+                                                   fullNamespace: nextPrefix,
                                                    value: strValue,
                                                    comment: dictValue["comment"] as? String,
                                                    arguments: arguments))
                 } else {
                     // it's a namespace, parse it again!
-                    enums.append(parseValue(dictValue, prefix: nextPrefix, key: key))
+                    enums.append(parseValue(dictValue, fullNamespace: nextPrefix, key: key))
                 }
             } else {
                 fatalError("RIP")

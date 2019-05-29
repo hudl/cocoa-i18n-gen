@@ -10,21 +10,19 @@ import Foundation
 
 struct LocalizedString {
     let key: String
-    let prefix: String
+    let fullNamespace: String
     let value: String
     let comment: String?
     let arguments: [Argument]
     
     func toSwiftCode(indent: Int, visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
-        let args = arguments.sorted(by: { $0.name < $1.name }).map { "\($0.name): \($0.type.type)" }.joined(separator: ", ")
-        // TODO obviously garbage variable name
-        let args2 = arguments.sorted(by: { $0.name < $1.name }).map { $0.name }.joined(separator: ", ")
-        
         let privateVal = "\(swiftEnum.name)._\(key)"
         let body: String
         let newValue: String
         if !arguments.isEmpty {
-            body = "String.localizedStringWithFormat(\(privateVal), \(args2))"
+            body = "String.localizedStringWithFormat(\(privateVal), \(arguments.asFormatting))"
+            // This will take "Hello {firstName} welcome to {something}" with "Hello %@ welcome to %@"
+            // If there are args with the names "firstName" and "something".
             newValue = arguments.reduce(value, { (result, arg) -> String in
                 return result.replacingOccurrences(of: "{\(arg.name)}", with: "%@")
             })
@@ -33,18 +31,20 @@ struct LocalizedString {
             newValue = value
         }
         
-        var code = "\(visibility.rawValue) static func \(key)(\(args)) -> String { return \(body) }".indented(by: indent)
-        code += "\n"
-        // TODO why am I replacing LocalizableStrings in these? I don't think I should have to.
-        code += "private static let _\(key) = Foundation.NSLocalizedString(\"\(prefix.replacingOccurrences(of: "LocalizableStrings.", with: ""))\", bundle: __bundle, value: \"\(newValue)\", comment: \"\(comment ?? "")\")".indented(by: indent)
+        let keyWithoutRootNamespace = fullNamespace.split(separator: ".").dropFirst().joined(separator: ".")
+
+        // TODO need to find a way to indent each line
+        let code = #"""
+        \#(visibility.rawValue) static func \#(key)(\#(arguments.asInput)) -> String { return \#(body) }
+        private static let _\#(key) = Foundation.NSLocalizedString("\#(keyWithoutRootNamespace)", bundle: __bundle, value: "\#(newValue)", comment: "\#(comment ?? "")")
+        """#
         return code
     }
     
     func toObjcCode(visibility: Visibility) -> String {
-        let chunks = prefix.split(separator: ".")
+        let chunks = fullNamespace.split(separator: ".")
         let name = chunks.dropFirst().map { String($0).capitalizingFirstLetter() }.joined(separator: "_")
-        let args = arguments.sorted(by: { $0.name < $1.name }).map { "\($0.name): \($0.type.type)" }.joined(separator: ", ")
-        let args2 = arguments.sorted(by: { $0.name < $1.name }).map { "\($0.name): \($0.name)" }.joined(separator: ", ")
-        return "\(visibility.rawValue) static func \(name)(\(args)) -> String { return \(prefix)(\(args2)) }".indented(by: 2)
+        let body = "return \(fullNamespace)(\(arguments.asInvocation))"
+        return "\(visibility.rawValue) static func \(name)(\(arguments.asInput)) -> String { \(body) }".indented(by: 2)
     }
 }

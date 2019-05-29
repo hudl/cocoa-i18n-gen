@@ -44,7 +44,7 @@ public struct CocoaLocoCore {
         } else {
             initialName = defaultName
         }
-        let namespace = LocalizationNamespace.parseValue(jsonResult, prefix: initialName, key: defaultName)
+        let namespace = LocalizationNamespace.parseValue(jsonResult, fullNamespace: initialName, key: defaultName)
         let outputFile = SwiftOutputFile(namespace: namespace)
 
         do {

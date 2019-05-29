@@ -14,14 +14,6 @@ struct Argument {
     
     let name: String
     let type: ArgumentType
-    
-    func toSwiftCode(indent: Int) -> String {
-        return ""
-    }
-    
-    func toObjcCode() -> String {
-        return ""
-    }
 
     static func parseArgs(strValue: String, arguments: [String: String]?) -> [Argument] {
         // Optimization, if it doesn't contain a { char, no need to perform a regex on it.
@@ -38,6 +30,28 @@ struct Argument {
             return nil
         }
     }
+}
+
+extension Array where Element == Argument {
+    
+    var asInput: String {
+        return sorted(by: { $0.name < $1.name })
+            .map { "\($0.name): \($0.type.type)" }
+            .joined(separator: ", ")
+    }
+    
+    var asFormatting: String {
+        return sorted(by: { $0.name < $1.name })
+            .map { $0.name }
+            .joined(separator: ", ")
+    }
+    
+    var asInvocation: String {
+        return sorted(by: { $0.name < $1.name })
+        .map { "\($0.name): \($0.name)" }
+        .joined(separator: ", ")
+    }
+    
 }
 
 enum ArgumentType: String {
