@@ -16,7 +16,7 @@ extension Array where Element: CodeGeneratable {
         var code = self
             .sorted(by: { $0.normalizedName < $1.normalizedName })
             .map { transform($0) }
-            .map { $0.indented(by: indent + 2) }
+            .map { $0.indentEachLine(by: indent) }
             .joined(separator: "\n")
         if !self.isEmpty {
             code += "\n"

@@ -15,7 +15,7 @@ struct LocalizedString: CodeGeneratable {
     let comment: String?
     let arguments: [Argument]
     
-    func toSwiftCode(indent: Int, visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
+    func toSwiftCode(visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
         let privateVal = "\(swiftEnum.normalizedName)._\(normalizedName)"
         let body: String
         let newValue: String
@@ -33,7 +33,6 @@ struct LocalizedString: CodeGeneratable {
         
         let keyWithoutRootNamespace = fullNamespace.split(separator: ".").dropFirst().joined(separator: ".")
 
-        // TODO need to find a way to indent each line
         let code = #"""
         \#(visibility.rawValue) static func \#(normalizedName)(\#(arguments.asInput)) -> String { return \#(body) }
         private static let _\#(normalizedName) = Foundation.NSLocalizedString("\#(keyWithoutRootNamespace)", bundle: __bundle, value: "\#(newValue)", comment: "\#(comment ?? "")")

@@ -23,12 +23,11 @@ struct Plural: CodeGeneratable {
     let few: String?
     let many: String?
     
-    func toSwiftCode(indent: Int, visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
+    func toSwiftCode(visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
         let privateVal = "_\(normalizedName)"
         let keyWithoutRootNamespace = fullNamespace.split(separator: ".").dropFirst().joined(separator: ".")
         let body = "String.localizedStringWithFormat(\(privateVal), count)"
         
-        // TODO need to find a way to indent each line
         let code = #"""
         \#(visibility.rawValue) static func \#(normalizedName)(count: Int) -> String { return \#(body) }
         private static let _\#(normalizedName) = Foundation.NSLocalizedString("\#(keyWithoutRootNamespace)", comment: "\#(comment ?? "")")

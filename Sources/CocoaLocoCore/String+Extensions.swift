@@ -12,6 +12,9 @@ extension String {
     func indented(by: Int) -> String {
         return String(repeating: " ", count: by) + self
     }
+    func indentEachLine(by: Int) -> String {
+        return self.components(separatedBy: CharacterSet.newlines).map { $0.indented(by: by) }.joined(separator: "\n")
+    }
     func capitalizingFirstLetter() -> String {
         return prefix(1).uppercased() + dropFirst()
     }

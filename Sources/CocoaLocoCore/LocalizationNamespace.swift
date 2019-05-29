@@ -39,25 +39,16 @@ struct LocalizationNamespace: CodeGeneratable {
     
     func toSwiftCode(indent: Int, visibility: Visibility) -> String {
         var code = "\(visibility.rawValue) enum \(normalizedName) {\n"
-        code += enums.toCode(indent: indent, { $0.toSwiftCode(indent: indent + 2, visibility: visibility) })
-        code += plurals.toCode(indent: indent, { $0.toSwiftCode(indent: indent + 2, visibility: visibility, swiftEnum: self) })
-        code += strings.toCode(indent: indent, { $0.toSwiftCode(indent: indent + 2, visibility: visibility, swiftEnum: self) })
-        code += "}".indented(by: indent)
+        code += enums.toCode(indent: indent, { $0.toSwiftCode(indent: 2, visibility: visibility) })
+        code += plurals.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility, swiftEnum: self) })
+        code += strings.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility, swiftEnum: self) })
+        code += "}"
         return code
     }
     
     func toObjcCode(visibility: Visibility) -> String {
-        var code = enums
-            .sorted(by: { $0.normalizedName < $1.normalizedName })
-            .map { $0.toObjcCode(visibility: visibility) }
-            .joined()
-        code += strings
-            .sorted(by: { $0.normalizedName < $1.normalizedName })
-            .map { $0.toObjcCode(visibility: visibility) }
-            .joined(separator: "\n")
-        if !strings.isEmpty {
-            code += "\n"
-        }
-        return code
+        var code = enums.toCode(indent: 0, { $0.toObjcCode(visibility: visibility) })
+        code += strings.toCode(indent: 0, { $0.toObjcCode(visibility: visibility) })
+        return code.replacingOccurrences(of: "\n\n", with: "\n")
     }
 }
