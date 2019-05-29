@@ -35,6 +35,7 @@ struct LocalizedString {
         
         var code = "\(visibility.rawValue) static func \(key)(\(args)) -> String { return \(body) }".indented(by: indent)
         code += "\n"
+        // TODO why am I replacing LocalizableStrings in these? I don't think I should have to.
         code += "private static let _\(key) = Foundation.NSLocalizedString(\"\(prefix.replacingOccurrences(of: "LocalizableStrings.", with: ""))\", bundle: __bundle, value: \"\(newValue)\", comment: \"\(comment ?? "")\")".indented(by: indent)
         return code
     }
