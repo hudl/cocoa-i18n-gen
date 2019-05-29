@@ -30,7 +30,7 @@ struct Plural: CodeGeneratable {
         
         let code = #"""
         \#(visibility.rawValue) static func \#(normalizedName)(count: Int) -> String { return \#(body) }
-        private static let _\#(normalizedName) = Foundation.NSLocalizedString("\#(keyWithoutRootNamespace)", comment: "\#(comment ?? "")")
+        private static let _\#(normalizedName) = Foundation.NSLocalizedString("\#(keyWithoutRootNamespace)", bundle: __bundle, comment: "\#(comment ?? "")")
         """#
         return code
     }

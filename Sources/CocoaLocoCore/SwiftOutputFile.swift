@@ -25,7 +25,7 @@ class SwiftOutputFile {
         } else {
             content += "(for: BundleReference.self)\n"
         }
-        content += namespace.toSwiftCode(indent: 0, visibility: visibility)
+        content += namespace.toSwiftCode(indent: 2, visibility: visibility)
         content += "\n\n"
         if objc {
             content += "// Compatibility layer so the strings can be used in ObjC\n"
