@@ -61,7 +61,9 @@ public struct CocoaLocoCore {
             ].forEach { (name, transformation) in
                 let baseURL = outputURL.appendingPathComponent("\(name).lproj")
                 try FileManager.default.createDirectory(at: baseURL, withIntermediateDirectories: true, attributes: nil)
-                try baseStringsDictFile.write(to: baseURL.appendingPathComponent("Localizable.stringsdict"), transformation: transformation)
+                let fileName = "\(namePrefix)Localizable.stringsdict"
+                let finalURL = baseURL.appendingPathComponent(fileName)
+                try baseStringsDictFile.write(to: finalURL, transformation: transformation)
             }
         } catch {
             print("There was an error writing the output file - \(error)")
