@@ -64,6 +64,7 @@ struct Plural: CodeGeneratable {
         let nsrange = NSRange(other.startIndex..<other.endIndex, in: other)
         let matches = Plural.regex.matches(in: other, options: [], range: nsrange)
         guard let foundRange = matches.first?.range(at: 0), let range = Range(foundRange, in: other) else {
+            // TODO this should throw so that I can unit test it.
             fatalError("No variable type found in plural. Add a %i or %lu or something")
         }
         

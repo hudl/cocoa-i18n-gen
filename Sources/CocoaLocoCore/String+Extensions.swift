@@ -15,7 +15,7 @@ extension String {
     func indentEachLine(by: Int) -> String {
         return self
             .components(separatedBy: .newlines)
-            .map { $0.indented(by: by) }
+            .map { $0.isEmpty ? $0 : $0.indented(by: by) }
             .joined(separator: "\n")
     }
     func capitalizingFirstLetter() -> String {

@@ -28,5 +28,39 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("yay".lowercaseFirstLetter(), "yay")
         XCTAssertEqual("".lowercaseFirstLetter(), "")
     }
+    
+    func testIndentEachLine() {
+        let test = """
+cool Stuff
+oh ya
+
+yay
+""".indentEachLine(by: 2)
+        XCTAssertEqual(test, """
+  cool Stuff
+  oh ya
+
+  yay
+""")
+    }
+    
+    func testRemoveEmptyLines() {
+        let test = """
+
+blah
+
+
+
+blahblah
+
+blah
+
+""".removeEmptyLines()
+        XCTAssertEqual(test, """
+blah
+blahblah
+blah
+""")
+    }
 
 }
