@@ -21,8 +21,11 @@ public struct CocoaLocoCore {
         }
         
         var isDir : ObjCBool = false
-        guard FileManager.default.fileExists(atPath: outputURL.path, isDirectory: &isDir), isDir.boolValue else {
-            print("Directory not found at \(outputURL.path)")
+        if FileManager.default.fileExists(atPath: outputURL.path, isDirectory: &isDir) && !isDir.boolValue {
+            // This only happens if it exists, but it's not a directory.
+            // It is valid for it to either not exist at all, or exist as a directory,
+            // it just can't exist as a file.
+            print("Path at \(outputURL.path) is already a file. It needs to be a directory")
             exit(EXIT_FAILURE)
         }
         
