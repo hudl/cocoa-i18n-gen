@@ -43,19 +43,37 @@ struct LocalizationNamespace: CodeGeneratable {
     }
     
     func toSwiftCode(indent: Int, visibility: Visibility) -> String {
-        return """
-        \(visibility.rawValue) enum \(normalizedName) {
-        \(namespaces.toCode(indent: indent, { $0.toSwiftCode(indent: 2, visibility: visibility) }))
-        \(plurals.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility) }))
-        \(strings.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility, swiftEnum: self) }))
+        // not using multiline strings so I can control when newlines are added
+        var content = ""
+        content += "\(visibility.rawValue) enum \(normalizedName) {\n"
+        if !namespaces.isEmpty {
+            content += namespaces.toCode(indent: indent, { $0.toSwiftCode(indent: 2, visibility: visibility) })
+            content += "\n"
         }
-        """.removeEmptyLines()
+        if !plurals.isEmpty {
+            content += plurals.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility) })
+            content += "\n"
+        }
+        if !strings.isEmpty {
+            content += strings.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility, swiftEnum: self) })
+            content += "\n"
+        }
+        content += "}"
+        return content
     }
     
     func toObjcCode(visibility: Visibility, baseName: String) -> String {
-        return """
-        \(namespaces.toCode(indent: 0, { $0.toObjcCode(visibility: visibility, baseName: baseName) }))
-        \(strings.toCode(indent: 2, { $0.toObjcCode(visibility: visibility, baseName: baseName) }))
-        """.removeEmptyLines()
+        // not using multiline strings so I can control when newlines are added
+        var content = ""
+        if !namespaces.isEmpty {
+            content += namespaces.toCode(indent: 0, { $0.toObjcCode(visibility: visibility, baseName: baseName) })
+        }
+        if !namespaces.isEmpty && !strings.isEmpty && !content.isEmpty {
+            content += "\n"
+        }
+        if !strings.isEmpty {
+            content += strings.toCode(indent: 2, { $0.toObjcCode(visibility: visibility, baseName: baseName) })
+        }
+        return content
     }
 }
