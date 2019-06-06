@@ -15,6 +15,6 @@ final class CocoaLocoTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testExample", testExample),
+        ("testExample", testExample)
     ]
 }

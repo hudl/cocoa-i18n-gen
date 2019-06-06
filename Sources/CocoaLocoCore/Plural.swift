@@ -8,16 +8,16 @@
 import Foundation
 
 struct Plural: CodeGeneratable {
-    
+
     private static let regex = try! NSRegularExpression(pattern: #"%[^%\s]*\w"#, options: [.caseInsensitive])
 
     enum InitializationError: Error {
         case missingInterpolations
     }
-    
+
     enum Transformation {
         case standard, key, pseudo
-        
+
         func transform(value: String, namespace: String) -> String {
             switch self {
             case .standard: return value
@@ -26,24 +26,24 @@ struct Plural: CodeGeneratable {
             }
         }
     }
-    
+
     let normalizedName: String
     let fullNamespace: String
     let comment: String?
-    
+
     // Required
     let other: String
     let one: String
-    
+
     // Optional
     let zero: String?
     let two: String?
     let few: String?
     let many: String?
-    
+
     // Calculated
     private let variableType: String
-    
+
     init?(normalizedName: String,
          fullNamespace: String,
          comment: String?,
@@ -62,27 +62,27 @@ struct Plural: CodeGeneratable {
         self.two = two
         self.few = few
         self.many = many
-        
+
         let nsrange = NSRange(other.startIndex..<other.endIndex, in: other)
         let matches = Plural.regex.matches(in: other, options: [], range: nsrange)
         guard let foundRange = matches.first?.range(at: 0), let range = Range(foundRange, in: other) else {
             return nil
         }
-        
+
         variableType = String(other[range].dropFirst())
     }
-    
+
     func toSwiftCode(visibility: Visibility) -> String {
         let privateVal = "_\(normalizedName)"
         let body = "String.localizedStringWithFormat(\(privateVal), count)"
-        
+
         let code = """
         \(visibility.rawValue) static func \(normalizedName)(count: Int) -> String { return \(body) }
         private static let _\(normalizedName) = Foundation.NSLocalizedString("\(fullNamespace)", bundle: __bundle, comment: "\(comment ?? "")")
         """
         return code
     }
-    
+
     func toObjcCode(visibility: Visibility) -> String {
         let name = fullNamespace
             .split(separator: ".")
@@ -91,7 +91,7 @@ struct Plural: CodeGeneratable {
         let body = "return \(fullNamespace)(count: count)"
         return "\(visibility.rawValue) static func \(name)(count: Int)) -> String { \(body) }"
     }
-    
+
     func toXml(transformation: Transformation, index: Int) -> String {
         let variableName = "variable_\(index)"
         return """
@@ -110,7 +110,7 @@ struct Plural: CodeGeneratable {
         </dict>
         """
     }
-    
+
     private func pluralVariationsXml(transformation: Transformation) -> String {
         return [(one, "one"), (other, "other"), (zero, "zero"), (two, "two"), (few, "few"), (many, "many")]
             .compactMap { (value, name) -> String? in
@@ -122,7 +122,7 @@ struct Plural: CodeGeneratable {
             }
             .joined(separator: "\n")
     }
-    
+
     static func asPlural(_ value: Any, normalizedName: String, fullNamespace: String) -> Plural? {
         guard
             let dict = value as? [String: Any],
@@ -140,7 +140,7 @@ struct Plural: CodeGeneratable {
                       few: dict["few"] as? String,
                       many: dict["many"] as? String)
     }
-    
+
 }
 
 // Big thanks to https://github.com/maxnachlinger/node-pseudo-l10n
@@ -152,9 +152,9 @@ private class PseudoLocalizer {
         "A": "ÀÀÀ", "B": "Ɓ", "C": "Ç", "D": "Ð", "E": "ÉÉÉ", "F": "Ƒ", "G": "Ĝ", "H": "Ĥ", "I": "ÎÎÎ", "L": "Ļ", "K": "Ķ", "J": "Ĵ", "M": "Ṁ",
         "N": "Ñ", "O": "ÔÔÔ", "P": "Þ", "Q": "Ǫ", "R": "Ŕ", "S": "Š", "T": "Ţ", "U": "ÛÛÛ", "V": "Ṽ", "W": "Ŵ", "X": "Ẋ", "Y": "Ý", "Z": "Ž"
     ]
-    
+
     public static let htmlChars: [Character] = [" ", ",", ":", ";", "?", "!", "[", "/", "-", "(", "<", "{"]
-    
+
     public static let ignoreMap: [Character: ((Character) -> Bool)] = [
         "<": { char -> Bool in
             return char == ">"
@@ -163,13 +163,13 @@ private class PseudoLocalizer {
             return htmlChars.contains(char)
         }
     ]
-    
+
     static func coolify(str: String) -> String {
         guard !str.isEmpty else { return str }
         var output = ""
         var ignoreFn: ((Character) -> Bool)?
-        
-        str.enumerated().forEach { index, char in
+
+        str.enumerated().forEach { _, char in
             var charToAppend = String(char)
             // if we can stop ignoring
             if let localIgnoreFn = ignoreFn, localIgnoreFn(char) {
@@ -178,15 +178,15 @@ private class PseudoLocalizer {
             if ignoreFn == nil {
                 // if we need to start ignoring
                 ignoreFn = ignoreMap[char]
-                
+
                 if let mappedChar = charMap[char], ignoreFn == nil {
                     charToAppend = mappedChar
                 }
             }
             output.append(charToAppend)
         }
-        
+
         return output
     }
-    
+
 }

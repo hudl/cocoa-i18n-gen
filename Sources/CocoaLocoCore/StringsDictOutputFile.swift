@@ -9,13 +9,13 @@
 import Foundation
 
 class StringsDictOutputFile {
-    
+
     private let namespace: LocalizationNamespace
-    
+
     init(namespace: LocalizationNamespace) {
         self.namespace = namespace
     }
-    
+
     func write(to url: URL, transformation: Plural.Transformation) throws {
         let plurals = StringsDictOutputFile
             .allPlurals(namespace: namespace)
@@ -34,7 +34,7 @@ class StringsDictOutputFile {
         """
         try content.write(to: url, atomically: true, encoding: .utf8)
     }
-    
+
     private static func allPlurals(namespace: LocalizationNamespace) -> [Plural] {
         let rootPlurals = namespace.plurals
         let nestedPlurals = namespace.namespaces.flatMap { allPlurals(namespace: $0) }

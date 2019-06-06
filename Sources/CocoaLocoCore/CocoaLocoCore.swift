@@ -17,23 +17,23 @@ public enum CocoaLocoError: Error {
 }
 
 public struct CocoaLocoCore {
-    
+
     private static let defaultName = "LocalizableStrings"
 
     public static func run(inputURL: URL, outputURL: URL, isPublic: Bool = false, objcSupport: Bool = false, namePrefix: String = "", bundleName: String? = nil) throws {
-        
+
         guard FileManager.default.fileExists(atPath: inputURL.path) else {
             throw CocoaLocoError.inputFileMissing
         }
-        
-        var isDir : ObjCBool = false
+
+        var isDir: ObjCBool = false
         if FileManager.default.fileExists(atPath: outputURL.path, isDirectory: &isDir) && !isDir.boolValue {
             // This only happens if it exists, but it's not a directory.
             // It is valid for it to either not exist at all, or exist as a directory,
             // it just can't exist as a file.
             throw CocoaLocoError.outputPathIsFile
         }
-        
+
         let jsonData: Any
         do {
             let data = try Data(contentsOf: inputURL, options: .mappedIfSafe)
@@ -41,11 +41,11 @@ public struct CocoaLocoCore {
         } catch {
             throw CocoaLocoError.inputFileNotJson(error: error)
         }
-        
+
         guard let jsonResult = jsonData as? [String: Any] else {
             throw CocoaLocoError.inputFileNotDictionary
         }
-        
+
         let visibility: Visibility = isPublic ? .public : .internal
         let initialName: String = "\(namePrefix)\(defaultName)"
         let namespace = LocalizationNamespace.parseValue(jsonResult, fullNamespace: nil, normalizedName: initialName)
@@ -74,5 +74,5 @@ public struct CocoaLocoCore {
             throw CocoaLocoError.fileWrite(error: error)
         }
     }
-    
+
 }

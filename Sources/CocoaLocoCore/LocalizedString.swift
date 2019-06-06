@@ -14,7 +14,7 @@ struct LocalizedString: CodeGeneratable {
     let value: String
     let comment: String?
     let arguments: [Argument]
-    
+
     func toSwiftCode(visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
         let privateVal = "\(swiftEnum.normalizedName)._\(normalizedName)"
         let body: String
@@ -37,7 +37,7 @@ struct LocalizedString: CodeGeneratable {
         """
         return code
     }
-    
+
     func toObjcCode(visibility: Visibility, baseName: String) -> String {
         let name = fullNamespace
             .split(separator: ".")
@@ -46,7 +46,7 @@ struct LocalizedString: CodeGeneratable {
         let body = "return \(baseName).\(fullNamespace)(\(arguments.asInvocation))"
         return "\(visibility.rawValue) static func \(name)(\(arguments.asInput)) -> String { \(body) }"
     }
-    
+
     static func asLocalizedString(normalizedName: String, fullNamespace: String, value: Any) -> LocalizedString? {
         if let strValue = value as? String {
             return LocalizedString(normalizedName: normalizedName,

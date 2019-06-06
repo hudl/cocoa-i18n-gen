@@ -35,5 +35,5 @@ class BenchmarkTests: XCTestCase {
             try? CocoaLocoCore.run(inputURL: inputURL, outputURL: tempURL, objcSupport: true)
         }
     }
-    
+
 }

@@ -9,13 +9,13 @@
 import Foundation
 
 class SwiftOutputFile {
-    
+
     private let namespace: LocalizationNamespace
-    
+
     init(namespace: LocalizationNamespace) {
         self.namespace = namespace
     }
-    
+
     func write(to url: URL, objc: Bool, visibility: Visibility, prefix: String = "", bundleName: String? = nil) throws {
         let bundleRef: String
         if let bundleName = bundleName, !bundleName.isEmpty {
@@ -46,8 +46,8 @@ class SwiftOutputFile {
         \(objcContent)
         private class BundleReference {}
         """
-        
+
         try content.write(to: url, atomically: true, encoding: .utf8)
     }
-    
+
 }

@@ -9,7 +9,7 @@ import XCTest
 @testable import CocoaLocoCore
 
 final class NormalizeNameTests: XCTestCase {
-    
+
     func testNames() {
         measure {
             XCTAssertEqual(normalizeName(rawName: "Yay"), "Yay")
@@ -25,5 +25,5 @@ final class NormalizeNameTests: XCTestCase {
             XCTAssertEqual(normalizeName(rawName: "defaultPlusMore"), "defaultPlusMore")
         }
     }
-    
+
 }

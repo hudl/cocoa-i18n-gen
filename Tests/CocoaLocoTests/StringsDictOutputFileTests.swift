@@ -12,17 +12,17 @@ import XCTest
 class StringsDictOutputFileTests: XCTestCase {
 
     private var tempURL: URL!
-    
+
     override func setUp() {
         super.setUp()
         tempURL = URL(fileURLWithPath: NSTemporaryDirectory(),
                       isDirectory: true).appendingPathComponent(UUID().uuidString)
     }
-    
+
     override func tearDown() {
         try? FileManager.default.removeItem(at: tempURL)
     }
-    
+
     func testWriteStandard() {
         try? StringsDictOutputFile(namespace: exampleNamespace).write(to: tempURL, transformation: .standard)
         XCTAssertEqual(readTemp(), """
@@ -50,7 +50,7 @@ class StringsDictOutputFileTests: XCTestCase {
 </plist>
 """)
     }
-    
+
     func testWriteKeys() {
         try? StringsDictOutputFile(namespace: exampleNamespace).write(to: tempURL, transformation: .key)
         XCTAssertEqual(readTemp(), """
@@ -78,7 +78,7 @@ class StringsDictOutputFileTests: XCTestCase {
 </plist>
 """)
     }
-    
+
     func testWritePseudo() {
         try? StringsDictOutputFile(namespace: exampleNamespace).write(to: tempURL, transformation: .pseudo)
         XCTAssertEqual(readTemp(), """
@@ -106,15 +106,15 @@ class StringsDictOutputFileTests: XCTestCase {
 </plist>
 """)
     }
-    
+
     private func readTemp() -> String? {
         return try? String(contentsOf: tempURL)
     }
-    
+
 }
 
 private let examplePlurals = [
-    Plural(normalizedName: "one", fullNamespace: "oneName", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)!,
+    Plural(normalizedName: "one", fullNamespace: "oneName", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)!
 ]
 private let exampleNamespace = LocalizationNamespace(normalizedName: "testName",
                                                      namespaces: [],

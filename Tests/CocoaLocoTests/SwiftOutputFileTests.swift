@@ -10,19 +10,19 @@ import XCTest
 @testable import CocoaLocoCore
 
 class SwiftOutputFileTests: XCTestCase {
-    
+
     private var tempURL: URL!
-    
+
     override func setUp() {
         super.setUp()
         tempURL = URL(fileURLWithPath: NSTemporaryDirectory(),
             isDirectory: true).appendingPathComponent(UUID().uuidString)
     }
-    
+
     override func tearDown() {
         try? FileManager.default.removeItem(at: tempURL)
     }
-    
+
     func testWriteSimple() {
         try? SwiftOutputFile(namespace: exampleNamespace).write(to: tempURL, objc: false, visibility: .internal)
         XCTAssertEqual(readTemp(), """
@@ -36,7 +36,7 @@ internal enum testName {
 private class BundleReference {}
 """)
     }
-    
+
     func testWriteObjc() {
         try? SwiftOutputFile(namespace: exampleNamespace).write(to: tempURL, objc: true, visibility: .internal)
         XCTAssertEqual(readTemp(), """
@@ -58,7 +58,7 @@ internal class ObjCLocalizableStrings: Foundation.NSObject {
 private class BundleReference {}
 """)
     }
-    
+
     func testWritePublic() {
         try? SwiftOutputFile(namespace: exampleNamespace).write(to: tempURL, objc: false, visibility: .public)
         XCTAssertEqual(readTemp(), """
@@ -72,7 +72,7 @@ public enum testName {
 private class BundleReference {}
 """)
     }
-    
+
     func testWriteWithPrefix() {
         try? SwiftOutputFile(namespace: exampleNamespace).write(to: tempURL, objc: true, visibility: .internal, prefix: "Base")
         XCTAssertEqual(readTemp(), """
@@ -94,7 +94,7 @@ internal class BaseObjCLocalizableStrings: Foundation.NSObject {
 private class BundleReference {}
 """)
     }
-    
+
     func testWriteWithBundleName() {
         try? SwiftOutputFile(namespace: exampleNamespace).write(to: tempURL, objc: false, visibility: .internal, bundleName: "CoolBundle")
         XCTAssertEqual(readTemp(), """
@@ -108,11 +108,11 @@ internal enum testName {
 private class BundleReference {}
 """)
     }
-    
+
     private func readTemp() -> String? {
         return try? String(contentsOf: tempURL)
     }
-    
+
 }
 
 private let exampleNamespace = LocalizationNamespace(normalizedName: "testName",

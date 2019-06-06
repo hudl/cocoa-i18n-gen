@@ -10,14 +10,14 @@ import XCTest
 @testable import CocoaLocoCore
 
 class LocalizationNamespaceTests: XCTestCase {
-    
+
     // MARK: - Identifies matches
-    
+
     func testAcceptsPlural() {
         let dict: [String: Any] = [
             "somePlural": [
                 "one": "1 clip",
-                "other": "%lu clips",
+                "other": "%lu clips"
             ]
         ]
         let result = LocalizationNamespace.parseValue(dict, fullNamespace: "namespace", normalizedName: "name")
@@ -27,11 +27,11 @@ class LocalizationNamespaceTests: XCTestCase {
         XCTAssertEqual(result.strings.count, 0)
         XCTAssertEqual(result.normalizedName, "name")
     }
-    
+
     func testAcceptsString() {
         let dict: [String: Any] = [
             "someString": [
-                "value": "yay this is nice",
+                "value": "yay this is nice"
             ]
         ]
         let result = LocalizationNamespace.parseValue(dict, fullNamespace: "namespace", normalizedName: "name")
@@ -41,13 +41,13 @@ class LocalizationNamespaceTests: XCTestCase {
         XCTAssertEqual(result.strings.first?.fullNamespace, "namespace.someString")
         XCTAssertEqual(result.normalizedName, "name")
     }
-    
+
     func testAcceptsNamespace() {
         let dict: [String: Any] = [
             "someNamespace": [
                 "somePlural": [
                     "one": "1 clip",
-                    "other": "%lu clips",
+                    "other": "%lu clips"
                 ]
             ]
         ]
@@ -58,19 +58,19 @@ class LocalizationNamespaceTests: XCTestCase {
         XCTAssertEqual(result.strings.count, 0)
         XCTAssertEqual(result.normalizedName, "name")
     }
-    
+
     func testNilNamespace() {
         let dict: [String: Any] = [
             "someString": [
-                "value": "yay this is nice",
+                "value": "yay this is nice"
             ]
         ]
         let result = LocalizationNamespace.parseValue(dict, fullNamespace: nil, normalizedName: "name")
         XCTAssertEqual(result.strings.first?.fullNamespace, "someString")
     }
-    
+
     // MARK: - Swift conversation
-    
+
     func testSwiftSimple() {
         let swift = exampleNamespace.toSwiftCode(indent: 0, visibility: .internal)
         XCTAssertEqual(swift, """
@@ -88,7 +88,7 @@ private static let _two = Foundation.NSLocalizedString("twoName", bundle: __bund
 }
 """)
     }
-    
+
     func testSwiftVisibility() {
         let swift = exampleNamespace.toSwiftCode(indent: 0, visibility: .public)
         XCTAssertEqual(swift, """
@@ -106,7 +106,7 @@ private static let _two = Foundation.NSLocalizedString("twoName", bundle: __bund
 }
 """)
     }
-    
+
     func testSwiftIndent() {
         let swift = exampleNamespace.toSwiftCode(indent: 4, visibility: .internal)
         XCTAssertEqual(swift, """
@@ -124,9 +124,9 @@ internal enum testName {
 }
 """)
     }
-    
+
     // MARK: - Objective-C conversation
-    
+
     func testObjcSimple() {
         let objc = exampleNamespace.toObjcCode(visibility: .internal, baseName: "baseBlah")
         XCTAssertEqual(objc, """
@@ -134,7 +134,7 @@ internal enum testName {
   internal static func TwoName() -> String { return baseBlah.twoName() }
 """)
     }
-    
+
     func testObjcVisibility() {
         let objc = exampleNamespace.toObjcCode(visibility: .public, baseName: "baseBlah")
         XCTAssertEqual(objc, """
@@ -149,15 +149,13 @@ private let exampleNestedNamespace = [
 ]
 private let examplePlurals = [
     Plural(normalizedName: "one", fullNamespace: "oneName", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)!,
-    Plural(normalizedName: "two", fullNamespace: "twoName", comment: nil, other: "%lu clips 2", one: "1 clip 2", zero: nil, two: nil, few: nil, many: nil)!,
+    Plural(normalizedName: "two", fullNamespace: "twoName", comment: nil, other: "%lu clips 2", one: "1 clip 2", zero: nil, two: nil, few: nil, many: nil)!
 ]
 private let exampleStrings = [
     LocalizedString(normalizedName: "one", fullNamespace: "oneName", value: "test1", comment: nil, arguments: []),
-    LocalizedString(normalizedName: "two", fullNamespace: "twoName", value: "test2", comment: nil, arguments: []),
+    LocalizedString(normalizedName: "two", fullNamespace: "twoName", value: "test2", comment: nil, arguments: [])
 ]
 private let exampleNamespace = LocalizationNamespace(normalizedName: "testName",
                                                      namespaces: exampleNestedNamespace,
                                                      strings: exampleStrings,
                                                      plurals: examplePlurals)
-
-

@@ -9,17 +9,17 @@
 import Foundation
 
 struct LocalizationNamespace: CodeGeneratable {
-    
+
     let normalizedName: String
     let namespaces: [LocalizationNamespace]
     let strings: [LocalizedString]
     let plurals: [Plural]
-    
+
     static func parseValue(_ dict: [String: Any], fullNamespace: String?, normalizedName: String) -> LocalizationNamespace {
         var namespaces = [LocalizationNamespace]()
         var strings = [LocalizedString]()
         var plurals = [Plural]()
-        
+
         dict.forEach { key, value in
             let normalizedName = normalizeName(rawName: key)
             let nextNamespace: String
@@ -32,16 +32,16 @@ struct LocalizationNamespace: CodeGeneratable {
                 plurals.append(plural)
             } else if let string = LocalizedString.asLocalizedString(normalizedName: normalizedName, fullNamespace: nextNamespace, value: value) {
                 strings.append(string)
-            } else if let dictValue = value as? [String :Any] {
+            } else if let dictValue = value as? [String: Any] {
                 namespaces.append(parseValue(dictValue, fullNamespace: nextNamespace, normalizedName: normalizedName))
             } else {
                 fatalError("RIP")
             }
         }
-        
+
         return LocalizationNamespace(normalizedName: normalizedName, namespaces: namespaces, strings: strings, plurals: plurals)
     }
-    
+
     func toSwiftCode(indent: Int, visibility: Visibility) -> String {
         // not using multiline strings so I can control when newlines are added
         var content = ""
@@ -61,7 +61,7 @@ struct LocalizationNamespace: CodeGeneratable {
         content += "}"
         return content
     }
-    
+
     func toObjcCode(visibility: Visibility, baseName: String) -> String {
         // not using multiline strings so I can control when newlines are added
         var content = ""
