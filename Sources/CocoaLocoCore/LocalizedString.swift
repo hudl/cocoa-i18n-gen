@@ -12,6 +12,7 @@ struct LocalizedString: CodeGeneratable {
     let normalizedName: String
     let fullNamespace: String
     let value: String
+    let prefix: String
     let comment: String?
     let arguments: [Argument]
 
@@ -31,9 +32,10 @@ struct LocalizedString: CodeGeneratable {
             newValue = value
         }
 
+        let tableName = prefix.isEmpty ? "" : #", tableName: "\#(prefix)Localizable""#
         let code = """
         \(visibility.rawValue) static func \(normalizedName)(\(arguments.asInput)) -> String { return \(body) }
-        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(fullNamespace)", bundle: __bundle, value: "\(newValue)", comment: "\(comment ?? "")")
+        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(fullNamespace)", bundle: __bundle, value: "\(newValue)"\(tableName), comment: "\(comment ?? "")")
         """
         return code
     }
@@ -47,11 +49,12 @@ struct LocalizedString: CodeGeneratable {
         return "\(visibility.rawValue) static func \(name)(\(arguments.asInput)) -> String { \(body) }"
     }
 
-    static func asLocalizedString(normalizedName: String, fullNamespace: String, value: Any) -> LocalizedString? {
+    static func asLocalizedString(normalizedName: String, fullNamespace: String, prefix: String, value: Any) -> LocalizedString? {
         if let strValue = value as? String {
             return LocalizedString(normalizedName: normalizedName,
                                    fullNamespace: fullNamespace,
                                    value: strValue,
+                                   prefix: prefix,
                                    comment: nil,
                                    arguments: [])
         } else if let dictValue = value as? [String: Any], let strValue = dictValue["value"] as? String {
@@ -59,6 +62,7 @@ struct LocalizedString: CodeGeneratable {
             return LocalizedString(normalizedName: normalizedName,
                                    fullNamespace: fullNamespace,
                                    value: strValue,
+                                   prefix: prefix,
                                    comment: dictValue["comment"] as? String,
                                    arguments: arguments)
         }

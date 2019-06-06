@@ -15,7 +15,7 @@ struct LocalizationNamespace: CodeGeneratable {
     let strings: [LocalizedString]
     let plurals: [Plural]
 
-    static func parseValue(_ dict: [String: Any], fullNamespace: String?, normalizedName: String) -> LocalizationNamespace {
+    static func parseValue(_ dict: [String: Any], fullNamespace: String?, normalizedName: String, prefix: String) -> LocalizationNamespace {
         var namespaces = [LocalizationNamespace]()
         var strings = [LocalizedString]()
         var plurals = [Plural]()
@@ -30,10 +30,13 @@ struct LocalizationNamespace: CodeGeneratable {
             }
             if let plural = Plural.asPlural(value, normalizedName: normalizedName, fullNamespace: nextNamespace) {
                 plurals.append(plural)
-            } else if let string = LocalizedString.asLocalizedString(normalizedName: normalizedName, fullNamespace: nextNamespace, value: value) {
+            } else if let string = LocalizedString.asLocalizedString(normalizedName: normalizedName,
+                                                                     fullNamespace: nextNamespace,
+                                                                     prefix: prefix,
+                                                                     value: value) {
                 strings.append(string)
             } else if let dictValue = value as? [String: Any] {
-                namespaces.append(parseValue(dictValue, fullNamespace: nextNamespace, normalizedName: normalizedName))
+                namespaces.append(parseValue(dictValue, fullNamespace: nextNamespace, normalizedName: normalizedName, prefix: prefix))
             } else {
                 fatalError("RIP")
             }

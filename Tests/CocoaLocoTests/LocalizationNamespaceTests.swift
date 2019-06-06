@@ -20,7 +20,7 @@ class LocalizationNamespaceTests: XCTestCase {
                 "other": "%lu clips"
             ]
         ]
-        let result = LocalizationNamespace.parseValue(dict, fullNamespace: "namespace", normalizedName: "name")
+        let result = LocalizationNamespace.parseValue(dict, fullNamespace: "namespace", normalizedName: "name", prefix: "")
         XCTAssertEqual(result.plurals.count, 1)
         XCTAssertEqual(result.plurals.first?.fullNamespace, "namespace.somePlural")
         XCTAssertEqual(result.namespaces.count, 0)
@@ -34,7 +34,7 @@ class LocalizationNamespaceTests: XCTestCase {
                 "value": "yay this is nice"
             ]
         ]
-        let result = LocalizationNamespace.parseValue(dict, fullNamespace: "namespace", normalizedName: "name")
+        let result = LocalizationNamespace.parseValue(dict, fullNamespace: "namespace", normalizedName: "name", prefix: "")
         XCTAssertEqual(result.plurals.count, 0)
         XCTAssertEqual(result.namespaces.count, 0)
         XCTAssertEqual(result.strings.count, 1)
@@ -51,7 +51,7 @@ class LocalizationNamespaceTests: XCTestCase {
                 ]
             ]
         ]
-        let result = LocalizationNamespace.parseValue(dict, fullNamespace: "namespace", normalizedName: "name")
+        let result = LocalizationNamespace.parseValue(dict, fullNamespace: "namespace", normalizedName: "name", prefix: "")
         XCTAssertEqual(result.plurals.count, 0)
         XCTAssertEqual(result.namespaces.count, 1)
         XCTAssertEqual(result.namespaces.first?.normalizedName, "someNamespace")
@@ -65,7 +65,7 @@ class LocalizationNamespaceTests: XCTestCase {
                 "value": "yay this is nice"
             ]
         ]
-        let result = LocalizationNamespace.parseValue(dict, fullNamespace: nil, normalizedName: "name")
+        let result = LocalizationNamespace.parseValue(dict, fullNamespace: nil, normalizedName: "name", prefix: "")
         XCTAssertEqual(result.strings.first?.fullNamespace, "someString")
     }
 
@@ -152,8 +152,8 @@ private let examplePlurals = [
     Plural(normalizedName: "two", fullNamespace: "twoName", comment: nil, other: "%lu clips 2", one: "1 clip 2", zero: nil, two: nil, few: nil, many: nil)!
 ]
 private let exampleStrings = [
-    LocalizedString(normalizedName: "one", fullNamespace: "oneName", value: "test1", comment: nil, arguments: []),
-    LocalizedString(normalizedName: "two", fullNamespace: "twoName", value: "test2", comment: nil, arguments: [])
+    LocalizedString(normalizedName: "one", fullNamespace: "oneName", value: "test1", prefix: "", comment: nil, arguments: []),
+    LocalizedString(normalizedName: "two", fullNamespace: "twoName", value: "test2", prefix: "", comment: nil, arguments: [])
 ]
 private let exampleNamespace = LocalizationNamespace(normalizedName: "testName",
                                                      namespaces: exampleNestedNamespace,
