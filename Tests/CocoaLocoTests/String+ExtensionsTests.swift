@@ -43,24 +43,5 @@ yay
   yay
 """)
     }
-    
-    func testRemoveEmptyLines() {
-        let test = """
-
-blah
-
-
-
-blahblah
-
-blah
-
-""".removeEmptyLines()
-        XCTAssertEqual(test, """
-blah
-blahblah
-blah
-""")
-    }
 
 }

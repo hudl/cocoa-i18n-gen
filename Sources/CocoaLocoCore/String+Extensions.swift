@@ -24,10 +24,4 @@ extension String {
     func lowercaseFirstLetter() -> String {
         return prefix(1).lowercased() + dropFirst()
     }
-    func removeEmptyLines() -> String {
-        return self
-            .components(separatedBy: .newlines)
-            .filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
-            .joined(separator: "\n")
-    }
 }
