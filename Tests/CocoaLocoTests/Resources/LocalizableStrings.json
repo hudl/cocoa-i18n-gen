@@ -1,0 +1,3306 @@
+{
+    "button": {
+        "done": {
+            "title": {
+                "value": "Done",
+                "comment": "Title for a generic Done button"
+            }
+        },
+        "cancel": {
+            "title": {
+                "value": "Cancel",
+                "comment": "Title for a generic Cancel button"
+            }
+        },
+        "ok": {
+            "title": {
+                "value": "OK",
+                "comment": "Title for generic OK button"
+            }
+        },
+        "settings": {
+            "title": {
+                "value": "Settings",
+                "comment": "Title for generic Settings button"
+            }
+        },
+        "close": {
+            "title": {
+                "value": "Close",
+                "comment": "Title for generic close (dialog) button"
+            }
+        }
+    },
+    "highlights": {
+        "workflow_complete": {
+            "coach_message_for_athlete": {
+                "value": "This highlight is being posted to {arg0}’s public profile.",
+                "comment": "Tells a coach that a highlight is being posted to a named athlete's profile page.",
+                "arguments": {
+                    "arg0": "string"
+                }
+            },
+            "coach_message_for_team": {
+                "value": "This highlight is being posted.",
+                "comment": "Tells a coach that a highlight is being posted in a generic way."
+            },
+            "athlete_message": {
+                "value": "Your highlight is being posted to your profile. We’ll send you a message when it’s ready to watch.",
+                "comment": "Tells an athlete that a highlight is being posted to their profile."
+            },
+            "default_return_message": {
+                "value": "Back to my video",
+                "comment": "Default return action when finishing the highlight workflow."
+            }
+        },
+        "trimming": {
+            "coach_title_for_athlete": {
+                "value": "Trim {arg0}’s highlight",
+                "comment": "Template for the trimming view when a coach is trimming an athlete highlight",
+                "arguments": {
+                    "arg0": "string"
+                }
+            },
+            "title": {
+                "value": "Use handles to trim your clip to {arg0} seconds or less",
+                "comment": "Title for the trimming view",
+                "arguments": {
+                    "arg0": "string"
+                }
+            }
+        },
+        "postCreation": {
+            "shareTitlePlaceholder": {
+                "value": "Add a Title...",
+                "comment": "Placeholder title in the post creation share screen"
+            }
+        }
+    },
+    "gameday": {
+        "addScheduleEntry": {
+            "title": {
+                "value": "Add a Schedule Entry",
+                "comment": "Game Day > Add a Schedule Entry"
+            },
+            "cancel": {
+                "value": "Cancel",
+                "comment": "Game day > Cancel"
+            },
+            "save": {
+                "value": "Save",
+                "comment": "Game day > Save"
+            },
+            "type": {
+                "value": "Type",
+                "comment": "Game day > Type"
+            },
+            "location": {
+                "value": "Location",
+                "comment": "Game day > Location"
+            },
+            "date": {
+                "value": "Date",
+                "comment": "Game day > Date"
+            },
+            "locationType": {
+                "regular-season": {
+                    "value": "Regular Season",
+                    "comment": "Game day > regular season"
+                },
+                "post-season": {
+                    "value": "Post Season",
+                    "comment": "Game day > Post Season"
+                },
+                "camp": {
+                    "value": "Camp",
+                    "comment": "Game day Camp"
+                },
+                "scrimmage": {
+                    "value": "Scrimmage",
+                    "comment": "Game day > Scrimmage"
+                },
+                "tournament": {
+                    "value": "Tournament",
+                    "comment": "Game day > Tournament"
+                }
+            },
+            "gameType": {
+                "home": {
+                    "value": "Home",
+                    "comment": "Game day > Home"
+                },
+                "away": {
+                    "value": "Away",
+                    "comment": "Game day > Away"
+                },
+                "neutral": {
+                    "value": "Neutral",
+                    "comment": "Game day > Neutral"
+                }
+            },
+            "button-date-picker-done": {
+                "title": {
+                    "value": "Done",
+                    "comment": "Game Day > Done"
+                }
+            },
+            "button-back": {
+                "title": {
+                    "value": "Back",
+                    "comment": "Game Day > Back"
+                }
+            },
+            "opponent": {
+                "value": "Opponent",
+                "comment": "Game Day > Opponent"
+            }
+        },
+        "newScheduleEntry": {
+            "value": "New Schedule Entry",
+            "comment": "Game day > New Schedule Entry"
+        },
+        "micPermissionCheck": {
+            "title": {
+                "value": "Hudl would like to Access the Microphone",
+                "comment": "Mic Permissions"
+            },
+            "message1": {
+                "value": "Turn On the Microphone to Allow Hudl to Sync Your Tags and Video",
+                "comment": "Mic Permissions"
+            },
+            "message2": {
+                "value": "Please open the Settings app, go to Privacy > Microphone, and toggle the Hudl switch on.",
+                "comment": "Mic Permissions"
+            }
+        },
+        "whyTheMic": {
+            "title": {
+                "value": "Hudl would like to Access the Microphone",
+                "comment": "WhyWeNeedTheMic"
+            },
+            "message": {
+                "value": "This allows your tags and video to sync accurately after the game.",
+                "comment": "WhyWeNeedTheMic"
+            }
+        },
+        "buttonTag": {
+            "title": {
+                "value": "Tag the Game",
+                "comment": "Game Day > Tag the Game"
+            }
+        },
+        "buttonScout": {
+            "title": {
+                "value": "Scout the Game",
+                "comment": "Game Day > Scout the Game"
+            }
+        },
+        "buttonPractice": {
+            "title": {
+                "value": "Practice for the Game",
+                "comment": "Game Day > Practice for the Game"
+            }
+        },
+        "buttonCancelScoutPractice": {
+            "title": {
+                "value": "Cancel",
+                "comment": "Game Day > Cancel"
+            }
+        },
+        "gameTitle": {
+            "homeTeam": {
+                "value": "vs. {arg0}",
+                "comment": "Title for Game Day entry when current team is the home team for an event. Format string parameter is opponent team name. Example: 'versus Agile HS'",
+                "arguments": {
+                    "arg0": "string"
+                }
+            },
+            "awayTeam": {
+                "value": "@ {arg0}",
+                "comment": "Title for Game Day entry when current team is the away team for an event. Format string parameter is opponent team name. Example: 'at Agile HS'",
+                "arguments": {
+                    "arg0": "string"
+                }
+            }
+        },
+        "labelTagData": {
+            "tagDataAvailable": {
+                "value": "Tag data available",
+                "comment": "Game Day > Tag data available"
+            },
+            "tagDataUnavailable": {
+                "value": "No tag data available",
+                "comment": "Game Day > No tag data available"
+            }
+        },
+        "buttonFilmGame": {
+            "resume": {
+                "value": "Resume Recording…",
+                "comment": "Game Day > Resume Recording…"
+            },
+            "start": {
+                "value": "Record the Game",
+                "comment": "Game Day > Record the Game"
+            }
+        },
+        "labelVideo": {
+            "videoAvailable": {
+                "value": "Video available",
+                "comment": "Game Day > Video available"
+            },
+            "videoUploaded": {
+                "value": "Video uploaded",
+                "comment": "Game Day > Video uploaded"
+            },
+            "videoUploading": {
+                "value": "Video is uploading…",
+                "comment": "Game Day > Video is uploading…"
+            },
+            "videoPreparing": {
+                "value": "Video being prepared…",
+                "comment": "Game Day > Video being prepared…"
+            },
+            "videoUnavailable": {
+                "value": "No video available",
+                "comment": "Game Day > No video available"
+            }
+        },
+        "buttonWatchVideo": {
+            "title": {
+                "value": "Watch Game Video",
+                "comment": "Game Day > Watch Game Video (V3)"
+            }
+        },
+        "buttonGameOverview": {
+            "title": {
+                "value": "Go to Game Overview",
+                "comment": "Game Day > Go to Game Overview"
+            }
+        },
+        "secondaryEvent": {
+            "filmNewPractice": {
+                "value": "Record New Practice",
+                "comment": "Game Day > Record New Practice"
+            },
+            "filmNewScoutGame": {
+                "value": "Record New Scout Game",
+                "comment": "Game Day > Record New Scout Game"
+            },
+            "tagNewScoutGame": {
+                "value": "Tag New Scout Game",
+                "comment": "Game Day > Tag New Scout Game"
+            }
+        },
+        "scheduleUpdated": {
+            "value": "Schedule Updated",
+            "comment": "Game Day > Schedule Updated"
+        },
+        "scheduleUpdating": {
+            "value": "Checking for updates…",
+            "comment": "Game Day > Checking for updates…"
+        },
+        "opponentSearch": {
+            "placeholder": {
+                "value": "Enter team name",
+                "comment": "Placeholder text for Opponent search field. Says 'Enter team name'"
+            },
+            "title": {
+                "value": "Opponent",
+                "comment": "Title for Opponent search popup. Says 'Opponent'"
+            }
+        },
+        "permissionCheck": {
+            "title": {
+                "value": "Hudl would like to Access the Camera",
+                "comment": "Camera Permissions"
+            }
+        },
+        "cameraPermissionCheck": {
+            "message": {
+                "value": "Please open the Settings app, go to Privacy > Camera, and toggle the Hudl switch on.",
+                "comment": "Camera Permissions"
+            }
+        },
+        "captureDeviceInitialization": {
+            "title": {
+                "value": "Sorry, something went wrong.",
+                "comment": "Title for capture device initialization failure dialog"
+            },
+            "message": {
+                "value": "Please quit the Hudl app and reopen it.",
+                "comment": "Message for capture device initialization failure dialog"
+            }
+        },
+        "liveRecording": {
+            "eventAlreadyFinished": {
+                "title": {
+                    "value": "Sorry, something went wrong.",
+                    "comment": "Title for live video recording failure dialog"
+                },
+                "message": {
+                    "value": "This event already has video uploaded to it, you can't add more. Try creating a new event and recording on that.",
+                    "comment": "Message for live video recording failure dialog"
+                }
+            }
+        }
+    },
+    "moments_exporter": {
+        "export_error": {
+            "value": "It has not been possible to extract from the moments of this event. Error: <{arg0}>",
+            "comment": "Error generating the json corresponding to the moments array",
+            "arguments": {
+                "arg0": "string"
+            }
+        },
+        "title": {
+            "value": "Select Session",
+            "comment": "Title in the table view controller that displays the list of tagging sessions for the current team"
+        },
+        "error": {
+            "value": "Could not fetch any tagging session. Error: <{arg0}>",
+            "comment": "Error to be shown on an alert in case there aren't any available tagging sessions",
+            "arguments": {
+                "arg0": "string"
+            }
+        },
+        "error_title": {
+            "value": "Error",
+            "comment": "Any error in the moments exporter operation"
+        },
+        "no_email_configured": {
+            "value": "Your device is not configured to send mail. Please, configure it and try again",
+            "comment": "Text shown when trying to export the moments of an event when the user does not have the email client configured"
+        },
+        "no_moments": {
+            "value": "The event selected does not seem to have valid moments associated with it",
+            "comment": "Text shown when trying to export the moments of an event that does not have valid moments in it"
+        },
+        "no_event": {
+            "value": "There isn't any event associated with that schedule entry. Please, access the Export Moments feature from the sidebar menu",
+            "comment": "Text shown when trying to export the moments from an schedule entry whose event is nil"
+        },
+        "email": {
+            "body": {
+                "value": "This email has been created for you to send to Hudl Support so they can manually upload any lost tagged events you have on your device.",
+                "comment": "Email body template containing generic info to be attached to any moment exporter operation"
+            },
+            "subject": {
+                "eventID": {
+                    "value": "Moments extracted for event with id: {arg0}",
+                    "comment": "Email subject template for a moment exporter operation where the eventID is known",
+                    "arguments": {
+                        "arg0": "string"
+                    }
+                },
+                "taggingSessionID": {
+                    "value": "Moments extracted for tagging session with id: {arg0}",
+                    "comment": "Email subject template for a moment exporter operation where the taggingSessionID is known",
+                    "arguments": {
+                        "arg0": "string"
+                    }
+                }
+            }
+        },
+        "controller": {
+            "title": {
+                "value": "Extract",
+                "comment": "Moment Exporter View Controller's title"
+            }
+        }
+    },
+    "alert": {
+        "noInternetConnection": {
+            "value": "No Internet Connection",
+            "comment": "No Internet Connection"
+        }
+    },
+    "video": {
+        "value": "Video",
+        "comment": "Season View > Video"
+    },
+    "tagAndStat": {
+        "options": {
+            "tag-shot-locations": "Tag Shot Locations",
+            "use-quarters": "Use Quarters",
+            "use-halves": "Use Halves",
+            "iPad-orientation-prompt": {
+                "portrait": "To view the box score while tagging, hold the iPad in landscape mode.",
+                "landscape": "For bigger buttons, hold the iPad in portrait mode."
+            }
+        }
+    },
+    "periods": {
+        "overtime": {
+            "value": "Overtime",
+            "comment": "Overtime period label"
+        },
+        "extra_overtimes": {
+            "value": "{arg0} Overtime",
+            "comment": "Successive overtime periods label",
+            "arguments": {
+                "arg0": "string"
+            }
+        },
+        "quarter": {
+            "value": "{arg0} Quarter",
+            "comment": "Quarter periods label",
+            "arguments": {
+                "arg0": "string"
+            }
+        },
+        "second_half": {
+            "value": "2nd Half",
+            "comment": "Second half periods label"
+        }
+    },
+    "tagging": {
+        "view_game_stats": {
+            "value": "View Game Stats",
+            "comment": "Button text for game stats or box score"
+        },
+        "endGame": {
+            "resume_tagging": {
+                "value": "Resume Tagging",
+                "comment": "The label displayed on the button allowing the user to exit the live tagging end screen and resume tagging the game"
+            },
+            "game_over": {
+                "value": "The Game is Over",
+                "comment": "The label displayed on the button allowing the user to exit the live tagging end screen and publish the tagging session"
+            },
+            "tagging_paused": {
+                "value": "Tagging is paused.",
+                "comment": "Message alerting the user that the tagging session is paused"
+            }
+        }
+    },
+    "upfrontLoading": {
+        "startingUp": {
+            "value": "Starting Up",
+            "comment": "Starting Up"
+        },
+        "fetchingGameData": {
+            "value": "Fetching the Game Data",
+            "comment": "Fetching the Game Data"
+        },
+        "gameDataFetched": {
+            "value": "Game Data Fetched",
+            "comment": "Game Data Fetched"
+        },
+        "preparingVideo": {
+            "value": "Preparing Your Video",
+            "comment": "Preparing Your Video"
+        },
+        "preparingHighlihght": {
+            "value": "Preparing Your Highlight",
+            "comment": "Preparing Your Highlight"
+        },
+        "loadingVideo": {
+            "value": "Loading Your Video",
+            "comment": "Loading Your Video"
+        }
+    },
+    "baseWebView": {
+        "alert": {
+            "noInternet": {
+                "title": {
+                    "value": "Network Error",
+                    "comment": "Default alert title for trying to open a web view without an internet connection."
+                },
+                "message": {
+                    "openWebViewWithoutConnection": {
+                        "value": "Connect to Wi-Fi or cellular data to access {arg0}.",
+                        "comment": "Default alert message for trying to open a web view without an internet connection. String format argument required for location of app"
+                    },
+                    "arguments": {
+                        "arg0": "string"
+                    },
+                    "defaultLocation": {
+                        "value": "this part of Hudl",
+                        "comment": "Default string format argument for location of app."
+                    }
+                }
+            }
+        }
+    },
+    "feedback": {
+        "title": {
+            "value": "Help & Feedback",
+            "comment": "Help & Feedback"
+        },
+        "sectionTitle": {
+            "getHelp": {
+                "value": "Get Help",
+                "comment": "Get Help"
+            },
+            "giveFeedback": {
+                "value": "Give Feedback",
+                "comment": "Give Feedback"
+            }
+        },
+        "menuItem": {
+            "contactUs": {
+                "title": {
+                    "value": "Contact Us For Help",
+                    "comment": "Contact Us For Help"
+                },
+                "subtitle": {
+                    "value": "Email Hudl Support.",
+                    "comment": "Tells the user that this option allows them to directly email Hudl Support"
+                }
+            },
+            "knowledgeBase": {
+                "title": {
+                    "value": "Knowledge Base",
+                    "comment": "Knowledge Base"
+                },
+                "subtitle": {
+                    "value": "Tips to deal with common issues.",
+                    "comment": "Tells the user that this option is useful for finding documentation on common issues"
+                }
+            },
+            "callUs": {
+                "title": {
+                    "value": "Call Our User Support Phone Number",
+                    "comment": "Call Our User Support Phone Number"
+                }
+            },
+            "rateUs": {
+                "title": {
+                    "value": "Rate Us in the iTunes App Store",
+                    "comment": "Rate Us in the iTunes App Store"
+                },
+                "subtitle": {
+                    "value": "We'd love a great rating!",
+                    "comment": "We'd love a great rating!"
+                }
+            }
+        }
+    },
+    "teamsSwitcher": {
+        "title": {
+            "value": "Choose a Team",
+            "comment": "Select the team the current user wants to switch to"
+        }
+    },
+    "user": {
+        "you": {
+            "value": "You",
+            "comment": "You"
+        },
+        "coach": {
+            "value": "Coach",
+            "comment": "Coach"
+        }
+    },
+    "eventSession": {
+        "type": {
+            "tagged": {
+                "value": "Tagged",
+                "comment": "Tagged"
+            },
+            "recorded": {
+                "value": "Filmed",
+                "comment": "Filmed"
+            }
+        },
+        "status": {
+            "statusWithNameAndDate": {
+                "value": "{arg0} by {arg1} on {arg2}",
+                "comment": "Status string indicating a event was filmed or tagged by a given user on a given date. Example: {Type} by {Name} on {Date}",
+                "arguments": {
+                    "arg0": "string",
+                    "arg1": "string",
+                    "arg2": "string"
+                }
+            },
+            "statusWithName": {
+                "value": "{arg0} by {arg1}",
+                "comment": "Status string indicating a event was filmed or tagged by a given user. Example: {Type} by {Name}",
+                "arguments": {
+                    "arg0": "string",
+                    "arg1": "string"
+                }
+            },
+            "statusWithDate": {
+                "value": "{arg0} on {arg1}",
+                "comment": "Status string indicating a event was filmed or tagged on a given date. Example: {Type} on {Date}",
+                "arguments": {
+                    "arg0": "string",
+                    "arg1": "string"
+                }
+            }
+        }
+    },
+    "navigationMenu": {
+        "menuItem": {
+            "appSettings": {
+                "value": "App Settings",
+                "comment": "Title for `App Settings` navigation menu item"
+            },
+            "videoCapture": {
+                "value": "Capture",
+                "comment": "Title for `Capture` (video capture) navigation menu item"
+            },
+            "offlineVideo": {
+                "value": "Offline Video",
+                "comment": "Title for `Offline Video` (Hudl playlists downloaded onto device) navigation menu item"
+            },
+            "exchanges": {
+                "value": "Direct Exchanges",
+                "comment": "Title for `Exchanges` navigation menu item"
+            },
+            "getHelp": {
+                "value": "Get Help",
+                "comment": "Title for `Get Help` navigation menu item"
+            },
+            "highlights": {
+                "value": "Highlights",
+                "comment": "Title for `Highlights` navigation menu item"
+            },
+            "home": {
+                "value": "Home",
+                "comment": "Home"
+            },
+            "importedVideo": {
+                "value": "Imported Video",
+                "comment": "Title for `Imported Video` (video imported from iOS device's video library) navigation menu item"
+            },
+            "gameDay": {
+                "value": "GameDay",
+                "comment": "Title for `Game Day` navigation menu item"
+            },
+            "gettingStarted": {
+                "value": "Getting Started",
+                "comment": "Title for `Getting Started` navigation menu item"
+            },
+            "notifications": {
+                "value": "Notifications",
+                "comment": "Title for `Notifications` navigation menu item"
+            },
+            "performanceCenter": {
+                "value": "Performance Center",
+                "comment": "Title for `Performance Center` navigation menu item"
+            },
+            "playbook": {
+                "value": "Playbook",
+                "comment": "Title for `Playbook` (football) navigation menu item"
+            },
+            "practicescripts": {
+                "value": "Practice Scripts",
+                "comment": "Title for `Practice Scripts` (football) navigation menu item"
+            },
+            "record": {
+                "value": "Record",
+                "comment": "Title for `Record` navigation menu item"
+            },
+            "tagAGame": {
+                "value": "Tag a Game",
+                "comment": "Title for `Tag a Game` (football) navigation menu item"
+            },
+            "video": {
+                "value": "Video",
+                "comment": "Title for `Video` navigation menu item"
+            },
+            "leagueExchanges": {
+                "value": "League Exchanges",
+                "comment": "Title for `League Exchanges` navigation menu item"
+            },
+            "exportMoments": {
+                "value": "Export Moments",
+                "comment": "Title for `Export Moments` navigation menu item"
+            }
+        }
+    },
+    "label": {
+        "follower": {
+            "value": "follower",
+            "comment": "Label > follower"
+        },
+        "view": {
+            "value": "View",
+            "comment": "Label showing how many views - Singular"
+        },
+        "views": {
+            "value": "Views",
+            "comment": "Label showing how many views - Plural"
+        }
+    },
+    "perfcenter": {
+        "title": {
+            "value": "Search Performance Center",
+            "comment": "Search Performance Center"
+        }
+    },
+    "settings": {
+        "title": {
+            "value": "Settings",
+            "comment": "Settings"
+        }
+    },
+    "appSettings": {
+        "settingsItem": {
+            "touchId": {
+                "value": "Log In using Touch ID",
+                "comment": "Log In using Touch ID"
+            },
+            "faceId": {
+                "value": "Log In using Face ID",
+                "comment": "Log In using Face ID"
+            },
+            "uploadOverCellular": {
+                "value": "Upload Clips Over Cellular",
+                "comment": "Upload video clips using mobile/cellular data"
+            },
+            "notifyNewFollowers": {
+                "value": "Notify me for new followers",
+                "comment": "Notify me for new followers"
+            },
+            "notifyNewFollowersHeader": {
+                "value": "NEW FOLLOWER NOTIFICATIONS",
+                "comment": "NEW FOLLOWER NOTIFICATIONS"
+            },
+            "pushNotificationsForFollowed": {
+                "value": "If ON, we'll send you notifications when someone starts following you, even if the app is closed.",
+                "comment": "Settings Footer > followed push notifications"
+            },
+            "notifyNewExchanges": {
+                "value": "Notify me for new exchanges",
+                "comment": "Notify me for new exchanges"
+            },
+            "notifyNewExchangesHeader": {
+                "value": "EXCHANGE NOTIFICATIONS",
+                "comment": "EXCHANGE NOTIFICATIONS"
+            },
+            "pushNotificationsForExchanges": {
+                "value": "If ON, we'll send you notifications when someone exchanges video with you, even if the app is closed.",
+                "comment": "Settings Footer > exchanges push notifications"
+            },
+            "notifyNewReactions": {
+                "value": "Notify me for new reactions",
+                "comment": "Notify me for new reactions"
+            },
+            "notifyNewReactionsHeader": {
+                "value": "REACTION NOTIFICATIONS",
+                "comment": "REACTION NOTIFICATIONS"
+            },
+            "pushNotificationsForReactions": {
+                "value": "If ON, we'll send you notifications when someone reacts to your content, even if the app is closed.",
+                "comment": "Settings Footer > reactions push notifications"
+            },
+            "notifyHighlightRendered": {
+                "value": "Notify me when Highlight is ready",
+                "comment": "We are notifying the user here that the video they created is ready to be viewed.  The video is a highlight"
+            },
+            "notifyHighlightHeader": {
+                "value": "HIGHLIGHT NOTIFICATIONS",
+                "comment": "HIGHLIGHT NOTIFICATIONS is the title of this section"
+            },
+            "pushNotificationsForHighlightRenders": {
+                "value": "If ON, we'll send you notifications when your Highlight finishes rendering, even if the app is closed.",
+                "comment": "We're providing extra context to the user about what exactly will happen when they're highlight is done processing."
+            },
+            "notifyNewCommunityUserTags": {
+                "value": "Notify me when I'm tagged",
+                "comment": "Notify me when I'm tagged in community content"
+            },
+            "notifyNewCommunityUserTagsHeader": {
+                "value": "TAG NOTIFICATIONS",
+                "comment": "TAG NOTIFICATIONS"
+            },
+            "notifyInviteRequest": {
+                "header": {
+                    "value": "NEW TEAM MEMBER",
+                    "comment": "Header for pending team members notification setting"
+                },
+                "settingText": {
+                    "value": "Notify me for pending team members",
+                    "comment": "Notify me for new pending members"
+                }
+            },
+            "notifyVersion3Share": {
+                "header": {
+                    "value": "NEW CONTENT",
+                    "comment": "Header for V3 sharing notification setting"
+                },
+                "settingText": {
+                    "value": "Notify me when someone shares content with me.",
+                    "comment": "Text for V3 sharing notification setting"
+                },
+                "footer": {
+                    "value": "If ON, we'll send you a notification when someone shares something with you, even if the app is closed.",
+                    "comment": "Footer for V3 sharing notification setting"
+                }
+            },
+            "pushNotificationsForCommunityUserTags": {
+                "value": "If ON, we'll send you notifications when someone tags you in content, even if the app is closed.",
+                "comment": "Settings Footer > community content user tags push notifications"
+            },
+            "pushNotificationsGatoradeRefuelHeader": {
+                "value": "GATORADE HIGHLIGHT REFUEL",
+                "comment": "GATORADE HIGHLIGHT REFUEL"
+            },
+            "notifyNewGatoradeHighlight": {
+                "value": "Notify me when I have a refueled highlight",
+                "comment": "Notify me when a Gatorade render finishes"
+            },
+            "pushNotificationsForGatoradeRefuel": {
+                "value": "if ON, we'll send you notifications when one of your highlight reels has been refueled by Gatorade.",
+                "comment": "Gatorade refuel of highlight reels"
+            },
+            "feedAutoplayHeader": {
+                "value": "FEED AUTOPLAY",
+                "comment": "FEED AUTOPLAY"
+            },
+            "notifySms": {
+                "value": "SMS",
+                "comment": "SMS"
+            },
+            "notify-sms-not-available": {
+                "value": "SMS Not Available",
+                "comment": "SMS Not Available"
+            },
+            "unlinkAccount": {
+                "notificationTitle": {
+                    "value": "Unlink Your {arg0} Account?",
+                    "comment": "Title of unlink account alert",
+                    "arguments": {
+                        "arg0": "string"
+                    }
+                },
+                "notificationMessage": {
+                    "value": "Keeping this account linked will make it easier to share your Hudl posts to {arg0}.",
+                    "comment": "Message of unlink account alert",
+                    "arguments": {
+                        "arg0": "string"
+                    }
+                }
+            },
+            "feedAutoplayText": {
+                "value": "Feed Autoplay",
+                "comment": "Feed Autoplay"
+            },
+            "notifyPush": {
+                "value": "Push Notifications",
+                "comment": "Push Notifications"
+            },
+            "notifyEmail": {
+                "value": "Email",
+                "comment": "Email"
+            }
+        },
+        "settingsHeader": {
+            "biometricId": {
+                "value": "Logging In",
+                "comment": "Logging In"
+            },
+            "uploadOverCellular": {
+                "value": "Mobile Capture",
+                "comment": "Mobile Capture"
+            },
+            "messageNotifications": {
+                "value": "MESSAGE NOTIFICATIONS",
+                "comment": "MESSAGE NOTIFICATIONS"
+            }
+        },
+        "settingsFooter": {
+            "touchId": {
+                "value": "If ON, you can log in to Hudl using Touch ID instead of your username and password.",
+                "comment": "Touch Id > Footer"
+            },
+            "faceId": {
+                "value": "If ON, you can log in to Hudl using Face ID instead of your username and password.",
+                "comment": "Face Id > Footer"
+            },
+            "uploadOverCellular": {
+                "value": "If ON, we'll upload clips to Hudl over cellular when Wi-Fi is unavailable.",
+                "comment": "If ON, we'll upload clips to Hudl over cellular when Wi-Fi is unavailable."
+            },
+            "messageMain": {
+                "value": "SMS is only available for Gold & Platinum subscribers",
+                "comment": "SMS is only available for Gold & Platinum subscribers"
+            },
+            "messageLearn": {
+                "value": " Learn More",
+                "comment": " Learn More"
+            }
+        }
+    },
+    "suggestions": {
+        "your_teammates": {
+            "value": "Your Teammates",
+            "comment": "Your Teammates"
+        },
+        "your_suggestions": {
+            "value": "Your Suggestions",
+            "comment": "Your Suggestions"
+        },
+        "search_results": {
+            "value": "Search Results",
+            "comment": "Search Results"
+        },
+        "follow_all": {
+            "value": "Follow All",
+            "comment": "Follow All"
+        },
+        "unfollow_all": {
+            "value": "Unfollow All",
+            "comment": "Unfollow All"
+        },
+        "people_to_follow": {
+            "value": "People To Follow",
+            "comment": "Suggestions > People To Follow"
+        },
+        "none_found": {
+            "value": "No Suggestions",
+            "comment": "Suggestions > No suggestions label"
+        }
+    },
+    "sharingHighlight": {
+        "message": {
+            "value": "Check out this highlight!",
+            "comment": "Sharing Highlight"
+        }
+    },
+    "sharingVideo": {
+        "message": {
+            "value": "Check out this video!",
+            "comment": "Sharing Video"
+        }
+    },
+    "sharingContent": {
+        "message": {
+            "value": "Check this out!",
+            "comment": "Sharing Content"
+        }
+    },
+    "sharingFromHudl": {
+        "message": {
+            "value": "Shared from Hudl...!",
+            "comment": "Sharing From Hudl"
+        }
+    },
+    "error": {
+        "video_error": {
+            "value": "Video Error",
+            "comment": "Video Error"
+        }
+    },
+    "title": {
+        "home": {
+            "value": "Home",
+            "comment": "Home Navigation Title"
+        },
+        "start_following": {
+            "value": "Start Following",
+            "comment": "Start Following"
+        }
+    },
+    "suggestionsDatasource": {
+        "bottomNotificationDoneSuggestions": {
+            "text": {
+                "value": "No More Suggestions",
+                "comment": "Message displayed when a user has no more suggestions"
+            }
+        },
+        "bottomNotificationErrorSuggestions": {
+            "text": {
+                "value": "Error Fetching Suggestions",
+                "comment": "Message displayed when an error fetching suggestions occurs"
+            }
+        },
+        "bottomNotificationLimitReached": {
+            "text": {
+                "value": "Recommendation Limit Reached",
+                "comment": "Message displayed when a user has reached the max limit of teammate suggestions returned"
+            }
+        },
+        "bottomNotificationErrorTeammates": {
+            "value": "Error Fetching Teammates",
+            "comment": "Message displayed when an error fetching teammates occurs"
+        },
+        "bottomNotificationDoneTeammates": {
+            "value": "No More Teammates",
+            "comment": "Message displayed when a user has no more teammates"
+        }
+    },
+    "follow": {
+        "follower": {
+            "title": {
+                "value": "Followers",
+                "comment": "User Profile > Followers"
+            }
+        },
+        "following": {
+            "title": {
+                "value": "Following",
+                "comment": "User Profile > Following"
+            }
+        },
+        "not_following_anyone_yet": {
+            "value": "Not Following Anyone Yet",
+            "comment": "Not Following Anyone Yet"
+        },
+        "not_followers_yet": {
+            "value": "No Followers Yet",
+            "comment": "No Followers Yet"
+        }
+    },
+    "placeholder": {
+        "search_athlete": {
+            "value": "Search for an athlete",
+            "comment": "Suggestions > Search for an athlete"
+        }
+    },
+    "notifications": {
+        "mark_all": {
+            "value": "Mark All",
+            "comment": "Mark All"
+        },
+        "none_yet": {
+            "value": "No Notifications Yet",
+            "comment": "No Notifications Yet"
+        },
+        "error_fetching_notifications": {
+            "value": "Error Fetching Notifications",
+            "comment": "Error Fetching Notifications"
+        },
+        "error_following_user": {
+            "value": "Error Following User",
+            "comment": "Error Following User"
+        },
+        "error_unfollowing_user": {
+            "value": "Error Unfollowing User",
+            "comment": "Error Unfollowing User"
+        },
+        "error_marking_read": {
+            "value": "Error Marking Read",
+            "comment": "Error Marking Read"
+        },
+        "mark_as_read": {
+            "value": "Would you like to mark all {arg0} notifications as read?",
+            "comment": "Notifications > Would you like to mark as read",
+            "arguments": {
+                "arg0": "number"
+            }
+        },
+        "no_unread_notifications": {
+            "value": "There are no unread notifications.",
+            "comment": "Notifications > no unread notification alert."
+        }
+    },
+    "notification": {
+        "mark_all_read": {
+            "value": "Mark All Read",
+            "comment": "Notifications >Mark as read"
+        },
+        "never_miss_a_follower": {
+            "value": "Never Miss a New Follower",
+            "comment": "Never Miss a New Follower"
+        },
+        "question_notified_when_others_follow_you": {
+            "value": "Would you like to be notified when others follow you?",
+            "comment": "Notification message for Follow"
+        }
+    },
+    "action": {
+        "follow_athletes_highlights": {
+            "value": "Follow athletes to see their highlights and updates.",
+            "comment": "Follow athletes to see their highlights and updates"
+        }
+    },
+    "datetime": {
+        "today": {
+            "value": "Today",
+            "comment": "Date Helper > Today"
+        },
+        "tomorrow": {
+            "value": "Tomorrow",
+            "comment": "Date Helper > Tomorrow"
+        },
+        "tonight": {
+            "value": "Tonight",
+            "comment": "Date Helper > Tonight"
+        },
+        "yesterday": {
+            "value": "Yesterday",
+            "comment": "Date Helper > Yesterday"
+        },
+        "nextTime": {
+            "value": "Next {arg0}",
+            "comment": "Expression for an upcoming period of time. Example: 'Next month'.",
+            "arguments": {
+                "arg0": "string"
+            }
+        },
+        "lastTime": {
+            "value": "Last {arg0}",
+            "comment": "Expression for a previous period of time. Example: 'Last week'.",
+            "arguments": {
+                "arg0": "string"
+            }
+        }
+    },
+    "nav": {
+        "video": {
+            "value": "Video",
+            "comment": "Video"
+        },
+        "back": {
+            "value": "Back",
+            "comment": "Back"
+        }
+    },
+    "HighlightTryAgain": {
+        "value": "Try Again",
+        "comment": "Generic Retry text that has an action associated with it."
+    },
+    "boxscore": {
+        "top_scorers": {
+            "value": "Top Scorers",
+            "comment": "Header for top scoring players and the points they have scored (detailed box score)"
+        },
+        "top_rebounders": {
+            "value": "Top Rebounders",
+            "comment": "Header for top rebounding players and the number of rebounds they have (detailed box score)"
+        },
+        "top_foulers": {
+            "value": "Athletes in Foul Trouble",
+            "comment": "Header for top fouling players and the number of fouls they have (detailed box score)"
+        }
+    },
+    "communityProfiles": {
+        "share": {
+            "twitter": {
+                "value": "Check out {arg0} on @Hudl {arg1} #hudl",
+                "comment": "Default community profile share message for twitter.",
+                "arguments": {
+                    "arg0": "string",
+                    "arg1": "string"
+                }
+            },
+            "facebookAndEmail": {
+                "value": "Check out {arg0} on Hudl {arg1}",
+                "comment": "Default community profile share message for facebook and email.",
+                "arguments": {
+                    "arg0": "string",
+                    "arg1": "string"
+                }
+            }
+        },
+        "buttonActionEdit": {
+            "title": {
+                "value": "Edit",
+                "comment": "Title for edit action button in Community Profile"
+            }
+        },
+        "buttonActionFollow": {
+            "title": {
+                "value": "Follow",
+                "comment": "Title for follow action button in Community Profile"
+            }
+        },
+        "buttonActionFollowing": {
+            "title": {
+                "value": "Following",
+                "comment": "Title for following action button in Community Profile"
+            }
+        },
+        "buttonActionShare": {
+            "title": {
+                "value": "Share",
+                "comment": "Title for share action button in Community Profile"
+            }
+        },
+        "buttonActionMessage": {
+            "title": {
+                "value": "Message",
+                "comment": "Title for message action button in Community Profile"
+            }
+        },
+        "buttonListPluralViews": {
+            "title": {
+                "value": "views",
+                "comment": "Title for plural views list button in Community Profile"
+            }
+        },
+        "buttonListSingularView": {
+            "title": {
+                "value": "view",
+                "comment": "Title for singular view list button in Community Profile"
+            }
+        },
+        "buttonListPluralFollowers": {
+            "title": {
+                "value": "followers",
+                "comment": "Title for plural followers list button in Community Profile"
+            }
+        },
+        "buttonListSingularFollower": {
+            "title": {
+                "value": "follower",
+                "comment": "Title for singular follower list button in Community Profile"
+            }
+        },
+        "buttonListFollowing": {
+            "title": {
+                "value": "following",
+                "comment": "Title for following list button in Community Profile"
+            }
+        },
+        "actionSheet": {
+            "editProfileImage": {
+                "title": {
+                    "value": "Edit Profile Picture",
+                    "comment": "Title for action sheet when prompting edit of profile image in Community Profile"
+                }
+            },
+            "editBannerImage": {
+                "title": {
+                    "value": "Edit Banner Picture",
+                    "comment": "Title for action sheet when prompting edit of banner image in Community Profile"
+                }
+            },
+            "cancelAction": {
+                "title": {
+                    "value": "Cancel",
+                    "comment": "Title for cancel action in Community Profile action sheet"
+                }
+            },
+            "takePhotoAction": {
+                "title": {
+                    "value": "Take a Photo",
+                    "comment": "Title for take photo action in Community Profile action sheet"
+                }
+            },
+            "cameraRollAction": {
+                "title": {
+                    "value": "Pick from Camera Roll",
+                    "comment": "Title for camera roll action in Community Profile action sheet"
+                }
+            }
+        },
+        "alert": {
+            "uploadImageError": {
+                "title": {
+                    "value": "Oops!",
+                    "comment": "Alert title when image upload failed"
+                },
+                "message": {
+                    "value": "There was an error updating your picture",
+                    "comment": "Alert message when image upload failed"
+                }
+            },
+            "noCamera": {
+                "title": {
+                    "value": "This device does not have a camera",
+                    "comment": "Title for no camera available in Community Profile alert"
+                }
+            }
+        },
+        "alertAction": {
+            "ok": {
+                "title": {
+                    "value": "OK",
+                    "comment": "Title for OK action in Community Profile alert"
+                }
+            },
+            "retry": {
+                "title": {
+                    "value": "Retry",
+                    "comment": "Title for retry action in Community Profile alert"
+                }
+            }
+        }
+    },
+    "imageCropping": {
+        "alert": {
+            "imageTooSmall": {
+                "title": {
+                    "value": "Image Too Small",
+                    "comment": "Alert title when selected image is too small to crop"
+                },
+                "message": {
+                    "value": "The image you selected is too small. Please choose a different image.",
+                    "comment": "Alert message when selected image is too small to crop"
+                }
+            },
+            "somethingWentWrong": {
+                "title": {
+                    "value": "Incompatible Image",
+                    "comment": "Alert title when the image conversion process messed up"
+                },
+                "message": {
+                    "value": "Something went wrong. Please choose a different image.",
+                    "comment": "Alert message when the image conversion process messed up"
+                }
+            }
+        },
+        "alertAction": {
+            "ok": {
+                "title": {
+                    "value": "OK",
+                    "comment": "Title for OK action in image cropping alert"
+                }
+            }
+        }
+    },
+    "exploreHub": {
+        "surveyButtonTitle": {
+            "value": "Looking for more?",
+            "comment": "Button title for a survey that asks what users are looking to find on this page"
+        }
+    },
+    "colorPicker": {
+        "title": {
+            "value": "{arg0} is wearing...",
+            "comment": "Text to be displayed as the title of the color picker to ask the user pick what color is team X wearing",
+            "arguments": {
+                "arg0": "string"
+            }
+        }
+    },
+    "flow": {
+        "tagging": {
+            "color": {
+                "white": {
+                    "value": "white",
+                    "comment": "white color"
+                },
+                "yellow": {
+                    "value": "yellow",
+                    "comment": "yellow color"
+                },
+                "orange": {
+                    "value": "orange",
+                    "comment": "orange color"
+                },
+                "red": {
+                    "value": "red",
+                    "comment": "red color"
+                },
+                "green": {
+                    "value": "green",
+                    "comment": "green color"
+                },
+                "blue": {
+                    "value": "blue",
+                    "comment": "blue color"
+                },
+                "purple": {
+                    "value": "purple",
+                    "comment": "purple color"
+                },
+                "black": {
+                    "value": "black",
+                    "comment": "black color"
+                },
+                "gray": {
+                    "value": "gray",
+                    "comment": "gray color"
+                }
+            },
+            "team": {
+                "value": "Team",
+                "comment": "Team"
+            }
+        },
+        "video": {
+            "practice": {
+                "value": "Practice Video",
+                "comment": "Practice Video"
+            },
+            "scout": {
+                "value": "Scout Video",
+                "comment": "Scout Video"
+            },
+            "pastGame": {
+                "value": "Past Game Video",
+                "comment": "Past Game Video"
+            }
+        }
+    },
+    "highlightClipCreation": {
+        "gameReelError": {
+            "value": "We weren't able to save your changes. You may want to check your internet before trying again.",
+            "comment": "Error displayed to user after they've created a highlight clip but we are unable to fetch the game reel associated with said clip."
+        },
+        "clipCreationError": {
+            "value": "We weren't able to save this highlight. You may want to check your internet before trying again.",
+            "comment": "Error displayed when a user attempts to create a highlight clip."
+        }
+    },
+    "highlightEditor": {
+        "onboardingDescriptionAthlete": {
+            "value": "Share your best moments with friends, family and recruiters on your public profile",
+            "comment": "Highlight Editor Onboarding Description For Athletes"
+        },
+        "onboardingDescriptionCoach": {
+            "value": "Help your athletes and team grow by promoting the best moments from the game",
+            "comment": "Highlight Editor Onboarding Description For Coaches"
+        },
+        "onboardingLetsGo": {
+            "value": "Let's Go!",
+            "comment": "Highlight Editor Onboarding Let's Go Button"
+        },
+        "onboardingTitle": {
+            "value": "Hudl Highlights",
+            "comment": "Highlight Editor Onboarding Title"
+        }
+    },
+    "HighlightClipShareDetail": {
+        "label": {
+            "fetching": {
+                "value": "Processing highlight clip...",
+                "comment": "Text to display while fetching rendering clip"
+            },
+            "finished": {
+                "value": "Done! Tap to preview.",
+                "comment": "Text to display after fetching rendering clip"
+            }
+        }
+    },
+    "HighlightClipShareError": {
+        "clip": {
+            "fetching": {
+                "value": "We were unable to load your highlight clip.  You may want to check your internet before trying again.",
+                "comment": "Text to display if error fetching clip"
+            },
+            "publishing": {
+                "value": "We were unable to save your changes.  You may want to check your internet before trying again.",
+                "comment": "Text to display if error publishing reel"
+            }
+        }
+    },
+    "shareController": {
+        "noTitleAlert": {
+            "title": {
+                "value": "Please Add a Title Before Sharing",
+                "comment": "No Title Alert Text - Title"
+            }
+        }
+    },
+    "reelEditor": {
+        "noTitleAlert": {
+            "action": {
+                "value": "Add Title",
+                "comment": "No Title Alert Text - Action"
+            },
+            "title": {
+                "value": "Title Your Reel",
+                "comment": "No Title Alert Text - Title"
+            },
+            "message": {
+                "value": "Please give your highlight reel a title.",
+                "comment": "No Title Alert Text - Message"
+            }
+        },
+        "privacyAlert": {
+            "titleAllPrivateCoach": {
+                "value": "Highlights Are Private",
+                "comment": "Title of Privacy alerts when user taps the help icon. - All Private Version"
+            },
+            "titleAllPrivateAthlete": {
+                "value": "Your Coach Has Made Highlights Private",
+                "comment": "Title of Privacy alerts when user taps the help icon. - All Private Version"
+            },
+            "messageAllPrivateCoach": {
+                "value": "Your team and verified recruiters will still see highlights from this team, but they won't be publicly available."
+            },
+            "messageAllPrivateAthlete": {
+                "value": "Your team and verified recruiters will still see highlights from this team, but they won't be publicly available. You can ask your coach to change this setting.",
+                "comment": "Privacy Alert Text - All Private Message"
+            },
+            "titleCoach": {
+                "value": "{arg0} Angles Are Private",
+                "comment": "Title of Privacy alerts when user taps the help icon.",
+                "arguments": {
+                    "arg0": "string"
+                }
+            },
+            "titleAthlete": {
+                "value": "Your Coach Has Made {arg0} Angles Private",
+                "comment": "Title of Privacy alerts when user taps the help icon.",
+                "arguments": {
+                    "arg0": "string"
+                }
+            },
+            "messageCoach": {
+                "value": "Only your team and verified recruiters will see this clip. If you want this play to be public, you can highlight a different angle or make the {arg0} angle public by changing your privacy settings.",
+                "comment": "Privacy Alert Text - Message",
+                "arguments": {
+                    "arg0": "string"
+                }
+            },
+            "messageAthlete": {
+                "value": "Only your team and verified recruiters will see this clip. If you want this play to be public, you can highlight a different angle or ask your coach to make the {arg0} angle public.",
+                "comment": "Privacy Alert Text - Message",
+                "arguments": {
+                    "arg0": "string"
+                }
+            },
+            "titleGenericCoach": {
+                "value": "Highlight Clips Are Private",
+                "comment": "Title of Privacy alerts when user taps the help icon. - Generic Version"
+            },
+            "titleGenericAthlete": {
+                "value": "Your Coach Has Made Highlight Clips Private",
+                "comment": "Title of Privacy alerts when user taps the help icon. - Generic Version"
+            },
+            "messageGenericCoach": {
+                "value": "Only your team and verified recruiters will see this clip. You can highlight another angle or change your privacy settings.",
+                "comment": "Privacy Alert Text - Generic Message"
+            },
+            "messageGenericAthlete": {
+                "value": "Only your team and verified recruiters will see this clip. If you want this play to be public, you can try highlighting another angle of this play",
+                "comment": "Privacy Alert Text - Generic Message"
+            }
+        },
+        "addClip": {
+            "value": "Add Clip",
+            "comment": "Clip Chooser - Add Clip Singular"
+        },
+        "addClips": {
+            "value": "Add {arg0} Clips",
+            "comment": "Clip Chooser - Add Clip Plural",
+            "arguments": {
+                "arg0": "number"
+            }
+        },
+        "tooManyClipsTitle": {
+            "value": "Too Many Clips",
+            "comment": "Clip Chooser - Too many clips alert title"
+        },
+        "tooManyClipsMessage": {
+            "value": "Unfortunately you have reached the maximum number of clips allowed in your highlight reel",
+            "comment": "Clip Chooser - Too many clips alert message"
+        },
+        "teamFilterTitle": {
+            "value": "Filter Clips by Team",
+            "comment": "Clip Chooser - Filter Clips by Team"
+        },
+        "addVideo": {
+            "prompt": {
+                "value": "Add some video.",
+                "comment": "User prompt to add video in reel editor."
+            }
+        },
+        "addMusic": {
+            "prompt": {
+                "value": "Add some music.",
+                "comment": "User prompt to add music in reel editor."
+            }
+        },
+        "delete": {
+            "title": {
+                "value": "Are you sure you want to remove this item from the reel?",
+                "comment": "Delete confirmation for removing a slide or clip"
+            },
+            "remove": {
+                "value": "Remove",
+                "comment": "Delete action for removing a slide or clip"
+            }
+        },
+        "close": {
+            "title": {
+                "value": "Sure you want to close?",
+                "comment": "Close reel editor confirmation title"
+            },
+            "message": {
+                "value": "Closing the reel editor now means you'll lose the changes you've made",
+                "comment": "Message displayed when we're asking for confirmation that the user will close the editor"
+            }
+        },
+        "closeButton": {
+            "continue-editing": {
+                "value": "Continue Editing",
+                "comment": "Button title to continue editing"
+            }
+        },
+        "discardButton": {
+            "continue-discarding-changes": {
+                "value": "Discard Changes",
+                "comment": "Button title to discard editing"
+            }
+        },
+        "noClips": {
+            "title": {
+                "value": "No clips in your timeline",
+                "comment": "Display alert title when the video timeline contains no clips"
+            },
+            "message": {
+                "value": "Unfortunately you can’t save your highlight reel as you have no clips in your timeline",
+                "comment": "Display alert message when the video timeline contains no clips"
+            }
+        },
+        "allClipsAdded": {
+            "title": {
+                "value": "No Highlight Clips Left",
+                "comment": "All users highlight clips have been added title message."
+            },
+            "message": {
+                "value": "Unfortunately you have already added all of your highlight clips to the reel",
+                "comment": "All users highlight clips have been added message."
+            }
+        },
+        "tooManyClipsAdded": {
+            "title": {
+                "value": "Too Many Clips",
+                "comment": "User has added too many clips to video timeline title"
+            },
+            "message": {
+                "value": "Unfortunately you have reached the maximum number of clips allowed in your highlight reel",
+                "comment": "User has added too many clips to video timeline message"
+            }
+        },
+        "unsupportedSlide": {
+            "title": {
+                "value": "This Type of Slide Is No Longer Supported",
+                "comment": "User is trying to edit a slide we no longer support title"
+            },
+            "message": {
+                "value": "You can leave it alone, delete it, or add new slides by hitting the + button.",
+                "comment": "User is trying to edit a slide we no longer support message"
+            }
+        },
+        "addMusicEmpty": {
+            "prompt": {
+                "value": "There is no music in your reel.",
+                "comment": "Empty state for music in reel editor."
+            }
+        },
+        "music": {
+            "button": {
+                "value": "Music",
+                "comment": "Menu item to add music"
+            }
+        },
+        "photo": {
+            "button": {
+                "value": "Photo",
+                "comment": "Menu item to add photo"
+            }
+        },
+        "slide": {
+            "button": {
+                "value": "Slide",
+                "comment": "Menu item to add slide"
+            }
+        },
+        "video": {
+            "button": {
+                "value": "Video",
+                "comment": "Menu item to add video"
+            }
+        },
+        "feedback": {
+            "good": {
+                "value": "Thanks for the feedback! Have more to tell us?",
+                "comment": "Message displayed when the feedback response is good"
+            },
+            "bad": {
+                "value": "Sorry that sucked! What could we do better?",
+                "comment": "Message displayed when the feedback response is bad"
+            },
+            "more": {
+                "value": "Thanks for the feedback! What could we do better?",
+                "comment": "Message displayed when we're asking for more feedback"
+            }
+        },
+        "placeholderTitle": {
+            "value": "Untitled",
+            "comment": "Title Slide Placeholder Text"
+        },
+        "onboarding": {
+            "timelines": {
+                "value": "Move between your video & music timeline by tapping here",
+                "comment": "Onboarding info about video and music timelines"
+            },
+            "addItems": {
+                "value": "Add clips, slides, and music to your reel by tapping here",
+                "comment": "Onboarding info on where to add items to your timeline"
+            },
+            "arrangeItems": {
+                "value": "Arrange your reel by dragging items in the timeline",
+                "comment": "Onboarding info on how to arrange your timelines"
+            },
+            "gatoradeThemes": {
+                "value": "Exclusive slides, spot shadows and effects from Gatorade.",
+                "comment": "Onboarding info on the Gatorade theme chooser feature"
+            }
+        },
+        "navigationBar": {
+            "titlePlaceholder": {
+                "value": "Untitled Highlight",
+                "comment": "Placeholder title in the reel editor"
+            },
+            "titleSection": {
+                "value": "Title",
+                "comment": "Description of Title Section in the navigation bar"
+            },
+            "themeSection": {
+                "value": "Theme",
+                "comment": "Description of Theme Section in the navigation bar"
+            }
+        },
+        "title": {
+            "cancel": {
+                "value": "Cancel",
+                "comment": "Title for a generic Cancel button"
+            },
+            "publish": {
+                "value": "Publish",
+                "comment": "Publish Highlight in the Reel Editor"
+            }
+        },
+        "slideChooserSection": {
+            "value": "Choose a Slide Type",
+            "comment": "Prompts the user to select a type of slide"
+        },
+        "themeSelectorTitle": {
+            "value": "Choose a Theme",
+            "comment": "Title disaplyed on the Theme Selector Controller"
+        }
+    },
+    "HighlightClipShareDescription": {
+        "placeholder": {
+            "value": "Add a Description...",
+            "comment": "Placeholder text in the post creation share screen description field."
+        }
+    },
+    "HighlightCreationSuccess": {
+        "value": "You added a highlight clip to ",
+        "comment": "Success information after clip is created."
+    },
+    "HighlightCreationSuccessShare": {
+        "value": "Share Just This Clip",
+        "comment": "Button title to share the clip."
+    },
+    "HighlightPublishSuccess": {
+        "value": "You published ",
+        "comment": "Success information after reel is shared and published."
+    },
+    "HighlightPublishSuccessSecond": {
+        "value": " to your ",
+        "comment": "Success information after reel is shared and published - second part"
+    },
+    "clipChooserAltTitle": {
+        "value": "Other Highlights",
+        "comment": "Clip Chooser - Alt Title if Opponent Info is Missing"
+    },
+    "clipChooserDateCreatedOnText": {
+        "value": "On",
+        "comment": "Clip Chooser - Subtitle to add a Created On.. date to the section of clips."
+    },
+    "clipChooserDateCreatedOnUnknown": {
+        "value": "Unknown Creation Date",
+        "comment": "Clip Chooser - Subtitle to add a Created On.. unknown creation date."
+    },
+    "reelEditorPrivacyView": {
+        "messageGeneric": {
+            "value": "This clip will be private.",
+            "comment": "Privacy text overlaid on the video player in the Reel Editor - Generic"
+        }
+    },
+    "hudlSelect": {
+        "purchaseLoading": {
+            "value": "Purchasing Hudl Select",
+            "comment": "Text for loading dialog when waiting for a response from the iTunes store"
+        }
+    },
+    "Immersive": {
+        "follow": {
+            "value": "Follow",
+            "comment": "Button indicating the user can follow the given profile"
+        },
+        "following": {
+            "value": "Following",
+            "comment": "Button indicating the user is already following the given profile"
+        }
+    },
+    "videoLibrary": {
+        "unknownAngleName": {
+            "value": "Angle {arg0}",
+            "comment": "Angle X when angle name is unknown..",
+            "arguments": {
+                "arg0": "number"
+            }
+        },
+        "untitledVideoTitle": {
+            "value": "Untitled Video",
+            "comment": "Video title to display for nameless videos in the V3 library"
+        },
+        "breakdownsDownload": {
+            "status": {
+                "title": {
+                    "value": "Fetching Video Data",
+                    "comment": "Text displayed while we are fetching all the data before we can start the video player"
+                }
+            }
+        },
+        "lockedContent": {
+            "cannotPlay": {
+                "alert": {
+                    "title": {
+                        "value": "Video cannot be displayed",
+                        "comment": "Alert title when trying to play content that has been locked due to exceeding storage limit."
+                    },
+                    "message": {
+                        "value": "You have exceeded your storage hours on Hudl. Upgrade your storage or clear up old video to watch.",
+                        "comment": "Alert message when trying to play content that has been locked due to exceeding storage limit."
+                    },
+                    "upgrade": {
+                        "value": "Upgrade",
+                        "comment": "Alert option to upgrade storage limit when trying to play content that has been locked due to exceeding storage limit."
+                    }
+                }
+            }
+        },
+        "contentStatus": {
+            "outOfStorage": {
+                "subtitle": {
+                    "value": "Out of Storage",
+                    "comment": "V3 Library status subtitle for locked content"
+                }
+            }
+        },
+        "actions": {
+            "sendToAssist": {
+                "title": {
+                    "value": "Send to Assist",
+                    "comment": "Nav Title and button to send video to Assist for breakdown"
+                },
+                "description": {
+                    "available": {
+                        "value": "We'll return your breakdown within 24 hours of the completed upload.",
+                        "comment": "Description of Assist"
+                    },
+                    "invalidEventType": {
+                        "value": "Mark the video as Game or Scout before sending to Assist. We'll return your breakdown within 24 hours of the completed upload.",
+                        "comment": "Description of why Assist isn't available for Practice event types"
+                    },
+                    "emptyScheduledEvent": {
+                        "value": "Select a scheduled event before sending to Assist. We'll return your breakdown within 24 hours of the completed upload.",
+                        "comment": "Description of why Assist isn't available for Events with a scheduled event"
+                    }
+                },
+                "toast": {
+                    "value": "Sent to Assist",
+                    "comment": "Toast indicating video has been successfully sent to Assist for breakdown"
+                }
+            }
+        }
+    },
+    "application": {
+        "launch": {
+            "title": {
+                "value": "Updating",
+                "comment": "Message indicating that there are some final updates to make before the application is ready"
+            },
+            "body": {
+                "value": "Please don't close the app! This update will make your mobile experience even better. We promise.",
+                "comment": "Message explaining why the app is taking a bit longer to launch"
+            }
+        }
+    },
+    "momentsFiltering": {
+        "addClip": {
+            "value": "Add Clip",
+            "comment": "Text on a button to initiate the action to add a clip"
+        },
+        "addComment": {
+            "value": "Comment",
+            "comment": "Text on a button to initiate the action of adding a comment"
+        }
+    },
+    "filtering": {
+        "moments": {
+            "browseAll": {
+                "value": "Browsing All Tags",
+                "comment": "Indicating that we are displaying all available tags"
+            },
+            "browseFiltered": {
+                "value": "Filtered Tags",
+                "comment": "Indicating that we are displaying a subset from all available tags"
+            },
+            "filter": {
+                "value": "Filter",
+                "comment": "Button text to indicate that the filtering menu will be presented"
+            },
+            "addClip": {
+                "value": "Add Clip",
+                "comment": "Text on a button to initiate the action to add a clip"
+            },
+            "addComment": {
+                "value": "Comment",
+                "comment": "Text on a button to initiate the action of adding a comment"
+            },
+            "custom": {
+                "value": "Custom",
+                "comment": "Custom"
+            },
+            "custom-descriptors": {
+                "value": "Additional Tags",
+                "comment": "Additional Tags"
+            },
+            "unknown-athlete": {
+                "value": "Unknown Athlete",
+                "comment": "Unknown Athlete"
+            },
+            "volleyball": {
+                "rotation-tags": {
+                    "rotation": "Rotation",
+                    "rotation-one": "Rotation 1",
+                    "rotation-two": "Rotation 2",
+                    "rotation-three": "Rotation 3",
+                    "rotation-four": "Rotation 4",
+                    "rotation-five": "Rotation 5",
+                    "rotation-six": "Rotation 6"
+                },
+                "serve-receive-tags": {
+                    "serve-receive": "Serve Receive",
+                    "error": "0 – SR Error",
+                    "onePass": "1 – Poor Pass / Overpass",
+                    "twoPass": "2 – Good Pass",
+                    "threePass": "3 – Perfect Pass"
+                },
+                "serves-tags": {
+                    "serves": "Serves",
+                    "ace": "Ace",
+                    "error": "Error"
+                },
+                "offense-tags": {
+                    "offense": "Offense",
+                    "hitting-attempts": "Hitting Attempts",
+                    "kills": {
+                        "value": "Kills",
+                        "comment": "To hit a ball with such force that it cannot be returned"
+                    },
+                    "errors": "Errors",
+                    "assist-attempts": "Assist Attempts",
+                    "assists": "Assists"
+                },
+                "defense-tags": {
+                    "defense": "Defense",
+                    "blocks": "Blocks",
+                    "block-assist": "Block Assist",
+                    "block-solo": "Block Solo",
+                    "digs": "Digs"
+                },
+                "free-ball-tags": {
+                    "free-balls": "Free Balls",
+                    "sent": "Sent",
+                    "received": "Received",
+                    "errors": "Errors"
+                },
+                "violation-tags": {
+                    "violations": "Violations",
+                    "ball-handling-errors": "Ball Handling Errors"
+                }
+            },
+            "lacrosse": {
+                "possession": {
+                    "value": "Possession",
+                    "comment": "Possession"
+                },
+                "possessions": {
+                    "value": "Possessions",
+                    "comment": "Possessions"
+                },
+                "attacking-possession": {
+                    "value": "Attacking Possession",
+                    "comment": "Attacking Possession"
+                },
+                "attacking-possessions": {
+                    "value": "Attacking Possessions",
+                    "comment": "Attacking Possessions"
+                },
+                "all-possessions": {
+                    "value": "All Possessions",
+                    "comment": "All Possessions"
+                },
+                "clear": {
+                    "value": "Clear",
+                    "comment": "Clear"
+                },
+                "clears": {
+                    "value": "Clears",
+                    "comment": "Clears"
+                },
+                "successful-clear": {
+                    "value": "Successful Clear",
+                    "comment": "Successful Clear"
+                },
+                "failed-clear": {
+                    "value": "Failed Clear",
+                    "comment": "Failed Clear"
+                },
+                "successful-clears": {
+                    "value": "Successful Clears",
+                    "comment": "Successful Clears"
+                },
+                "failed-clears": {
+                    "value": "Failed Clears",
+                    "comment": "Failed Clears"
+                },
+                "ride": {
+                    "value": "Ride",
+                    "comment": "Ride"
+                },
+                "rides": {
+                    "value": "Rides",
+                    "comment": "Rides"
+                },
+                "successful-ride": {
+                    "value": "Successful Ride",
+                    "comment": "Successful Ride"
+                },
+                "failed-ride": {
+                    "value": "Failed Ride",
+                    "comment": "Failed Ride"
+                },
+                "successful-rides": {
+                    "value": "Successful Rides",
+                    "comment": "Successful Rides"
+                },
+                "failed-rides": {
+                    "value": "Failed Rides",
+                    "comment": "Failed Rides"
+                },
+                "power-play": {
+                    "value": "Power Play",
+                    "comment": "Power Play"
+                },
+                "power-plays": {
+                    "value": "Power Plays",
+                    "comment": "Power Plays"
+                },
+                "man-up": {
+                    "value": "Man Up",
+                    "comment": "Man Up"
+                },
+                "man-down": {
+                    "value": "Man Down",
+                    "comment": "Man Down"
+                },
+                "faceOff": {
+                    "value": "Face-Off",
+                    "comment": "Face-Off"
+                },
+                "drawControl": {
+                    "value": "Draw Control",
+                    "comment": "Draw Control"
+                },
+                "faceOffs": {
+                    "value": "Face-Offs",
+                    "comment": "Face-Offs"
+                },
+                "faceOffWon": {
+                    "value": "Face-Off Won",
+                    "comment": "Face-Off Won"
+                },
+                "drawControlWon": {
+                    "value": "Draw Won",
+                    "comment": "Draw Won"
+                },
+                "faceOffLost": {
+                    "value": "Face-Off Lost",
+                    "comment": "Face-Off Lost"
+                },
+                "drawControlLost": {
+                    "value": "Draw Lost",
+                    "comment": "Draw Lost"
+                },
+                "drawControls": {
+                    "value": "Draw Controls",
+                    "comment": "Draw Controls"
+                },
+                "groundball": {
+                    "value": "Ground Ball",
+                    "comment": "Ground Ball"
+                },
+                "out-of-play": {
+                    "value": "Out of Play",
+                    "comment": "Out of Play"
+                },
+                "forcedTurnover": {
+                    "value": "Forced Turnover",
+                    "comment": "Forced Turnover"
+                },
+                "unforcedTurnover": {
+                    "value": "Unforced Turnover",
+                    "comment": "Unforced Turnover"
+                },
+                "shotClockViolation": {
+                    "value": "Shot Clock Violation",
+                    "comment": "Shot Clock Violation"
+                },
+                "creaseViolation": {
+                    "value": "Crease Violation",
+                    "comment": "Crease Violation"
+                },
+                "freePosition": {
+                    "value": "Free Position",
+                    "comment": "Free Position"
+                },
+                "startPeriod": {
+                    "value": "Start Period",
+                    "comment": "Start Period"
+                },
+                "endPeriod": {
+                    "value": "End Period",
+                    "comment": "End Period"
+                },
+                "endGame": {
+                    "value": "End Game",
+                    "comment": "End of the game"
+                },
+                "faceOffResults": {
+                    "value": "Face-Off Results",
+                    "comment": "Face-Off Results"
+                },
+                "drawControlResults": {
+                    "value": "Draw Control Results",
+                    "comment": "Draw Control Results"
+                },
+                "won": {
+                    "value": "Won",
+                    "comment": "Won"
+                },
+                "lost": {
+                    "value": "Lost",
+                    "comment": "Lost"
+                },
+                "violations": {
+                    "value": "Violations",
+                    "comment": "Violations"
+                },
+                "shot": {
+                    "value": "Shot",
+                    "comment": "Shot"
+                },
+                "savedShot": {
+                    "value": "Saved Shot",
+                    "comment": "Saved Shot"
+                },
+                "blockedShot": {
+                    "value": "Blocked Shot",
+                    "comment": "Blocked Shot"
+                },
+                "shotOffTarget": {
+                    "value": "Shot Off Target",
+                    "comment": "Shot Off Target"
+                },
+                "shots": {
+                    "value": "Shots",
+                    "comment": "Shots"
+                },
+                "goal": {
+                    "value": "Goal",
+                    "comment": "Goal"
+                },
+                "goals": {
+                    "value": "Goals",
+                    "comment": "Goals"
+                },
+                "penalty": {
+                    "value": "Penalty",
+                    "comment": "Penalty"
+                },
+                "penalties": {
+                    "value": "Penalties",
+                    "comment": "Penalties"
+                },
+                "fouls": {
+                    "value": "Fouls",
+                    "comment": "Fouls"
+                },
+                "technical": {
+                    "value": "Technical",
+                    "comment": "Technical"
+                },
+                "technicalSuspension": {
+                    "value": "Technical Suspension",
+                    "comment": "Technical Suspension"
+                },
+                "personal": {
+                    "value": "Personal",
+                    "comment": "Personal"
+                },
+                "personalReleasable": {
+                    "value": "Personal Releasable",
+                    "comment": "Personal Releasable"
+                },
+                "personalNonReleasable": {
+                    "value": "Personal Non-Releasable",
+                    "comment": "Personal Non-Releasable"
+                },
+                "commonFoul": {
+                    "value": "Common Foul",
+                    "comment": "Common Foul"
+                },
+                "yellowCard": {
+                    "value": "Yellow Card",
+                    "comment": "Yellow Card"
+                },
+                "yellowReleasable": {
+                    "value": "Yellow Releasable",
+                    "comment": "Yellow Releasable"
+                },
+                "yellowNonReleasable": {
+                    "value": "Yellow Non-Releasable",
+                    "comment": "Yellow Non-Releasable"
+                },
+                "redCard": {
+                    "value": "Red Card",
+                    "comment": "Red Card"
+                },
+                "noTimeServed": {
+                    "value": "No Time Served",
+                    "comment": "No Time Served"
+                },
+                "penaltyServed": {
+                    "value": "Penalty Served",
+                    "comment": "Penalty Served"
+                },
+                "drawControlViolation": {
+                    "value": "Draw Control Violation",
+                    "comment": "Draw Control Vionlation"
+                },
+                "faceOffViolation": {
+                    "value": "Face-Off Violation",
+                    "comment": "Face-Off Violation"
+                },
+                "turnover": {
+                    "value": "Turnover",
+                    "comment": "Turnover"
+                },
+                "turnovers": {
+                    "value": "Turnovers",
+                    "comment": "Turnovers"
+                },
+                "forced": {
+                    "value": "Forced",
+                    "comment": "Forced"
+                },
+                "unforced": {
+                    "value": "Unforced",
+                    "comment": "Unforced"
+                },
+                "foul": {
+                    "value": "Foul",
+                    "comment": "Foul"
+                },
+                "restart": {
+                    "value": "Restart",
+                    "comment": "Restart"
+                }
+            },
+            "basketball": {
+                "shooting": {
+                    "value": "Shooting",
+                    "comment": "Shooting"
+                },
+                "allFgAttempts": {
+                    "value": "All FG Attempts",
+                    "comment": "All Field Goal Attempts"
+                },
+                "twoFgAttempts": {
+                    "value": "2FG Attempts",
+                    "comment": "Two Field Goal Attempts"
+                },
+                "twoFgMakes": {
+                    "value": "2FG Makes",
+                    "comment": "Two Field Goal Makes"
+                },
+                "twoFgMisses": {
+                    "value": "2FG Misses",
+                    "comment": "Two Field Goal Misses"
+                },
+                "threeFgAttempts": {
+                    "value": "3FG Attempts",
+                    "comment": "Three Field Goal Attempts"
+                },
+                "threeFgMakes": {
+                    "value": "3FG Makes",
+                    "comment": "Three Field Goal Makes"
+                },
+                "threeFgMisses": {
+                    "value": "3FG Misses",
+                    "comment": "Three Field Goal Misses"
+                },
+                "allMakes": {
+                    "value": "All Makes",
+                    "comment": "All Makes"
+                },
+                "allFgMakes": {
+                    "value": "All FG Makes",
+                    "comment": "All Field Goal Makes"
+                },
+                "allFgMisses": {
+                    "value": "All FG Misses",
+                    "comment": "All Field Goal Misses"
+                },
+                "allShotTypes": {
+                    "value": "All Shot Types",
+                    "comment": "All Shot Types"
+                },
+                "ftAttemps": {
+                    "value": "FT Attempts",
+                    "comment": "Free Throw Attempts"
+                },
+                "ftMake": {
+                    "value": "FT Make",
+                    "comment": "Free Throw Make"
+                },
+                "ftMiss": {
+                    "value": "FT Miss",
+                    "comment": "Free Throw Miss"
+                },
+                "transitionPoints": {
+                    "value": "Transition Points",
+                    "comment": "Transition Points"
+                },
+                "secondChancePoints": {
+                    "value": "Second Chance Points",
+                    "comment": "Second Chance Points"
+                },
+                "pointsOffTurnover": {
+                    "value": "Points Off Turnovers",
+                    "comment": "Points Off Turnovers"
+                },
+                "pointsPaint": {
+                    "value": "Points in the Paint",
+                    "comment": "Points in the Paint"
+                },
+                "shotType": {
+                    "noTagged": {
+                        "value": "No Tagged Shot Type",
+                        "comment": "No Tagged Shot Type"
+                    },
+                    "alleyOop": {
+                        "value": "Alley Oop",
+                        "comment": "Alley Oop"
+                    },
+                    "buzzerBeater": {
+                        "value": "Buzzer Beater",
+                        "comment": "Buzzer Beater"
+                    },
+                    "catchAndShoot": {
+                        "value": "Catch & Shoot",
+                        "comment": "Catch & Shoot"
+                    },
+                    "contested": {
+                        "value": "Contested",
+                        "comment": "Contested"
+                    },
+                    "drive": {
+                        "value": "Drive",
+                        "comment": "Drive"
+                    },
+                    "dunk": {
+                        "value": "Dunk",
+                        "comment": "Dunk"
+                    },
+                    "floater": {
+                        "value": "Floater",
+                        "comment": "Floater"
+                    },
+                    "hookShot": {
+                        "value": "Hook Shot",
+                        "comment": "Hook Shot"
+                    },
+                    "jumpShot": {
+                        "value": "Jump Shot",
+                        "comment": "Jump Shot"
+                    },
+                    "layup": {
+                        "value": "Layup",
+                        "comment": "Layup"
+                    },
+                    "offBalance": {
+                        "value": "Off Balance",
+                        "comment": "Off Balance"
+                    },
+                    "postMove": {
+                        "value": "Post Move",
+                        "comment": "Post Move"
+                    }
+                },
+                "offense": {
+                    "value": "Offense",
+                    "comment": "Offense"
+                },
+                "inboundPlays": {
+                    "value": "Inbound Plays",
+                    "comment": "Inbound Plays"
+                },
+                "inboundBaselinePlays": {
+                    "value": "Inbound Baseline Plays",
+                    "comment": "Inbound Baseline Plays"
+                },
+                "inboundSidelinePlays": {
+                    "value": "Inbound Sideline Plays",
+                    "comment": "Inbound Sideline Plays"
+                },
+                "offensiveFouls": {
+                    "value": "Offensive Fouls",
+                    "comment": "Offensive Fouls"
+                },
+                "charges": {
+                    "value": "Charges",
+                    "comment": "Charges"
+                },
+                "offensiveRebounds": {
+                    "value": "Offensive Rebounds",
+                    "comment": "Offensive Rebounds"
+                },
+                "turnovers": {
+                    "value": "Turnovers",
+                    "comment": "Turnovers"
+                },
+                "fouls": {
+                    "value": "Fouls",
+                    "comment": "Fouls"
+                },
+                "defensiveRebounds": {
+                    "value": "Defensive Rebounds",
+                    "comment": "Defensive Rebounds"
+                },
+                "deflections": {
+                    "value": "Deflections",
+                    "comment": "Deflections"
+                },
+                "chargesTaken": {
+                    "value": "Charges Taken",
+                    "comment": "Charges Taken"
+                },
+                "steals": {
+                    "value": "Steals",
+                    "comment": "Steals"
+                },
+                "turnoversFored": {
+                    "value": "Turnovers Forced",
+                    "comment": "Turnovers Forced"
+                }
+            }
+        }
+    },
+    "moments": {
+        "filtering": {
+            "filterPanel": {
+                "noSelection": {
+                    "value": "No Tags Selected",
+                    "comment": "Text for the filtering panel in the moments UI with no filters"
+                },
+                "selection": {
+                    "value": "Update Filters",
+                    "comment": "Text for the filtering panel in the moments UI with selection"
+                },
+                "close": {
+                    "value": "Close",
+                    "comment": "Close button for the filtering panel in the moments UI"
+                },
+                "title": {
+                    "value": "Filter By",
+                    "comment": "Title for the filtering panel in the moments UI"
+                }
+            }
+        },
+        "basketball": {
+            "wonTip": {
+                "value": "Won Tip",
+                "comment": "Team won the tip off at the start of a game"
+            },
+            "jumpBall": {
+                "value": "Jump Ball",
+                "comment": "Jump ball"
+            },
+            "startPeriod": {
+                "value": "Start Period",
+                "comment": "Start of a period of the game"
+            },
+            "endPeriod": {
+                "value": "End Period",
+                "comment": "End of the period of the game"
+            },
+            "endGame": {
+                "value": "End Game",
+                "comment": "End of the game"
+            },
+            "timeout": {
+                "defaultTimeout": {
+                    "value": "Timeout",
+                    "comment": "Timeout called during game"
+                },
+                "officialTimeout": {
+                    "value": "Official Timeout",
+                    "comment": "Official Timeout"
+                }
+            },
+            "deflection": {
+                "value": "Deflection",
+                "comment": "Deflection of shot"
+            },
+            "outOfBounds": {
+                "value": "Out Of Bounds",
+                "comment": "Ball goes out of bounds"
+            },
+            "inbound": {
+                "defaultInbound": {
+                    "value": "Inbound",
+                    "comment": "Ball is inbounded"
+                },
+                "inboundSideline": {
+                    "value": "Inbound Sideline",
+                    "comment": "Inbound sideline"
+                },
+                "inboundBaseline": {
+                    "value": "Inbound Baseline",
+                    "comment": "Inbound Baseline"
+                }
+            },
+            "block": {
+                "value": "Block",
+                "comment": "Ball is blocked"
+            },
+            "shot": {
+                "make": {
+                    "value": "{arg0} FG Make",
+                    "comment": "Shot attempt made",
+                    "arguments": {
+                        "arg0": "string"
+                    }
+                },
+                "miss": {
+                    "value": "{arg0} FG Miss",
+                    "comment": "Shot attempt miss",
+                    "arguments": {
+                        "arg0": "string"
+                    }
+                },
+                "attempt": {
+                    "value": "{arg0} FGA",
+                    "comment": "Shot was attempted",
+                    "arguments": {
+                        "arg0": "string"
+                    }
+                },
+                "defaultShot": {
+                    "value": "Shot",
+                    "comment": "Shot was attempted"
+                }
+            },
+            "chargeTaken": {
+                "value": "Charge Taken",
+                "comment": "Charge Taken"
+            },
+            "freeThrow": {
+                "make": {
+                    "value": "FT Make",
+                    "comment": "Free throw make"
+                },
+                "miss": {
+                    "value": "FT Miss",
+                    "comment": "Free throw miss"
+                },
+                "violation": {
+                    "value": "FT Violation",
+                    "comment": "Free throw violation"
+                },
+                "defaultFreeThrow": {
+                    "value": "Free Throw",
+                    "comment": "Free throw"
+                }
+            },
+            "foul": {
+                "defensive": {
+                    "value": "Def Foul",
+                    "comment": "Defensive foul"
+                },
+                "offensive": {
+                    "value": "Off Foul",
+                    "comment": "Offensive foul"
+                },
+                "technical": {
+                    "value": "Techincal",
+                    "comment": "Technical foul"
+                },
+                "charge": {
+                    "value": "Charge",
+                    "comment": "Charge"
+                },
+                "defaultFoul": {
+                    "value": "Foul",
+                    "comment": "Foul occurred"
+                }
+            },
+            "rebound": {
+                "defensive": {
+                    "value": "Def Rebound",
+                    "comment": "Defensive rebound"
+                },
+                "offensive": {
+                    "value": "Off Rebound",
+                    "comment": "Offensive rebound"
+                },
+                "defaultRebound": {
+                    "value": "Rebound",
+                    "comment": "Rebound"
+                }
+            },
+            "turnover": {
+                "unforced": {
+                    "value": "Unforced",
+                    "comment": "Unforced turnover"
+                },
+                "violation": {
+                    "value": "Violation",
+                    "comment": "Violation turnover"
+                },
+                "defaultTurnover": {
+                    "value": "Turnover",
+                    "comment": "Turnover"
+                }
+            },
+            "steal": {
+                "value": "Steal",
+                "comment": "Opposite team gets possession of the ball"
+            },
+            "substitution": {
+                "value": "Substitution",
+                "comment": "Change of players during game"
+            },
+            "possession": {
+                "value": "Possession",
+                "comment": "Possession of the ball"
+            }
+        }
+    },
+    "community": {
+        "views": {
+            "singular": {
+                "value": "View",
+                "comment": "Metric to describe how many views a user has -- singular"
+            },
+            "plural": {
+                "value": "Views",
+                "comment": "Metric to describe how many views a user has -- plural"
+            }
+        },
+        "reactions": {
+            "singular": {
+                "value": "Reaction",
+                "comment": "Metric to describe how many reactions a video has -- singular"
+            },
+            "plural": {
+                "value": "Reactions",
+                "comment": "Metric to describe how many reactions a video has -- plural"
+            }
+        }
+    },
+    "videoMenu": {
+        "actions": {
+            "playVideo": {
+                "noInternet": {
+                    "alert": {
+                        "title": {
+                            "value": "Unable to Watch Video",
+                            "comment": "Alert title when trying to watch video that requires an internet connection"
+                        },
+                        "message": {
+                            "value": "Connect to Wi-Fi or a cellular connection to play this video.",
+                            "comment": "Alert message when trying to watch video that requires an internet connection"
+                        }
+                    }
+                },
+                "unplayable": {
+                    "alert": {
+                        "title": {
+                            "value": "Unable to Watch Video",
+                            "comment": "Alert title when trying to watch video that cannot be played back currently"
+                        },
+                        "message": {
+                            "value": "This video is not ready for playback.",
+                            "comment": "Alert message when trying to watch video that cannot be played back currently"
+                        }
+                    }
+                }
+            },
+            "playPlaylist": {
+                "noInternet": {
+                    "alert": {
+                        "title": {
+                            "value": "Unable to Watch Playlist",
+                            "comment": "Alert title when trying to watch a playlist that requires an internet connection"
+                        },
+                        "message": {
+                            "value": "Connect to Wi-Fi or a cellular connection to play this playlist.",
+                            "comment": "Alert message when trying to watch a playlist that requires an internet connection"
+                        }
+                    }
+                },
+                "unplayable": {
+                    "alert": {
+                        "title": {
+                            "value": "Unable to Watch Playlist",
+                            "comment": "Alert tite when trying to watch a playlist that can't be found"
+                        },
+                        "message": {
+                            "value": "The playlist could not be loaded.",
+                            "comment": "Alert message when trying to watch a playlist that can't be found"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "appSettingsAutoplaySettings": {
+        "mobileAndWifi": {
+            "value": "On Mobile Data and Wi-Fi Connections",
+            "comment": "Autoplay will occur on mobile networks and wi-fi when the user selects this option"
+        },
+        "wifi": {
+            "value": "On Wi-Fi Connections Only",
+            "comment": "Autoplay will only occur on wi-fi when the user selects this option"
+        },
+        "never": {
+            "value": "Never Autoplay Videos",
+            "comment": "Autoplay will never occur"
+        },
+        "description": {
+            "value": "Autoplay videos begin automatically as you scroll. This can mean more data is being used, so choose when your videos should autoplay.",
+            "comment": "Text explaining autoplay"
+        }
+    },
+    "soccer": {
+        "options": {
+            "continue-tagging-session": {
+                "value": "Continue",
+                "comment": "Alert Action to continue an ongoing taggin session"
+            },
+            "startOver": {
+                "value": "Start Over",
+                "comment": "Alert delete and start over an ongoing tagging session"
+            },
+            "someone": {
+                "value": "someone",
+                "comment": "Partial text when an ongoing tagging session was detected indicating the person who tagged the event was someone else"
+            },
+            "you": {
+                "value": "you",
+                "comment": "Partial text when an ongoing tagging session was detected indicating the person who tagged the event was you"
+            },
+            "coach": {
+                "value": "Coach {arg0}",
+                "comment": "Partial text when an ongoing tagging session was detected indicating the person who tagged the event was some other coach",
+                "arguments": {
+                    "arg0": "string"
+                }
+            },
+            "inProgress": {
+                "title": {
+                    "value": "Game In Progress",
+                    "comment": "Title for the alert when a game in progress is detected"
+                },
+                "body": {
+                    "value": "Looks like {arg0} already started this game. Would you like to continue or start from the beginning?",
+                    "comment": "Message for the alert when a game in progress is detected",
+                    "arguments": {
+                        "arg0": "string"
+                    }
+                }
+            },
+            "colorPicker": {
+                "value": "Color Picker",
+                "comment": "Color Picker"
+            }
+        },
+        "tagging": {
+            "options": {
+                "start": {
+                    "value": "Start Tagging",
+                    "comment": "Start Tagging button text"
+                },
+                "cancel": {
+                    "value": "Cancel",
+                    "comment": "Cancel button text"
+                },
+                "title": {
+                    "value": "Options",
+                    "comment": "Title in the Game Options Screen"
+                }
+            },
+            "controller": {
+                "halfTimeReport": {
+                    "value": "Half Time Report",
+                    "comment": "Title displayed at half time on top of the stats container"
+                },
+                "stats": {
+                    "value": "Stats Report",
+                    "comment": "Stats report title"
+                },
+                "report": {
+                    "value": "Report",
+                    "comment": "Report button text"
+                },
+                "halfText": {
+                    "value": "Half",
+                    "comment": "Partial text indicating the half a soccer game is at"
+                },
+                "overtime": {
+                    "value": "OT",
+                    "comment": "Short for Over Time; i.e., a period beyond the 2nd half of a game"
+                },
+                "st": {
+                    "value": "st",
+                    "comment": "Suffix indicanting it refers to the first ordinal number. Bear in mind this refers to a soccer half"
+                },
+                "nd": {
+                    "value": "nd",
+                    "comment": "Suffix indicanting it refers to the second ordinal number. Bear in mind this refers to a soccer half"
+                },
+                "rd": {
+                    "value": "rd",
+                    "comment": "Suffix indicanting it refers to the third ordinal number. Bear in mind this refers to a soccer half"
+                },
+                "th": {
+                    "value": "th",
+                    "comment": "Suffix indicanting it refers to any other ordinal number different than 1st, 2nd or 3rd. Bear in mind this refers to a soccer half"
+                },
+                "endHalf": {
+                    "value": "End Half",
+                    "comment": "End Half button text"
+                },
+                "alert": {
+                    "message": {
+                        "value": "Are you sure you want to end the half?",
+                        "comment": "Message displayed to confirm the user wants to end the current half"
+                    },
+                    "cancel": {
+                        "value": "Cancel",
+                        "comment": "Cancel"
+                    },
+                    "yes": {
+                        "value": "Yes",
+                        "comment": "Yes"
+                    }
+                },
+                "beingHalf": {
+                    "value": "Begin Half",
+                    "comment": "Begin Half"
+                },
+                "undo": {
+                    "value": "Undo",
+                    "comment": "Undo button text"
+                }
+            },
+            "preGame": {
+                "value": "Tap Kickoff on the correct team to start the game",
+                "comment": "Text displayed before tagging starts"
+            },
+            "halfTime": {
+                "value": "Tap Kickoff on the correct team to start the half",
+                "comment": "Text displayed before continuing any half"
+            },
+            "kickoff": {
+                "value": "Kickoff",
+                "comment": "Kickoff word. Important, when this is translated, the translation must be part of the strings with key: 'soccer.tagging.pre-game' and 'soccer.tagging.half-time (case sensitive)'"
+            },
+            "possession": {
+                "value": "Possession",
+                "comment": "Possession button title"
+            },
+            "outOfPlay": {
+                "value": "Out Of Play",
+                "comment": "Out Of Play"
+            },
+            "outOfPlayShort": {
+                "value": "Out",
+                "comment": "Text for the Out of Play button displayed only on iPhone tagging"
+            },
+            "setPiece": {
+                "value": "Set Piece",
+                "comment": "Set Piece"
+            },
+            "freeKicks": {
+                "value": "Free Kicks",
+                "comment": "Free Kicks"
+            },
+            "freeKick": {
+                "value": "Free Kick",
+                "comment": "Free Kick"
+            },
+            "corners": {
+                "value": "Corners",
+                "comment": "Corners"
+            },
+            "corner": {
+                "value": "Corner",
+                "comment": "Corner"
+            },
+            "shots": {
+                "value": "Shots",
+                "comment": "Shots"
+            },
+            "shot": {
+                "value": "Shot",
+                "comment": "Shot"
+            },
+            "goal": {
+                "value": "Goal",
+                "comment": "Goal"
+            },
+            "saved": {
+                "value": "Saved",
+                "comment": "Indicating that a shot was saved by the goalkeeper"
+            },
+            "offTarget": {
+                "value": "Off Target",
+                "comment": "Indicating that the ball went wide and out of bounds after a shot"
+            },
+            "blocked": {
+                "value": "Blocked",
+                "comment": "Indicating that some other player blocked a shot"
+            },
+            "in-preposition": {
+                "value": "In",
+                "comment": "Just In proposition. Always shown as part of some other text"
+            },
+            "restart": {
+                "value": "Restart",
+                "comment": "Restart"
+            },
+            "goalKick": {
+                "value": "Goal Kick",
+                "comment": "Goal Kick"
+            },
+            "offside": {
+                "value": "Offside",
+                "comment": "Offside"
+            },
+            "penalty": {
+                "value": "Penalty",
+                "comment": "Penalty"
+            },
+            "throwIn": {
+                "value": "Throw In",
+                "comment": "Throw In"
+            },
+            "kick": {
+                "value": "Kick",
+                "comment": "This doesn't mean kick as kicking something or someone and I don't believe this would go on its own ever but accompanying some of the other strings above. The differentiation is because there are some languages like Spanish where there are not 2 different words for Penalty, when a foul inside the box is committed, and Penalty Kick when the game is restarted by taking a shot from the penalty spot"
+            },
+            "endGame": {
+                "resume": {
+                    "value": "Resume Tagging",
+                    "comment": "Resume Tagging button text"
+                },
+                "overtime": {
+                    "value": "Tag Overtime",
+                    "comment": "Tag Overtime button text"
+                },
+                "gameOver": {
+                    "value": "Finish Game and Upload",
+                    "comment": "Finish Game and Upload button text"
+                },
+                "title": {
+                    "value": "Tagging is paused",
+                    "comment": "Indicating that live tagging is temporarily paused"
+                }
+            },
+            "keyMomentButton": {
+                "value": "Add Key Moment",
+                "comment": "Add Key Moment"
+            }
+        },
+        "commentary": {
+            "keyMoment": {
+                "value": "key moment tagged",
+                "comment": "Text to be used only when 1 key moment has been tagged. A Key Moment is an undetermined action that a coach or some other member of the staff tagging, consider it relevant to be reviewed later"
+            },
+            "keyMoments": {
+                "value": "key moments tagged",
+                "comment": "Text to be used when more than 1 key moments have been tagged. A Key Moment is an undetermined action that a coach or some other member of the staff tagging, consider it relevant to be reviewed later"
+            },
+            "lastTagged": {
+                "value": "Last tagged",
+                "comment": "Indicating when the last moment was created"
+            }
+        },
+        "momentsFiltering": {
+            "attacking": {
+                "value": "Attacking",
+                "comment": "Indicating a group of moments in the game that imply an attacking opportunity"
+            },
+            "throwIns": {
+                "value": "Throw Ins",
+                "comment": "Throw Ins"
+            },
+            "offsides": {
+                "value": "Offsides",
+                "comment": "Offsides"
+            },
+            "penaltyKicks": {
+                "value": "Penalty Kicks",
+                "comment": "Penalty Kicks"
+            },
+            "setPiece": {
+                "value": "Set Pieces",
+                "comment": "Set Pieces"
+            },
+            "attackingTransitions": {
+                "value": "Attacking Transitions",
+                "comment": "Attacking Transitions"
+            },
+            "fouls": {
+                "value": "Fouls",
+                "comment": "Fouls"
+            },
+            "goalKicks": {
+                "value": "Goal Kicks",
+                "comment": "Goal Kicks"
+            },
+            "teams-athletes": {
+                "value": "Teams and Athletes",
+                "comment": "Teams and Athletes"
+            }
+        }
+    },
+    "soccer_tagging": {
+        "goal": {
+            "scorer": {
+                "value": "Who scored the goal?",
+                "comment": "Title displayed when tagging the scorer of a goal"
+            },
+            "assist": {
+                "value": "Who assisted the goal?",
+                "comment": "Title displayed when tagging who assisted a goal"
+            },
+            "location": {
+                "value": "Where was the shot taken from?",
+                "comment": "Title displayed when tagging where was the shot of a goal taken from"
+            }
+        },
+        "shot": {
+            "title": {
+                "shotTaker": {
+                    "value": "Who took the shot?",
+                    "comment": "Who took the shot"
+                },
+                "scorer": {
+                    "value": "Who scored the goal?",
+                    "comment": "Title displayed when tagging the scorer of a goal"
+                },
+                "assist": {
+                    "value": "Who assisted the goal?",
+                    "comment": "Title displayed when tagging who assisted a goal"
+                },
+                "location": {
+                    "value": "Where was the shot taken from?",
+                    "comment": "Title displayed when tagging where was the shot of a goal taken from"
+                },
+                "outcome": {
+                    "value": "What happened?",
+                    "comment": "Title displayed when the user needs to select one of the possible outcomes after tagging shot"
+                }
+            }
+        },
+        "shotGoal": {
+            "scorer": {
+                "value": "SCORER",
+                "comment": "Person who scores a goal"
+            },
+            "assist": {
+                "value": "ASSIST",
+                "comment": "Person who provides an assistance to someone who eventually scored"
+            }
+        },
+        "roster": {
+            "skip": {
+                "value": "Skip",
+                "comment": "Text for the button to be displayed as the footer of a roster tableview"
+            }
+        }
+    },
+    "no_roster": {
+        "header": {
+            "value": "No Active Roster",
+            "comment": "No Active Roster"
+        },
+        "body": {
+            "value": "Adding your athletes to your team roster will allow you to track player stats for future games.",
+            "comment": "No roster body message"
+        }
+    },
+    "communityTaggedUsers": {
+        "title": {
+            "value": "Tagged in this Video",
+            "comment": "Title of the tagged users modal view controller"
+        },
+        "noTaggedUsers": {
+            "value": "No People Tagged Yet",
+            "comment": "No People Tagged Yet"
+        }
+    },
+    "singleFeedCard": {
+        "navTitle": {
+            "value": "New Highlight"
+        },
+        "highlightReadyToast": {
+            "value": "Your highlight is ready."
+        }
+    },
+    "assetDownloader": {
+        "invalidAsset": {
+            "value": "We were unable to download your video. Contact Hudl Support.",
+            "comment": "An internal error happened downloading an asset. Let the user know to contact Hudl about it."
+        },
+        "networkError": {
+            "value": "We were unable to download your video.  You may want to check your internet before trying again.",
+            "comment": "An asset download failed because there was a network error."
+        },
+        "notEnoughAvailableStorage": {
+            "value": "We were unable to download your video.  You do not have enough space on your device.",
+            "comment": "An asset download failed because there was not enough free disk space on the device."
+        },
+        "parseError": {
+            "value": "We were unable to download your video. Contact Hudl Support.",
+            "comment": "An asset download failed because the manifest was invalid. Let the user know to contact Hudl about it."
+        },
+        "diskError": {
+            "value": "We were unable to download your video. Contact Hudl Support.",
+            "comment": "An asset download failed because there was an error with the local file system. Let the user know to contact Hudl about it."
+        },
+        "unknown": {
+            "value": "We were unable to download your video. Please try again later.",
+            "comment": "An asset download failed because of an unknown reason."
+        }
+    },
+    "feedVideoRenderingStatus": {
+        "title": {
+            "value": "The highlight is rendering. Check back in a minute or two."
+        }
+    },
+    "gameFootageVideoLoading": {
+        "error": {
+            "value": "There was a problem loading this video.",
+            "comment": "Failed to load the video"
+        }
+    },
+    "playbook": {
+        "playCardSections": {
+            "clips": {
+                "value": "Clips",
+                "comment": "Section title that contains a set of video clips"
+            },
+            "assignments": {
+                "value": "Assignments",
+                "comment": "Section title that contains a set of play assignments associated with the play card."
+            }
+        },
+        "unnamed": {
+            "value": "Unnamed",
+            "comment": "If there is not play card title in the data received, default to Untitled"
+        },
+        "installTitle": {
+            "all": {
+                "value": "All Plays",
+                "comment": "Title for a group of all plays associated with a plabook"
+            }
+        },
+        "playbookNames": {
+            "offensive": {
+                "value": "Offensive",
+                "comment": "Title for a type of Playbook"
+            },
+            "defensive": {
+                "value": "Defensive",
+                "comment": "Title for a type of Playbook"
+            },
+            "specialTeams": {
+                "value": "Special Teams",
+                "comment": "Title for a type of Playbook"
+            }
+        },
+        "playbookTitle": {
+            "value": "Playbook",
+            "comment": "Generic title for the summary playbook screen"
+        },
+        "installType": {
+            "value": "{arg0} Installs",
+            "comment": "Install type tile on summary screen"
+        },
+        "noAssignments": {
+            "value" : "No assignments set.",
+            "comment": "The empty state value if no assignments are associated with the play card."
+        },
+        "pluralPlays": {
+            "value" : "plays",
+            "comment": "The number of plays the user has available to view."
+        },
+        "singularPlays": {
+            "value" : "play",
+            "comment": "The number of plays the user has available to view."
+        },
+        "gettingPlaybookSummaryAthlete": {
+            "value" : "Getting Shared Installs...",
+            "comment" : "Interstitial message displayed while requesting playbook summary."
+        },
+        "gettingPlaybookSummaryCoach": {
+            "value" : "Getting Play Count...",
+            "comment" : "Interstitial message displayed while requesting playbook summary."
+        },
+        "gettingPlaybookSummaryError": {
+            "value" : "Could not get playbook summary!",
+            "comment" : "Error text displayed when play book summary information could not be retrieved."
+        },
+        "playbookPromptCoachPartOne": {
+            "value" : "Our Playbook allows you to combine diagrams, video and assignments for in-depth game prep, week by week. It's part of the Play Tools bundle, available for an additional $199 a year.",
+            "comment" : "Prompt asking our coaches to call/email and sign up for a playtools subscription if they would like to have access to those features."
+        },
+        "playbookPromptCoachPartTwo": {
+            "value" : "To start your 14-day free trial or renew access to this feature, visit hudl.com. If you have any questions, feel free to email support@hudl.com.",
+            "comment" : "Prompt asking our coaches to call/email and sign up for a playtools subscription if they would like to have access to those features."
+        },
+        "playbookPromptAthletePartOne": {
+            "value" : "Our Playbook allows you to see what plays you'll be running and what assignments you have week by week.",
+            "comment" : "Prompt asking our athletes to call/email and sign up for a playtools subscription if they would like to have access to those features."
+        },
+        "playbookPromptAthletePartTwo": {
+            "value" : "Your team's Playbook is currently disabled, ask your coach to start their trial or renew their subscription to access this feature.",
+            "comment" : "Prompt asking our athletes to call/email and sign up for a playtools subscription if they would like to have access to those features."
+        },
+        "playbookFetchingSharedInstalls": {
+            "value" : "Fetching shared installs...",
+            "comment" : "Prompt telling our athletes we're fetching their install data."
+        },
+        "playbookFetchingSharedInstallsErrorTitle": {
+            "value" : "Sorry!",
+            "comment" : "Prompt telling our athletes we're fetching their install data error state title."
+        },
+        "playbookFetchingSharedInstallsErrorBody": {
+            "value" : "No installs have been shared with you currently. Only your coaches can share installs from the playbook.",
+            "comment" : "Prompt telling our athletes we're fetching their install data error state body."
+        }
+    },
+    "syncTray": {
+        "uploads": {
+            "logoutMessage": {
+                "value": "The user that recorded this video must log in to complete this upload",
+                "comment": "Message when a user taps on uploads by another user that has logged out."
+            }
+        }   
+    },
+    "classicLibrary": {
+        "unavailablePlaylist": {
+            "alertTitle": {
+                "value": "Playlist Unavailable",
+                "comment": "Alert title when attempting to play a deleted or no-longer-shared classic playlist."
+            },
+            "alertMessage": {
+                "value": "It's likely the playlist was deleted or share settings have changed.",
+                "comment": "Alert message when attempting to play a deleted or no-longer-shared classic playlist."
+            }
+        }
+    }
+}
