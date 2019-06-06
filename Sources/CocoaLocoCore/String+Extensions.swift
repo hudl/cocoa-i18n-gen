@@ -11,8 +11,8 @@ import Foundation
 extension String {
     func indentEachLine(by: Int) -> String {
         // add spaces to the first line, and then add spaces after every new line.
-        return String(repeating: " ", count: by) +
-            self.replacingOccurrences(of: "\n", with: "\n" + String(repeating: " ", count: by))
+        let spaces = String(repeating: " ", count: by)
+        return spaces + self.replacingOccurrences(of: "\n", with: "\n" + spaces)
     }
     func capitalizingFirstLetter() -> String {
         return prefix(1).uppercased() + dropFirst()
