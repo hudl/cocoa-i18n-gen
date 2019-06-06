@@ -46,16 +46,16 @@ struct LocalizationNamespace: CodeGeneratable {
         return """
         \(visibility.rawValue) enum \(normalizedName) {
         \(namespaces.toCode(indent: indent, { $0.toSwiftCode(indent: 2, visibility: visibility) }))
-        \(plurals.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility, swiftEnum: self) }))
+        \(plurals.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility) }))
         \(strings.toCode(indent: indent, { $0.toSwiftCode(visibility: visibility, swiftEnum: self) }))
         }
-        """
+        """.removeEmptyLines()
     }
     
     func toObjcCode(visibility: Visibility, baseName: String) -> String {
         return """
         \(namespaces.toCode(indent: 0, { $0.toObjcCode(visibility: visibility, baseName: baseName) }))
         \(strings.toCode(indent: 2, { $0.toObjcCode(visibility: visibility, baseName: baseName) }))
-        """
+        """.removeEmptyLines()
     }
 }

@@ -67,8 +67,142 @@ class PluralTests: XCTestCase {
     
     // MARK: - Swift conversation
     
+    func testSwiftSimpleCase() {
+        let plural = Plural(normalizedName: "name", fullNamespace: "namespace", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)
+        XCTAssertEqual(plural.toSwiftCode(visibility: .internal), """
+internal static func name(count: Int) -> String { return String.localizedStringWithFormat(_name, count) }
+private static let _name = Foundation.NSLocalizedString("namespace", bundle: __bundle, comment: "")
+""")
+    }
+    
+    func testSwiftWithComment() {
+        let plural = Plural(normalizedName: "name", fullNamespace: "namespace", comment: "comment", other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)
+        XCTAssertEqual(plural.toSwiftCode(visibility: .internal), """
+internal static func name(count: Int) -> String { return String.localizedStringWithFormat(_name, count) }
+private static let _name = Foundation.NSLocalizedString("namespace", bundle: __bundle, comment: "comment")
+""")
+    }
+    
+    func testSwiftVisibility() {
+        let plural = Plural(normalizedName: "name", fullNamespace: "namespace", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)
+        XCTAssertEqual(plural.toSwiftCode(visibility: .public), """
+public static func name(count: Int) -> String { return String.localizedStringWithFormat(_name, count) }
+private static let _name = Foundation.NSLocalizedString("namespace", bundle: __bundle, comment: "")
+""")
+    }
+    
     // MARK: - Objective-C conversation
     
+    func testObjcSimpleCase() {
+        let plural = Plural(normalizedName: "name", fullNamespace: "namespace", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)
+        XCTAssertEqual(plural.toObjcCode(visibility: .internal), """
+internal static func Namespace(count: Int)) -> String { return namespace(count: count) }
+""")
+    }
+    
+    func testObjcVisibility() {
+        let plural = Plural(normalizedName: "name", fullNamespace: "weird.namespace_with.stuff", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)
+        XCTAssertEqual(plural.toObjcCode(visibility: .public), """
+public static func Weird_Namespace_with_Stuff(count: Int)) -> String { return weird.namespace_with.stuff(count: count) }
+""")
+    }
+    
+    func testObjcNamespaceNormalized() {
+        let plural = Plural(normalizedName: "name", fullNamespace: "weird.namespace_with.stuff", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)
+        XCTAssertEqual(plural.toObjcCode(visibility: .internal), """
+internal static func Weird_Namespace_with_Stuff(count: Int)) -> String { return weird.namespace_with.stuff(count: count) }
+""")
+    }
+    
     // MARK: - XML conversation
+    
+    func testXmlSimpleCase() {
+        let plural = Plural(normalizedName: "name", fullNamespace: "namespace", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)
+        XCTAssertEqual(plural.toXml(transformation: .standard, index: 0), """
+<key>name</key>
+<dict>
+<key>NSStringLocalizedFormatKey</key>
+<string>%#@variable_0@</string>
+<key>variable_0</key>
+<dict>
+<key>NSStringFormatSpecTypeKey</key>
+<string>NSStringPluralRuleType</string>
+<key>NSStringFormatValueTypeKey</key>
+<string>lu</string>
+<key>one</key>
+<string>1 clip</string>
+<key>other</key>
+<string>%lu clips</string>
+</dict>
+</dict>
+""")
+    }
+    
+    func testXmlKeyTranslation() {
+        let plural = Plural(normalizedName: "name", fullNamespace: "namespace.blah.yay", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)
+        XCTAssertEqual(plural.toXml(transformation: .key, index: 0), """
+<key>name</key>
+<dict>
+<key>NSStringLocalizedFormatKey</key>
+<string>%#@variable_0@</string>
+<key>variable_0</key>
+<dict>
+<key>NSStringFormatSpecTypeKey</key>
+<string>NSStringPluralRuleType</string>
+<key>NSStringFormatValueTypeKey</key>
+<string>lu</string>
+<key>one</key>
+<string>namespace.blah.yay</string>
+<key>other</key>
+<string>namespace.blah.yay</string>
+</dict>
+</dict>
+""")
+    }
+    
+    func testXmlPseudoTranslation() {
+        let plural = Plural(normalizedName: "name", fullNamespace: "namespace.blah.yay", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)
+        XCTAssertEqual(plural.toXml(transformation: .pseudo, index: 0), """
+<key>name</key>
+<dict>
+<key>NSStringLocalizedFormatKey</key>
+<string>%#@variable_0@</string>
+<key>variable_0</key>
+<dict>
+<key>NSStringFormatSpecTypeKey</key>
+<string>NSStringPluralRuleType</string>
+<key>NSStringFormatValueTypeKey</key>
+<string>lu</string>
+<key>one</key>
+<string>1 çļîîîþ</string>
+<key>other</key>
+<string>%lu çļîîîþš</string>
+</dict>
+</dict>
+""")
+    }
+    
+    func testXmlIndex() {
+        let plural = Plural(normalizedName: "name", fullNamespace: "namespace", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)
+        XCTAssertEqual(plural.toXml(transformation: .standard, index: 865), """
+<key>name</key>
+<dict>
+<key>NSStringLocalizedFormatKey</key>
+<string>%#@variable_865@</string>
+<key>variable_865</key>
+<dict>
+<key>NSStringFormatSpecTypeKey</key>
+<string>NSStringPluralRuleType</string>
+<key>NSStringFormatValueTypeKey</key>
+<string>lu</string>
+<key>one</key>
+<string>1 clip</string>
+<key>other</key>
+<string>%lu clips</string>
+</dict>
+</dict>
+""")
+    }
+        
     
 }

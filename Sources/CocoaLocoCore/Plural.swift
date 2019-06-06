@@ -40,7 +40,6 @@ struct Plural: CodeGeneratable {
     
     // Calculated
     private let variableType: String
-    private let variableId: Int
     
     init(normalizedName: String,
          fullNamespace: String,
@@ -69,11 +68,10 @@ struct Plural: CodeGeneratable {
         }
         
         variableType = String(other[range].dropFirst())
-        variableId = Plural.variableCount
         Plural.variableCount += 1
     }
     
-    func toSwiftCode(visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
+    func toSwiftCode(visibility: Visibility) -> String {
         let privateVal = "_\(normalizedName)"
         let body = "String.localizedStringWithFormat(\(privateVal), count)"
         
@@ -93,8 +91,8 @@ struct Plural: CodeGeneratable {
         return "\(visibility.rawValue) static func \(name)(count: Int)) -> String { \(body) }"
     }
     
-    func toXml(transformation: Transformation) -> String {
-        let variableName = "variable_\(variableId)"
+    func toXml(transformation: Transformation, index: Int) -> String {
+        let variableName = "variable_\(index)"
         return """
         <key>\(normalizedName)</key>
         <dict>
@@ -112,7 +110,7 @@ struct Plural: CodeGeneratable {
         """
     }
     
-    func pluralVariationsXml(transformation: Transformation) -> String {
+    private func pluralVariationsXml(transformation: Transformation) -> String {
         return [(one, "one"), (other, "other"), (zero, "zero"), (two, "two"), (few, "few"), (many, "many")]
             .compactMap { (value, name) -> String? in
                 guard let value = value else { return nil }

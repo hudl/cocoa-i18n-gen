@@ -16,7 +16,7 @@ class SwiftOutputFile {
         self.namespace = namespace
     }
     
-    func write(to url: URL, objc: Bool, isPublic: Bool, visibility: Visibility, prefix: String = "", bundleName: String? = nil) throws {
+    func write(to url: URL, objc: Bool, visibility: Visibility, prefix: String = "", bundleName: String? = nil) throws {
         let bundleRef: String
         if let bundleName = bundleName, !bundleName.isEmpty {
             bundleRef = ".\(bundleName)"
@@ -43,8 +43,7 @@ class SwiftOutputFile {
         \(namespace.toSwiftCode(indent: 2, visibility: visibility))
         \(objcContent)
         private class BundleReference {}
-        """.removeEmptyLines()
-        // TODO come back and fix the need for this line.
+        """
         
         try content.write(to: url, atomically: true, encoding: .utf8)
     }

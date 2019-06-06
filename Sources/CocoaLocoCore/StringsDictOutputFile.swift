@@ -20,7 +20,8 @@ class StringsDictOutputFile {
         let plurals = StringsDictOutputFile
             .allPlurals(namespace: namespace)
             .sorted(by: { $0.normalizedName < $1.normalizedName })
-            .map { $0.toXml(transformation: transformation) }
+            .enumerated()
+            .map { $1.toXml(transformation: transformation, index: $0) }
             .joined(separator: "\n")
         let content = """
         <?xml version="1.0" encoding="UTF-8"?>

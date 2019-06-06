@@ -50,7 +50,6 @@ public struct CocoaLocoCore {
             try FileManager.default.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
             try swiftOutputFile.write(to: outputURL.appendingPathComponent(initialName).appendingPathExtension("swift"),
                                       objc: objcSupport,
-                                      isPublic: isPublic,
                                       visibility: visibility,
                                       prefix: namePrefix,
                                       bundleName: bundleName)
