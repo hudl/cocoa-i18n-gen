@@ -35,7 +35,7 @@ struct LocalizedString: CodeGeneratable {
         let tableName = prefix.isEmpty ? "" : #", tableName: "\#(prefix)Localizable""#
         let code = """
         \(visibility.rawValue) static func \(normalizedName)(\(arguments.asInput)) -> String { return \(body) }
-        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(fullNamespace)", bundle: __bundle, value: "\(newValue)"\(tableName), comment: "\(comment ?? "")")
+        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(fullNamespace)"\(tableName), bundle: __bundle, value: "\(newValue)", comment: "\(comment ?? "")")
         """
         return code
     }

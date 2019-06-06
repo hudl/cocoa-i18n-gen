@@ -117,7 +117,7 @@ private static let _name = Foundation.NSLocalizedString("Namespace", bundle: __b
         let string = LocalizedString(normalizedName: "name", fullNamespace: "Namespace", value: "Test", prefix: "TableName", comment: "MyComment", arguments: [])
         XCTAssertEqual(string.toSwiftCode(visibility: .public, swiftEnum: testNamespace), """
 public static func name() -> String { return bigName._name }
-private static let _name = Foundation.NSLocalizedString("Namespace", bundle: __bundle, value: "Test", tableName: "TableNameLocalizable", comment: "MyComment")
+private static let _name = Foundation.NSLocalizedString("Namespace", tableName: "TableNameLocalizable", bundle: __bundle, value: "Test", comment: "MyComment")
 """)
     }
 
