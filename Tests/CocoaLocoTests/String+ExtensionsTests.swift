@@ -10,11 +10,6 @@ import XCTest
 
 final class StringExtensionsTests: XCTestCase {
     
-    func testIndent() {
-        XCTAssertEqual("Yay".indented(by: 2), "  Yay")
-        XCTAssertEqual("Yay".indented(by: 0), "Yay")
-    }
-    
     func testCapitalizingFirstLetter() {
         XCTAssertEqual("yay".capitalizingFirstLetter(), "Yay")
         XCTAssertEqual("yAY".capitalizingFirstLetter(), "YAY")
@@ -39,7 +34,7 @@ yay
         XCTAssertEqual(test, """
   cool Stuff
   oh ya
-
+  
   yay
 """)
     }

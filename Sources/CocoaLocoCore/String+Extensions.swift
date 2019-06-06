@@ -9,14 +9,10 @@
 import Foundation
 
 extension String {
-    func indented(by: Int) -> String {
-        return String(repeating: " ", count: by) + self
-    }
     func indentEachLine(by: Int) -> String {
-        return self
-            .components(separatedBy: .newlines)
-            .map { $0.isEmpty ? $0 : $0.indented(by: by) }
-            .joined(separator: "\n")
+        // add spaces to the first line, and then add spaces after every new line.
+        return String(repeating: " ", count: by) +
+            self.replacingOccurrences(of: "\n", with: "\n" + String(repeating: " ", count: by))
     }
     func capitalizingFirstLetter() -> String {
         return prefix(1).uppercased() + dropFirst()
