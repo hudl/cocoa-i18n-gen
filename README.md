@@ -21,8 +21,18 @@ To generate the xcodeproj file, use
 swift package generate-xcodeproj
 ```
 
-Then you can open `CocoaLoco.xcodeproj`. Tests won't be passing yet though, because SPM doesn't support resources. You will want to right click on the `Tests/CocoaLocoTests` group and do add files.
-...FINISH THIS SECTION
+Then you can open `CocoaLoco.xcodeproj`. Tests won't be passing yet though, because SPM doesn't support resources. You will need to follow the below steps to get your resources added. It doesn't take long.
+
+1. First you will need to create a new build phase within the tests target to copy our resources.
+<img src="../master/docs/img/create_resources_phase.png" height="50%" width="50%">
+
+2. Next, you'll need to add these files to our project.
+<img src="../master/docs/img/add_files_to_project.png" height="50%" width="50%">
+
+3. Finally, select the resources directory and make sure you add them to the correct group.
+<img src="../master/docs/img/choose_files_and_target.png" height="50%" width="50%">
+
+Tests should be passing now!
 
 ## Creating A Release
 
