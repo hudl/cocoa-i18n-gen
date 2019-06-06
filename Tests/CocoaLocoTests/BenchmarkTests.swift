@@ -12,7 +12,7 @@ import CocoaLocoCore
 class BenchmarkTests: XCTestCase {
 
     private var tempURL: URL!
-    private let localJson = Bundle(for: BenchmarkTests.self).url(forResource: "LocalizableStrings", withExtension: "json")!
+    private let inputURL = Bundle(for: BenchmarkTests.self).url(forResource: "LocalizableStrings", withExtension: "json")!
 
     override func setUp() {
         super.setUp()
@@ -26,13 +26,13 @@ class BenchmarkTests: XCTestCase {
 
     func testSwiftOnly() {
         measure {
-            CocoaLocoCore.run(inputURL: localJson, outputURL: tempURL)
+            try? CocoaLocoCore.run(inputURL: inputURL, outputURL: tempURL)
         }
     }
 
     func testObjcCompat() {
         measure {
-            CocoaLocoCore.run(inputURL: localJson, outputURL: tempURL, objcSupport: true)
+            try? CocoaLocoCore.run(inputURL: inputURL, outputURL: tempURL, objcSupport: true)
         }
     }
     

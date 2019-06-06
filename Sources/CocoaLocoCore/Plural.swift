@@ -10,7 +10,10 @@ import Foundation
 struct Plural: CodeGeneratable {
     
     private static let regex = try! NSRegularExpression(pattern: #"%[^%\s]*\w"#, options: [.caseInsensitive])
-    private static var variableCount = 0
+
+    enum InitializationError: Error {
+        case missingInterpolations
+    }
     
     enum Transformation {
         case standard, key, pseudo
@@ -41,7 +44,7 @@ struct Plural: CodeGeneratable {
     // Calculated
     private let variableType: String
     
-    init(normalizedName: String,
+    init?(normalizedName: String,
          fullNamespace: String,
          comment: String?,
          other: String,
@@ -63,12 +66,10 @@ struct Plural: CodeGeneratable {
         let nsrange = NSRange(other.startIndex..<other.endIndex, in: other)
         let matches = Plural.regex.matches(in: other, options: [], range: nsrange)
         guard let foundRange = matches.first?.range(at: 0), let range = Range(foundRange, in: other) else {
-            // TODO this should throw so that I can unit test it.
-            fatalError("No variable type found in plural. Add a %i or %lu or something")
+            return nil
         }
         
         variableType = String(other[range].dropFirst())
-        Plural.variableCount += 1
     }
     
     func toSwiftCode(visibility: Visibility) -> String {
@@ -128,7 +129,7 @@ struct Plural: CodeGeneratable {
             let other = dict["other"] as? String,
             let one = dict["one"] as? String
         else { return nil }
-        
+
         return Plural(normalizedName: normalizedName,
                       fullNamespace: fullNamespace,
                       comment: dict["comment"] as? String,

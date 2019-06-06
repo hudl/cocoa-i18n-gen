@@ -8,16 +8,22 @@
 
 import Foundation
 
+public enum CocoaLocoError: Error {
+    case inputFileMissing
+    case outputPathIsFile
+    case inputFileNotJson(error: Error)
+    case inputFileNotDictionary
+    case fileWrite(error: Error)
+}
+
 public struct CocoaLocoCore {
     
     private static let defaultName = "LocalizableStrings"
-    
-    public static func run(inputURL: URL, outputURL: URL, isPublic: Bool = false, objcSupport: Bool = false, namePrefix: String = "", bundleName: String? = nil) {
-        let start = Date()
+
+    public static func run(inputURL: URL, outputURL: URL, isPublic: Bool = false, objcSupport: Bool = false, namePrefix: String = "", bundleName: String? = nil) throws {
         
         guard FileManager.default.fileExists(atPath: inputURL.path) else {
-            print("File not found at \(inputURL.path)")
-            exit(EXIT_FAILURE)
+            throw CocoaLocoError.inputFileMissing
         }
         
         var isDir : ObjCBool = false
@@ -25,8 +31,7 @@ public struct CocoaLocoCore {
             // This only happens if it exists, but it's not a directory.
             // It is valid for it to either not exist at all, or exist as a directory,
             // it just can't exist as a file.
-            print("Path at \(outputURL.path) is already a file. It needs to be a directory")
-            exit(EXIT_FAILURE)
+            throw CocoaLocoError.outputPathIsFile
         }
         
         let jsonData: Any
@@ -34,13 +39,11 @@ public struct CocoaLocoCore {
             let data = try Data(contentsOf: inputURL, options: .mappedIfSafe)
             jsonData = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
         } catch {
-            print("Something went wrong parsing the input file - \(error.localizedDescription)")
-            exit(EXIT_FAILURE)
+            throw CocoaLocoError.inputFileNotJson(error: error)
         }
         
         guard let jsonResult = jsonData as? [String: Any] else {
-            print("Input file was not in the expected JSON object format")
-            exit(EXIT_FAILURE)
+            throw CocoaLocoError.inputFileNotDictionary
         }
         
         let visibility: Visibility = isPublic ? .public : .internal
@@ -68,11 +71,8 @@ public struct CocoaLocoCore {
                 try baseStringsDictFile.write(to: finalURL, transformation: transformation)
             }
         } catch {
-            print("There was an error writing the output file - \(error)")
-            exit(EXIT_FAILURE)
+            throw CocoaLocoError.fileWrite(error: error)
         }
-        
-        print("Execution time - \(Date().timeIntervalSince(start))")
     }
     
 }
