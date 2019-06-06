@@ -26,6 +26,7 @@ class SwiftOutputFile {
         var objcContent = ""
         if objc {
             objcContent = """
+
             // Compatibility layer so the strings can be used in ObjC
             // This code should only be available to Objective-C, not Swift, hence to obsoleted attribute.
             @objcMembers
@@ -33,6 +34,7 @@ class SwiftOutputFile {
             \(visibility.rawValue) class \(prefix)ObjCLocalizableStrings: Foundation.NSObject {
             \(namespace.toObjcCode(visibility: visibility, baseName: namespace.normalizedName))
             }
+
             """
         }
         let content = """

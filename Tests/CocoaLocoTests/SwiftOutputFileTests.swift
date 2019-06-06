@@ -46,6 +46,7 @@ import Foundation
 private let __bundle = Foundation.Bundle(for: BundleReference.self)
 internal enum testName {
 }
+
 // Compatibility layer so the strings can be used in ObjC
 // This code should only be available to Objective-C, not Swift, hence to obsoleted attribute.
 @objcMembers
@@ -53,6 +54,7 @@ internal enum testName {
 internal class ObjCLocalizableStrings: Foundation.NSObject {
 
 }
+
 private class BundleReference {}
 """)
     }
@@ -80,6 +82,7 @@ import Foundation
 private let __bundle = Foundation.Bundle(for: BundleReference.self)
 internal enum testName {
 }
+
 // Compatibility layer so the strings can be used in ObjC
 // This code should only be available to Objective-C, not Swift, hence to obsoleted attribute.
 @objcMembers
@@ -87,6 +90,7 @@ internal enum testName {
 internal class BaseObjCLocalizableStrings: Foundation.NSObject {
 
 }
+
 private class BundleReference {}
 """)
     }

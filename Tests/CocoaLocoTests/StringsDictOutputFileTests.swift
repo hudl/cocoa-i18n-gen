@@ -10,7 +10,7 @@ import XCTest
 @testable import CocoaLocoCore
 
 class StringsDictOutputFileTests: XCTestCase {
-    
+
     private var tempURL: URL!
     
     override func setUp() {
