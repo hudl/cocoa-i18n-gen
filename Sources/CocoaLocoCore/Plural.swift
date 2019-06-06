@@ -29,6 +29,7 @@ struct Plural: CodeGeneratable {
 
     let normalizedName: String
     let fullNamespace: String
+    let prefix: String
     let comment: String?
 
     // Required
@@ -46,6 +47,7 @@ struct Plural: CodeGeneratable {
 
     init?(normalizedName: String,
          fullNamespace: String,
+         prefix: String,
          comment: String?,
          other: String,
          one: String,
@@ -55,6 +57,7 @@ struct Plural: CodeGeneratable {
          many: String?) {
         self.normalizedName = normalizedName
         self.fullNamespace = fullNamespace
+        self.prefix = prefix
         self.comment = comment
         self.other = other
         self.one = one
@@ -76,9 +79,10 @@ struct Plural: CodeGeneratable {
         let privateVal = "_\(normalizedName)"
         let body = "String.localizedStringWithFormat(\(privateVal), count)"
 
+        let tableName = prefix.isEmpty ? "" : #", tableName: "\#(prefix)Localizable""#
         let code = """
         \(visibility.rawValue) static func \(normalizedName)(count: Int) -> String { return \(body) }
-        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(fullNamespace)", bundle: __bundle, comment: "\(comment ?? "")")
+        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(fullNamespace)"\(tableName), bundle: __bundle, comment: "\(comment ?? "")")
         """
         return code
     }
@@ -123,7 +127,7 @@ struct Plural: CodeGeneratable {
             .joined(separator: "\n")
     }
 
-    static func asPlural(_ value: Any, normalizedName: String, fullNamespace: String) -> Plural? {
+    static func asPlural(_ value: Any, normalizedName: String, fullNamespace: String, prefix: String) -> Plural? {
         guard
             let dict = value as? [String: Any],
             let other = dict["other"] as? String,
@@ -132,6 +136,7 @@ struct Plural: CodeGeneratable {
 
         return Plural(normalizedName: normalizedName,
                       fullNamespace: fullNamespace,
+                      prefix: prefix,
                       comment: dict["comment"] as? String,
                       other: other,
                       one: one,

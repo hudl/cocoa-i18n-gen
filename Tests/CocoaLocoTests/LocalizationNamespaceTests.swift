@@ -148,8 +148,8 @@ private let exampleNestedNamespace = [
     LocalizationNamespace(normalizedName: "nested", namespaces: [], strings: [], plurals: [])
 ]
 private let examplePlurals = [
-    Plural(normalizedName: "one", fullNamespace: "oneName", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)!,
-    Plural(normalizedName: "two", fullNamespace: "twoName", comment: nil, other: "%lu clips 2", one: "1 clip 2", zero: nil, two: nil, few: nil, many: nil)!
+    Plural(normalizedName: "one", fullNamespace: "oneName", prefix: "", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)!,
+    Plural(normalizedName: "two", fullNamespace: "twoName", prefix: "", comment: nil, other: "%lu clips 2", one: "1 clip 2", zero: nil, two: nil, few: nil, many: nil)!
 ]
 private let exampleStrings = [
     LocalizedString(normalizedName: "one", fullNamespace: "oneName", value: "test1", prefix: "", comment: nil, arguments: []),

@@ -28,7 +28,7 @@ struct LocalizationNamespace: CodeGeneratable {
             } else {
                 nextNamespace = normalizedName
             }
-            if let plural = Plural.asPlural(value, normalizedName: normalizedName, fullNamespace: nextNamespace) {
+            if let plural = Plural.asPlural(value, normalizedName: normalizedName, fullNamespace: nextNamespace, prefix: prefix) {
                 plurals.append(plural)
             } else if let string = LocalizedString.asLocalizedString(normalizedName: normalizedName,
                                                                      fullNamespace: nextNamespace,

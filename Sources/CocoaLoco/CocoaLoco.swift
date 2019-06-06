@@ -7,5 +7,5 @@
 //
 
 struct CocoaLoco {
-    static let version = "1.0.2"
+    static let version = "1.0.3"
 }
