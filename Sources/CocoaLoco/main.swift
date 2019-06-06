@@ -31,7 +31,7 @@ let generate = command(
     } catch CocoaLocoError.outputPathIsFile {
         print("Path at \(outputURL.path) is already a file. It needs to be a directory")
     } catch CocoaLocoError.inputFileNotJson(let subError) {
-print("Something went wrong parsing the input file - \(subError.localizedDescription)")
+        print("Something went wrong parsing the input file - \(subError.localizedDescription)")
     } catch CocoaLocoError.inputFileNotDictionary {
         print("File at \(inputURL.path) is not in the expected dictionary JSON format")
     } catch CocoaLocoError.fileWrite(let subError) {
