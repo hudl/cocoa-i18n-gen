@@ -15,25 +15,20 @@ struct LocalizationNamespace: CodeGeneratable {
     let strings: [LocalizedString]
     let plurals: [Plural]
 
-    static func parseValue(_ dict: [String: Any], fullNamespace: String?, normalizedName: String) -> LocalizationNamespace {
+    static func parseValue(_ dict: [String: Any], namespace: String?, normalizedName: String) -> LocalizationNamespace {
         var namespaces = [LocalizationNamespace]()
         var strings = [LocalizedString]()
         var plurals = [Plural]()
 
         dict.forEach { key, value in
             let normalizedName = normalizeName(rawName: key)
-            let nextNamespace: String
-            if let fullNamespace = fullNamespace {
-                nextNamespace = "\(fullNamespace).\(normalizedName)"
-            } else {
-                nextNamespace = normalizedName
-            }
-            if let plural = Plural.asPlural(value, normalizedName: normalizedName, fullNamespace: nextNamespace) {
+            if let plural = Plural.asPlural(value, key: key, namespace: namespace) {
                 plurals.append(plural)
-            } else if let string = LocalizedString.asLocalizedString(key: key, namespace: fullNamespace, value: value) {
+            } else if let string = LocalizedString.asLocalizedString(key: key, namespace: namespace, value: value) {
                 strings.append(string)
             } else if let dictValue = value as? [String: Any] {
-                namespaces.append(parseValue(dictValue, fullNamespace: nextNamespace, normalizedName: normalizedName))
+                let nextNamespace = joinedNamespace(part1: namespace, part2: normalizedName)
+                namespaces.append(parseValue(dictValue, namespace: nextNamespace, normalizedName: normalizedName))
             } else {
                 fatalError("RIP")
             }

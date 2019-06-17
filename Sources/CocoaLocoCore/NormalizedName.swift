@@ -33,3 +33,18 @@ func normalizeName(rawName: String) -> String {
         }
         .joined()
 }
+
+/// Takes 2 strings and creates a dot separated string out of them. There will be no dot
+/// if the first string is `nil`
+///
+/// - Parameters:
+///   - part1: The parent namespace string. If this is `nil` no dot will be added and the 2nd part will be returned as is.
+///   - part2: The child namespace string.
+/// - Returns: The full namespace combining the two provided parts.
+func joinedNamespace(part1: String?, part2: String) -> String {
+    if let part1 = part1 {
+        return "\(part1).\(part2)"
+    } else {
+        return part2
+    }
+}

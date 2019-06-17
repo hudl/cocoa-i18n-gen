@@ -69,9 +69,9 @@ class StringsDictOutputFileTests: XCTestCase {
 <key>NSStringFormatValueTypeKey</key>
 <string>lu</string>
 <key>one</key>
-<string>oneName</string>
+<string>oneName.one</string>
 <key>other</key>
-<string>oneName</string>
+<string>oneName.one</string>
 </dict>
 </dict>
 </dict>
@@ -114,7 +114,7 @@ class StringsDictOutputFileTests: XCTestCase {
 }
 
 private let examplePlurals = [
-    Plural(normalizedName: "one", fullNamespace: "oneName", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)!
+    Plural(key: "one", namespace: "oneName", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)!
 ]
 private let exampleNamespace = LocalizationNamespace(normalizedName: "testName",
                                                      namespaces: [],
