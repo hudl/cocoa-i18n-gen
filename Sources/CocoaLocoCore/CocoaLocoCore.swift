@@ -48,7 +48,10 @@ public struct CocoaLocoCore {
 
         let visibility: Visibility = isPublic ? .public : .internal
         let initialName: String = "\(namePrefix)\(defaultName)"
-        let namespace = LocalizationNamespace.parseValue(jsonResult, namespace: nil, normalizedName: initialName)
+        let namespace = LocalizationNamespace.parseValue(jsonResult,
+                                                         namespace: nil,
+                                                         normalizedName: initialName,
+                                                         prefix: namePrefix)
         let swiftOutputFile = SwiftOutputFile(namespace: namespace)
         let baseStringsDictFile = StringsDictOutputFile(namespace: namespace)
 

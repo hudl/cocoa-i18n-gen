@@ -7,9 +7,6 @@ CocoaLoco.xcodeproj
 build
 DerivedData
 
-# Test Data
-**/*LocalizableStrings.json*
-
 # Generated Files
 **/*LocalizableStrings.swift*
 **/Base.lproj/Localizable.stringsdict

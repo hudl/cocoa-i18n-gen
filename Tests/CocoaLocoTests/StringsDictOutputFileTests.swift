@@ -114,7 +114,7 @@ class StringsDictOutputFileTests: XCTestCase {
 }
 
 private let examplePlurals = [
-    Plural(key: "one", namespace: "oneName", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)!
+    Plural(key: "one", namespace: "oneName", prefix: "", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)!
 ]
 private let exampleNamespace = LocalizationNamespace(normalizedName: "testName",
                                                      namespaces: [],

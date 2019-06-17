@@ -13,6 +13,7 @@ struct LocalizedString: CodeGeneratable {
     let swiftKey: String
     let swiftFullFunc: String
     let value: String
+    let prefix: String
     let comment: String?
     let arguments: [Argument]
     let normalizedName: String
@@ -20,10 +21,12 @@ struct LocalizedString: CodeGeneratable {
     init(key: String,
          namespace: String?,
          value: String,
+         prefix: String,
          comment: String?,
          arguments: [Argument]) {
         self.key = key
         self.value = value
+        self.prefix = prefix
         self.comment = comment
         self.arguments = arguments
         self.normalizedName = normalizeName(rawName: key)
@@ -47,9 +50,10 @@ struct LocalizedString: CodeGeneratable {
             newValue = value
         }
 
+        let tableName = prefix.isEmpty ? "" : #", tableName: "\#(prefix)Localizable""#
         let code = """
         \(visibility.rawValue) static func \(normalizedName)(\(arguments.asInput)) -> String { return \(body) }
-        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(swiftKey)", bundle: __bundle, value: "\(newValue)", comment: "\(comment ?? "")")
+        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(swiftKey)"\(tableName), bundle: __bundle, value: "\(newValue)", comment: "\(comment ?? "")")
         """
         return code
     }
@@ -63,11 +67,12 @@ struct LocalizedString: CodeGeneratable {
         return "\(visibility.rawValue) static func \(name)(\(arguments.asInput)) -> String { \(body) }"
     }
 
-    static func asLocalizedString(key: String, namespace: String?, value: Any) -> LocalizedString? {
+    static func asLocalizedString(key: String, namespace: String?, prefix: String, value: Any) -> LocalizedString? {
         if let strValue = value as? String {
             return LocalizedString(key: key,
                                    namespace: namespace,
                                    value: strValue,
+                                   prefix: prefix,
                                    comment: nil,
                                    arguments: [])
         } else if let dictValue = value as? [String: Any], let strValue = dictValue["value"] as? String {
@@ -75,6 +80,7 @@ struct LocalizedString: CodeGeneratable {
             return LocalizedString(key: key,
                                    namespace: namespace,
                                    value: strValue,
+                                   prefix: prefix,
                                    comment: dictValue["comment"] as? String,
                                    arguments: arguments)
         }

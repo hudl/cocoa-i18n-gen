@@ -31,6 +31,7 @@ struct Plural: CodeGeneratable {
     let normalizedName: String
     let swiftFullFunc: String
     let swiftKey: String
+    let prefix: String
     let comment: String?
 
     // Required
@@ -48,6 +49,7 @@ struct Plural: CodeGeneratable {
 
     init?(key: String,
           namespace: String?,
+          prefix: String,
           comment: String?,
           other: String,
           one: String,
@@ -57,6 +59,7 @@ struct Plural: CodeGeneratable {
           many: String?) {
         self.key = key
         self.normalizedName = normalizeName(rawName: key)
+        self.prefix = prefix
         self.comment = comment
         self.other = other
         self.one = one
@@ -80,9 +83,10 @@ struct Plural: CodeGeneratable {
         let privateVal = "_\(normalizedName)"
         let body = "String.localizedStringWithFormat(\(privateVal), count)"
 
+        let tableName = prefix.isEmpty ? "" : #", tableName: "\#(prefix)Localizable""#
         let code = """
         \(visibility.rawValue) static func \(normalizedName)(count: Int) -> String { return \(body) }
-        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(swiftKey)", bundle: __bundle, comment: "\(comment ?? "")")
+        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(swiftKey)"\(tableName), bundle: __bundle, comment: "\(comment ?? "")")
         """
         return code
     }
@@ -127,7 +131,7 @@ struct Plural: CodeGeneratable {
             .joined(separator: "\n")
     }
 
-    static func asPlural(_ value: Any, key: String, namespace: String?) -> Plural? {
+    static func asPlural(_ value: Any, key: String, namespace: String?, prefix: String) -> Plural? {
         guard
             let dict = value as? [String: Any],
             let other = dict["other"] as? String,
@@ -136,6 +140,7 @@ struct Plural: CodeGeneratable {
 
         return Plural(key: key,
                       namespace: namespace,
+                      prefix: prefix,
                       comment: dict["comment"] as? String,
                       other: other,
                       one: one,
