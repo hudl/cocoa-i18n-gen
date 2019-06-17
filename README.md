@@ -10,8 +10,8 @@
 1. The second param is the `outputURL`, a directory where the output files should go.
 1. `--objc` is optional, and will generate Objective-C compatibility
 1. `--public` is optional, and will make the code `public`.
-1. `--prefix` will prefix all the files, as well as the files struct / enum names with the provided prefix.
-1. `--bundleName`, if you have a static extension on `Bundle` that provides a bundle, use it's name here. Providing `hudlCapture` will result in the code `Bundle.hudlCapture` as the internal bundle for loading the strings.
+1. `--prefix <prefix>` will prefix all the files, as well as the files struct / enum names with the provided prefix.
+1. `--bundleName <name>`, if you have a static extension on `Bundle` that provides a bundle, use it's name here. Providing `hudlCapture` will result in the code `Bundle.hudlCapture` as the internal bundle for loading the strings.
 
 ## Setup
 
