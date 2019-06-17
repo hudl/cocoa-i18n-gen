@@ -111,10 +111,10 @@ private static let _name = Foundation.NSLocalizedString("Namespace.name", bundle
     }
     
     func testSwiftPrefixTableName() {
-        let string = LocalizedString(normalizedName: "name", fullNamespace: "Namespace", value: "Test", prefix: "TableName", comment: "MyComment", arguments: [])
+        let string = LocalizedString(key: "name", namespace: "Namespace", value: "Test", prefix: "TableName", comment: "MyComment", arguments: [])
         XCTAssertEqual(string.toSwiftCode(visibility: .public, swiftEnum: testNamespace), """
 public static func name() -> String { return bigName._name }
-private static let _name = Foundation.NSLocalizedString("Namespace", tableName: "TableNameLocalizable", bundle: __bundle, value: "Test", comment: "MyComment")
+private static let _name = Foundation.NSLocalizedString("Namespace.name", tableName: "TableNameLocalizable", bundle: __bundle, value: "Test", comment: "MyComment")
 """)
     }
 
@@ -146,11 +146,7 @@ public static func Namespace_Name() -> String { return bigName.Namespace.name() 
     }
 
     func testObjcNamespaceNormalized() {
-<<<<<<< HEAD
         let string = LocalizedString(key: "name", namespace: "weird.namespace_with.stuff", value: "Test", prefix: "", comment: nil, arguments: [])
-=======
-        let string = LocalizedString(normalizedName: "name", fullNamespace: "weird.namespace_with.stuff", value: "Test", prefix: "", comment: nil, arguments: [])
->>>>>>> @{-1}
         XCTAssertEqual(string.toObjcCode(visibility: .internal, baseName: "bigName"), """
 internal static func Weird_Namespace_with_Stuff_Name() -> String { return bigName.weird.namespace_with.stuff.name() }
 """)

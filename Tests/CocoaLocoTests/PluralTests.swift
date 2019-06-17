@@ -95,10 +95,10 @@ private static let _name = Foundation.NSLocalizedString("namespace.name", bundle
     }
     
     func testSwiftTableName() {
-        let plural = Plural(normalizedName: "name", fullNamespace: "namespace", prefix: "TableName", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)
+        let plural = Plural(key: "name", namespace: "namespace", prefix: "TableName", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)
         XCTAssertEqual(plural?.toSwiftCode(visibility: .public), """
 public static func name(count: Int) -> String { return String.localizedStringWithFormat(_name, count) }
-private static let _name = Foundation.NSLocalizedString("namespace", tableName: "TableNameLocalizable", bundle: __bundle, comment: "")
+private static let _name = Foundation.NSLocalizedString("namespace.name", tableName: "TableNameLocalizable", bundle: __bundle, comment: "")
 """)
     }
 
