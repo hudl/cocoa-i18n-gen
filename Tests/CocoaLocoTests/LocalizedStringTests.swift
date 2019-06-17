@@ -14,7 +14,7 @@ class LocalizedStringTests: XCTestCase {
     // MARK: - Identifies matches
 
     func testAcceptsStrings() {
-        let result = LocalizedString.asLocalizedString(normalizedName: "name",
+        let result = LocalizedString.asLocalizedString(key: "name",
                                                        fullNamespace: "namespace",
                                                        value: "Test")
 
@@ -27,7 +27,7 @@ class LocalizedStringTests: XCTestCase {
     }
 
     func testAcceptsDictionaryWithValue() {
-        let result = LocalizedString.asLocalizedString(normalizedName: "name",
+        let result = LocalizedString.asLocalizedString(key: "name",
                                                        fullNamespace: "namespace",
                                                        value: ["value": "Test2"])
 
@@ -40,7 +40,7 @@ class LocalizedStringTests: XCTestCase {
     }
 
     func testAcceptsDictionaryWithValueAndArgumentsAndComments() {
-        let result = LocalizedString.asLocalizedString(normalizedName: "name",
+        let result = LocalizedString.asLocalizedString(key: "name",
                                                        fullNamespace: "namespace",
                                                        value: [
                                                         "value": "Test3 {blah}",
@@ -57,14 +57,14 @@ class LocalizedStringTests: XCTestCase {
     }
 
     func testRejectsDictionaryWithoutValue() {
-        let result = LocalizedString.asLocalizedString(normalizedName: "name",
+        let result = LocalizedString.asLocalizedString(key: "name",
                                                        fullNamespace: "namespace",
                                                        value: ["blahblah": "Test"])
         XCTAssertNil(result)
     }
 
     func testRejectsBadTypes() {
-        let result = LocalizedString.asLocalizedString(normalizedName: "name",
+        let result = LocalizedString.asLocalizedString(key: "name",
                                                        fullNamespace: "namespace",
                                                        value: 1)
         XCTAssertNil(result)
@@ -73,7 +73,7 @@ class LocalizedStringTests: XCTestCase {
     // MARK: - Swift conversation
 
     func testSwiftSimpleCase() {
-        let string = LocalizedString(normalizedName: "name", fullNamespace: "Namespace", value: "Test", comment: nil, arguments: [])
+        let string = LocalizedString(key: "name", fullNamespace: "Namespace", value: "Test", comment: nil, arguments: [])
         XCTAssertEqual(string.toSwiftCode(visibility: .internal, swiftEnum: testNamespace), """
 internal static func name() -> String { return bigName._name }
 private static let _name = Foundation.NSLocalizedString("Namespace", bundle: __bundle, value: "Test", comment: "")
@@ -81,7 +81,7 @@ private static let _name = Foundation.NSLocalizedString("Namespace", bundle: __b
     }
 
     func testSwiftComment() {
-        let string = LocalizedString(normalizedName: "name", fullNamespace: "Namespace", value: "Test", comment: "MyComment", arguments: [])
+        let string = LocalizedString(key: "name", fullNamespace: "Namespace", value: "Test", comment: "MyComment", arguments: [])
         XCTAssertEqual(string.toSwiftCode(visibility: .internal, swiftEnum: testNamespace), """
 internal static func name() -> String { return bigName._name }
 private static let _name = Foundation.NSLocalizedString("Namespace", bundle: __bundle, value: "Test", comment: "MyComment")
@@ -89,7 +89,7 @@ private static let _name = Foundation.NSLocalizedString("Namespace", bundle: __b
     }
 
     func testSwiftArgumentsWithAllType() {
-        let string = LocalizedString(normalizedName: "name", fullNamespace: "Namespace", value: "Test {number}, {string}, {double}", comment: "MyComment", arguments: [
+        let string = LocalizedString(key: "name", fullNamespace: "Namespace", value: "Test {number}, {string}, {double}", comment: "MyComment", arguments: [
                 Argument(name: "number", type: .number),
                 Argument(name: "string", type: .string),
                 Argument(name: "double", type: .double)
@@ -101,7 +101,7 @@ private static let _name = Foundation.NSLocalizedString("Namespace", bundle: __b
     }
 
     func testSwiftVisibilityModifiers() {
-        let string = LocalizedString(normalizedName: "name", fullNamespace: "Namespace", value: "Test", comment: "MyComment", arguments: [])
+        let string = LocalizedString(key: "name", fullNamespace: "Namespace", value: "Test", comment: "MyComment", arguments: [])
         XCTAssertEqual(string.toSwiftCode(visibility: .public, swiftEnum: testNamespace), """
 public static func name() -> String { return bigName._name }
 private static let _name = Foundation.NSLocalizedString("Namespace", bundle: __bundle, value: "Test", comment: "MyComment")
@@ -111,14 +111,14 @@ private static let _name = Foundation.NSLocalizedString("Namespace", bundle: __b
     // MARK: - Objective-C conversation
 
     func testObjcSimpleCase() {
-        let string = LocalizedString(normalizedName: "name", fullNamespace: "Namespace", value: "Test", comment: nil, arguments: [])
+        let string = LocalizedString(key: "name", fullNamespace: "Namespace", value: "Test", comment: nil, arguments: [])
         XCTAssertEqual(string.toObjcCode(visibility: .internal, baseName: "bigName"), """
 internal static func Namespace() -> String { return bigName.Namespace() }
 """)
     }
 
     func testObjcArgumentsWithAllType() {
-        let string = LocalizedString(normalizedName: "name", fullNamespace: "Namespace", value: "Test {number}, {string}, {double}", comment: "MyComment", arguments: [
+        let string = LocalizedString(key: "name", fullNamespace: "Namespace", value: "Test {number}, {string}, {double}", comment: "MyComment", arguments: [
             Argument(name: "number", type: .number),
             Argument(name: "string", type: .string),
             Argument(name: "double", type: .double)
@@ -129,14 +129,14 @@ internal static func Namespace(double: Double, number: Int, string: String) -> S
     }
 
     func testObjcVisibilityModifiers() {
-        let string = LocalizedString(normalizedName: "name", fullNamespace: "Namespace", value: "Test", comment: "MyComment", arguments: [])
+        let string = LocalizedString(key: "name", fullNamespace: "Namespace", value: "Test", comment: "MyComment", arguments: [])
         XCTAssertEqual(string.toObjcCode(visibility: .public, baseName: "bigName"), """
 public static func Namespace() -> String { return bigName.Namespace() }
 """)
     }
 
     func testObjcNamespaceNormalized() {
-        let string = LocalizedString(normalizedName: "name", fullNamespace: "weird.namespace_with.stuff", value: "Test", comment: nil, arguments: [])
+        let string = LocalizedString(key: "name", fullNamespace: "weird.namespace_with.stuff", value: "Test", comment: nil, arguments: [])
         XCTAssertEqual(string.toObjcCode(visibility: .internal, baseName: "bigName"), """
 internal static func Weird_Namespace_with_Stuff() -> String { return bigName.weird.namespace_with.stuff() }
 """)

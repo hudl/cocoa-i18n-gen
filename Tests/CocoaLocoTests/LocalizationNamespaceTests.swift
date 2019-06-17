@@ -152,8 +152,8 @@ private let examplePlurals = [
     Plural(normalizedName: "two", fullNamespace: "twoName", comment: nil, other: "%lu clips 2", one: "1 clip 2", zero: nil, two: nil, few: nil, many: nil)!
 ]
 private let exampleStrings = [
-    LocalizedString(normalizedName: "one", fullNamespace: "oneName", value: "test1", comment: nil, arguments: []),
-    LocalizedString(normalizedName: "two", fullNamespace: "twoName", value: "test2", comment: nil, arguments: [])
+    LocalizedString(key: "one", fullNamespace: "oneName", value: "test1", comment: nil, arguments: []),
+    LocalizedString(key: "two", fullNamespace: "twoName", value: "test2", comment: nil, arguments: [])
 ]
 private let exampleNamespace = LocalizationNamespace(normalizedName: "testName",
                                                      namespaces: exampleNestedNamespace,

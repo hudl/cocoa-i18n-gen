@@ -30,7 +30,7 @@ struct LocalizationNamespace: CodeGeneratable {
             }
             if let plural = Plural.asPlural(value, normalizedName: normalizedName, fullNamespace: nextNamespace) {
                 plurals.append(plural)
-            } else if let string = LocalizedString.asLocalizedString(normalizedName: normalizedName, fullNamespace: nextNamespace, value: value) {
+            } else if let string = LocalizedString.asLocalizedString(key: key, namespace: fullNamespace, value: value) {
                 strings.append(string)
             } else if let dictValue = value as? [String: Any] {
                 namespaces.append(parseValue(dictValue, fullNamespace: nextNamespace, normalizedName: normalizedName))
