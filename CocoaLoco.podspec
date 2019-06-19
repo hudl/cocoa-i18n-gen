@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CocoaLoco'
-  s.version          = '1.0.5'
+  s.version          = '1.0.6'
   s.summary          = 'A Swift command line tool to help you make sense of large quantities of localizable strings.'
   s.description      = <<-DESC
 A Swift command line tool to help you make sense of large quantities of localizable strings.
@@ -9,7 +9,7 @@ and create a Swift file of namespaced constants.
                        DESC
 
   s.homepage         = 'https://github.com/hudl/cocoa-i18n-gen'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = 'MIT'
   s.author           = { 'Brian Clymer' => 'brian.clymer@hudl.com' }
   s.source           = { :git => 'git@github.com:hudl/cocoa-i18n-gen.git', :tag => s.version.to_s }
 
