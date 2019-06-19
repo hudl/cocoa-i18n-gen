@@ -15,28 +15,20 @@ struct LocalizationNamespace: CodeGeneratable {
     let strings: [LocalizedString]
     let plurals: [Plural]
 
-    static func parseValue(_ dict: [String: Any], fullNamespace: String?, normalizedName: String, prefix: String) -> LocalizationNamespace {
+    static func parseValue(_ dict: [String: Any], namespace: String?, normalizedName: String, prefix: String) -> LocalizationNamespace {
         var namespaces = [LocalizationNamespace]()
         var strings = [LocalizedString]()
         var plurals = [Plural]()
 
         dict.forEach { key, value in
             let normalizedName = normalizeName(rawName: key)
-            let nextNamespace: String
-            if let fullNamespace = fullNamespace {
-                nextNamespace = "\(fullNamespace).\(normalizedName)"
-            } else {
-                nextNamespace = normalizedName
-            }
-            if let plural = Plural.asPlural(value, normalizedName: normalizedName, fullNamespace: nextNamespace, prefix: prefix) {
+            if let plural = Plural.asPlural(value, key: key, namespace: namespace, prefix: prefix) {
                 plurals.append(plural)
-            } else if let string = LocalizedString.asLocalizedString(normalizedName: normalizedName,
-                                                                     fullNamespace: nextNamespace,
-                                                                     prefix: prefix,
-                                                                     value: value) {
+            } else if let string = LocalizedString.asLocalizedString(key: key, namespace: namespace, prefix: prefix, value: value) {
                 strings.append(string)
             } else if let dictValue = value as? [String: Any] {
-                namespaces.append(parseValue(dictValue, fullNamespace: nextNamespace, normalizedName: normalizedName, prefix: prefix))
+                let nextNamespace = joinedNamespace(part1: namespace, part2: normalizedName)
+                namespaces.append(parseValue(dictValue, namespace: nextNamespace, normalizedName: normalizedName, prefix: prefix))
             } else {
                 fatalError("RIP")
             }

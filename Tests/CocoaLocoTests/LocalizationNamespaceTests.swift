@@ -20,9 +20,8 @@ class LocalizationNamespaceTests: XCTestCase {
                 "other": "%lu clips"
             ]
         ]
-        let result = LocalizationNamespace.parseValue(dict, fullNamespace: "namespace", normalizedName: "name", prefix: "")
+        let result = LocalizationNamespace.parseValue(dict, namespace: "namespace", normalizedName: "name", prefix: "")
         XCTAssertEqual(result.plurals.count, 1)
-        XCTAssertEqual(result.plurals.first?.fullNamespace, "namespace.somePlural")
         XCTAssertEqual(result.namespaces.count, 0)
         XCTAssertEqual(result.strings.count, 0)
         XCTAssertEqual(result.normalizedName, "name")
@@ -34,11 +33,10 @@ class LocalizationNamespaceTests: XCTestCase {
                 "value": "yay this is nice"
             ]
         ]
-        let result = LocalizationNamespace.parseValue(dict, fullNamespace: "namespace", normalizedName: "name", prefix: "")
+        let result = LocalizationNamespace.parseValue(dict, namespace: "namespace", normalizedName: "name", prefix: "")
         XCTAssertEqual(result.plurals.count, 0)
         XCTAssertEqual(result.namespaces.count, 0)
         XCTAssertEqual(result.strings.count, 1)
-        XCTAssertEqual(result.strings.first?.fullNamespace, "namespace.someString")
         XCTAssertEqual(result.normalizedName, "name")
     }
 
@@ -51,7 +49,7 @@ class LocalizationNamespaceTests: XCTestCase {
                 ]
             ]
         ]
-        let result = LocalizationNamespace.parseValue(dict, fullNamespace: "namespace", normalizedName: "name", prefix: "")
+        let result = LocalizationNamespace.parseValue(dict, namespace: "namespace", normalizedName: "name", prefix: "")
         XCTAssertEqual(result.plurals.count, 0)
         XCTAssertEqual(result.namespaces.count, 1)
         XCTAssertEqual(result.namespaces.first?.normalizedName, "someNamespace")
@@ -65,8 +63,9 @@ class LocalizationNamespaceTests: XCTestCase {
                 "value": "yay this is nice"
             ]
         ]
-        let result = LocalizationNamespace.parseValue(dict, fullNamespace: nil, normalizedName: "name", prefix: "")
-        XCTAssertEqual(result.strings.first?.fullNamespace, "someString")
+        let result = LocalizationNamespace.parseValue(dict, namespace: nil, normalizedName: "name", prefix: "")
+        XCTAssertEqual(result.strings.first?.swiftKey, "someString")
+        XCTAssertEqual(result.strings.first?.swiftFullFunc, "someString")
     }
 
     // MARK: - Swift conversation
@@ -78,13 +77,13 @@ internal enum testName {
 internal enum nested {
 }
 internal static func one(count: Int) -> String { return String.localizedStringWithFormat(_one, count) }
-private static let _one = Foundation.NSLocalizedString("oneName", bundle: __bundle, comment: "")
+private static let _one = Foundation.NSLocalizedString("oneName.one", bundle: __bundle, comment: "")
 internal static func two(count: Int) -> String { return String.localizedStringWithFormat(_two, count) }
-private static let _two = Foundation.NSLocalizedString("twoName", bundle: __bundle, comment: "")
+private static let _two = Foundation.NSLocalizedString("twoName.two", bundle: __bundle, comment: "")
 internal static func one() -> String { return testName._one }
-private static let _one = Foundation.NSLocalizedString("oneName", bundle: __bundle, value: "test1", comment: "")
+private static let _one = Foundation.NSLocalizedString("oneName.one", bundle: __bundle, value: "test1", comment: "")
 internal static func two() -> String { return testName._two }
-private static let _two = Foundation.NSLocalizedString("twoName", bundle: __bundle, value: "test2", comment: "")
+private static let _two = Foundation.NSLocalizedString("twoName.two", bundle: __bundle, value: "test2", comment: "")
 }
 """)
     }
@@ -96,13 +95,13 @@ public enum testName {
 public enum nested {
 }
 public static func one(count: Int) -> String { return String.localizedStringWithFormat(_one, count) }
-private static let _one = Foundation.NSLocalizedString("oneName", bundle: __bundle, comment: "")
+private static let _one = Foundation.NSLocalizedString("oneName.one", bundle: __bundle, comment: "")
 public static func two(count: Int) -> String { return String.localizedStringWithFormat(_two, count) }
-private static let _two = Foundation.NSLocalizedString("twoName", bundle: __bundle, comment: "")
+private static let _two = Foundation.NSLocalizedString("twoName.two", bundle: __bundle, comment: "")
 public static func one() -> String { return testName._one }
-private static let _one = Foundation.NSLocalizedString("oneName", bundle: __bundle, value: "test1", comment: "")
+private static let _one = Foundation.NSLocalizedString("oneName.one", bundle: __bundle, value: "test1", comment: "")
 public static func two() -> String { return testName._two }
-private static let _two = Foundation.NSLocalizedString("twoName", bundle: __bundle, value: "test2", comment: "")
+private static let _two = Foundation.NSLocalizedString("twoName.two", bundle: __bundle, value: "test2", comment: "")
 }
 """)
     }
@@ -114,13 +113,13 @@ internal enum testName {
     internal enum nested {
     }
     internal static func one(count: Int) -> String { return String.localizedStringWithFormat(_one, count) }
-    private static let _one = Foundation.NSLocalizedString("oneName", bundle: __bundle, comment: "")
+    private static let _one = Foundation.NSLocalizedString("oneName.one", bundle: __bundle, comment: "")
     internal static func two(count: Int) -> String { return String.localizedStringWithFormat(_two, count) }
-    private static let _two = Foundation.NSLocalizedString("twoName", bundle: __bundle, comment: "")
+    private static let _two = Foundation.NSLocalizedString("twoName.two", bundle: __bundle, comment: "")
     internal static func one() -> String { return testName._one }
-    private static let _one = Foundation.NSLocalizedString("oneName", bundle: __bundle, value: "test1", comment: "")
+    private static let _one = Foundation.NSLocalizedString("oneName.one", bundle: __bundle, value: "test1", comment: "")
     internal static func two() -> String { return testName._two }
-    private static let _two = Foundation.NSLocalizedString("twoName", bundle: __bundle, value: "test2", comment: "")
+    private static let _two = Foundation.NSLocalizedString("twoName.two", bundle: __bundle, value: "test2", comment: "")
 }
 """)
     }
@@ -130,16 +129,16 @@ internal enum testName {
     func testObjcSimple() {
         let objc = exampleNamespace.toObjcCode(visibility: .internal, baseName: "baseBlah")
         XCTAssertEqual(objc, """
-  internal static func OneName() -> String { return baseBlah.oneName() }
-  internal static func TwoName() -> String { return baseBlah.twoName() }
+  internal static func OneName_One() -> String { return baseBlah.oneName.one() }
+  internal static func TwoName_Two() -> String { return baseBlah.twoName.two() }
 """)
     }
 
     func testObjcVisibility() {
         let objc = exampleNamespace.toObjcCode(visibility: .public, baseName: "baseBlah")
         XCTAssertEqual(objc, """
-  public static func OneName() -> String { return baseBlah.oneName() }
-  public static func TwoName() -> String { return baseBlah.twoName() }
+  public static func OneName_One() -> String { return baseBlah.oneName.one() }
+  public static func TwoName_Two() -> String { return baseBlah.twoName.two() }
 """)
     }
 }
@@ -148,12 +147,12 @@ private let exampleNestedNamespace = [
     LocalizationNamespace(normalizedName: "nested", namespaces: [], strings: [], plurals: [])
 ]
 private let examplePlurals = [
-    Plural(normalizedName: "one", fullNamespace: "oneName", prefix: "", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)!,
-    Plural(normalizedName: "two", fullNamespace: "twoName", prefix: "", comment: nil, other: "%lu clips 2", one: "1 clip 2", zero: nil, two: nil, few: nil, many: nil)!
+    Plural(key: "one", namespace: "oneName", prefix: "", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)!,
+    Plural(key: "two", namespace: "twoName", prefix: "", comment: nil, other: "%lu clips 2", one: "1 clip 2", zero: nil, two: nil, few: nil, many: nil)!
 ]
 private let exampleStrings = [
-    LocalizedString(normalizedName: "one", fullNamespace: "oneName", value: "test1", prefix: "", comment: nil, arguments: []),
-    LocalizedString(normalizedName: "two", fullNamespace: "twoName", value: "test2", prefix: "", comment: nil, arguments: [])
+    LocalizedString(key: "one", namespace: "oneName", value: "test1", prefix: "", comment: nil, arguments: []),
+    LocalizedString(key: "two", namespace: "twoName", value: "test2", prefix: "", comment: nil, arguments: [])
 ]
 private let exampleNamespace = LocalizationNamespace(normalizedName: "testName",
                                                      namespaces: exampleNestedNamespace,

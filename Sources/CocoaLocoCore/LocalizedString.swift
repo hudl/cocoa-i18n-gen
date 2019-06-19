@@ -9,12 +9,30 @@
 import Foundation
 
 struct LocalizedString: CodeGeneratable {
-    let normalizedName: String
-    let fullNamespace: String
+    let key: String
+    let swiftKey: String
+    let swiftFullFunc: String
     let value: String
     let prefix: String
     let comment: String?
     let arguments: [Argument]
+    let normalizedName: String
+    
+    init(key: String,
+         namespace: String?,
+         value: String,
+         prefix: String,
+         comment: String?,
+         arguments: [Argument]) {
+        self.key = key
+        self.value = value
+        self.prefix = prefix
+        self.comment = comment
+        self.arguments = arguments
+        self.normalizedName = normalizeName(rawName: key)
+        self.swiftKey = joinedNamespace(part1: namespace, part2: key)
+        self.swiftFullFunc = joinedNamespace(part1: namespace, part2: normalizedName)
+    }
 
     func toSwiftCode(visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
         let privateVal = "\(swiftEnum.normalizedName)._\(normalizedName)"
@@ -35,32 +53,32 @@ struct LocalizedString: CodeGeneratable {
         let tableName = prefix.isEmpty ? "" : #", tableName: "\#(prefix)Localizable""#
         let code = """
         \(visibility.rawValue) static func \(normalizedName)(\(arguments.asInput)) -> String { return \(body) }
-        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(fullNamespace)"\(tableName), bundle: __bundle, value: "\(newValue)", comment: "\(comment ?? "")")
+        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(swiftKey)"\(tableName), bundle: __bundle, value: "\(newValue)", comment: "\(comment ?? "")")
         """
         return code
     }
 
     func toObjcCode(visibility: Visibility, baseName: String) -> String {
-        let name = fullNamespace
+        let name = swiftFullFunc
             .split(separator: ".")
             .map { String($0).capitalizingFirstLetter() }
             .joined(separator: "_")
-        let body = "return \(baseName).\(fullNamespace)(\(arguments.asInvocation))"
+        let body = "return \(baseName).\(swiftFullFunc)(\(arguments.asInvocation))"
         return "\(visibility.rawValue) static func \(name)(\(arguments.asInput)) -> String { \(body) }"
     }
 
-    static func asLocalizedString(normalizedName: String, fullNamespace: String, prefix: String, value: Any) -> LocalizedString? {
+    static func asLocalizedString(key: String, namespace: String?, prefix: String, value: Any) -> LocalizedString? {
         if let strValue = value as? String {
-            return LocalizedString(normalizedName: normalizedName,
-                                   fullNamespace: fullNamespace,
+            return LocalizedString(key: key,
+                                   namespace: namespace,
                                    value: strValue,
                                    prefix: prefix,
                                    comment: nil,
                                    arguments: [])
         } else if let dictValue = value as? [String: Any], let strValue = dictValue["value"] as? String {
             let arguments = Argument.parseArgs(strValue: strValue, arguments: dictValue["arguments"] as? [String: String])
-            return LocalizedString(normalizedName: normalizedName,
-                                   fullNamespace: fullNamespace,
+            return LocalizedString(key: key,
+                                   namespace: namespace,
                                    value: strValue,
                                    prefix: prefix,
                                    comment: dictValue["comment"] as? String,

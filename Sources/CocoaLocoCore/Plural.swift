@@ -27,8 +27,10 @@ struct Plural: CodeGeneratable {
         }
     }
 
+    let key: String
     let normalizedName: String
-    let fullNamespace: String
+    let swiftFullFunc: String
+    let swiftKey: String
     let prefix: String
     let comment: String?
 
@@ -45,18 +47,18 @@ struct Plural: CodeGeneratable {
     // Calculated
     private let variableType: String
 
-    init?(normalizedName: String,
-         fullNamespace: String,
-         prefix: String,
-         comment: String?,
-         other: String,
-         one: String,
-         zero: String?,
-         two: String?,
-         few: String?,
-         many: String?) {
-        self.normalizedName = normalizedName
-        self.fullNamespace = fullNamespace
+    init?(key: String,
+          namespace: String?,
+          prefix: String,
+          comment: String?,
+          other: String,
+          one: String,
+          zero: String?,
+          two: String?,
+          few: String?,
+          many: String?) {
+        self.key = key
+        self.normalizedName = normalizeName(rawName: key)
         self.prefix = prefix
         self.comment = comment
         self.other = other
@@ -65,6 +67,8 @@ struct Plural: CodeGeneratable {
         self.two = two
         self.few = few
         self.many = many
+        self.swiftKey = joinedNamespace(part1: namespace, part2: key)
+        self.swiftFullFunc = joinedNamespace(part1: namespace, part2: normalizedName)
 
         let nsrange = NSRange(other.startIndex..<other.endIndex, in: other)
         let matches = Plural.regex.matches(in: other, options: [], range: nsrange)
@@ -82,17 +86,17 @@ struct Plural: CodeGeneratable {
         let tableName = prefix.isEmpty ? "" : #", tableName: "\#(prefix)Localizable""#
         let code = """
         \(visibility.rawValue) static func \(normalizedName)(count: Int) -> String { return \(body) }
-        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(fullNamespace)"\(tableName), bundle: __bundle, comment: "\(comment ?? "")")
+        private static let _\(normalizedName) = Foundation.NSLocalizedString("\(swiftKey)"\(tableName), bundle: __bundle, comment: "\(comment ?? "")")
         """
         return code
     }
 
     func toObjcCode(visibility: Visibility) -> String {
-        let name = fullNamespace
+        let name = swiftFullFunc
             .split(separator: ".")
             .map { String($0).capitalizingFirstLetter() }
             .joined(separator: "_")
-        let body = "return \(fullNamespace)(count: count)"
+        let body = "return \(swiftFullFunc)(count: count)"
         return "\(visibility.rawValue) static func \(name)(count: Int)) -> String { \(body) }"
     }
 
@@ -121,21 +125,21 @@ struct Plural: CodeGeneratable {
                 guard let value = value else { return nil }
                 return """
                 <key>\(name)</key>
-                <string>\(transformation.transform(value: value, namespace: fullNamespace))</string>
+                <string>\(transformation.transform(value: value, namespace: swiftFullFunc))</string>
                 """
             }
             .joined(separator: "\n")
     }
 
-    static func asPlural(_ value: Any, normalizedName: String, fullNamespace: String, prefix: String) -> Plural? {
+    static func asPlural(_ value: Any, key: String, namespace: String?, prefix: String) -> Plural? {
         guard
             let dict = value as? [String: Any],
             let other = dict["other"] as? String,
             let one = dict["one"] as? String
         else { return nil }
 
-        return Plural(normalizedName: normalizedName,
-                      fullNamespace: fullNamespace,
+        return Plural(key: key,
+                      namespace: namespace,
                       prefix: prefix,
                       comment: dict["comment"] as? String,
                       other: other,
