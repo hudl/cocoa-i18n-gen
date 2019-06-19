@@ -43,7 +43,7 @@ struct LocalizedString: CodeGeneratable {
             // This will take "Hello {firstName} welcome to {something}" with "Hello %@ welcome to %@"
             // If there are args with the names "firstName" and "something".
             newValue = arguments.reduce(value, { (result, arg) -> String in
-                return result.replacingOccurrences(of: "{\(arg.name)}", with: "%@")
+                return result.replacingOccurrences(of: "{\(arg.name)}", with: arg.type.interpolatedString)
             })
         } else {
             body = privateVal

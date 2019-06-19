@@ -64,4 +64,12 @@ enum ArgumentType: String {
         case .double: return "Double"
         }
     }
+    
+    var interpolatedString: String {
+        switch self {
+        case .number: return "%lu"
+        case .string: return "%@"
+        case .double: return "%f"
+        }
+    }
 }

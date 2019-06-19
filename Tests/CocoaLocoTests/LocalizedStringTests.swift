@@ -98,7 +98,7 @@ private static let _name = Foundation.NSLocalizedString("Namespace.name", bundle
             ])
         XCTAssertEqual(string.toSwiftCode(visibility: .internal, swiftEnum: testNamespace), """
 internal static func name(double: Double, number: Int, string: String) -> String { return String.localizedStringWithFormat(bigName._name, double, number, string) }
-private static let _name = Foundation.NSLocalizedString("Namespace.name", bundle: __bundle, value: "Test %@, %@, %@", comment: "MyComment")
+private static let _name = Foundation.NSLocalizedString("Namespace.name", bundle: __bundle, value: "Test %lu, %@, %f", comment: "MyComment")
 """)
     }
     
