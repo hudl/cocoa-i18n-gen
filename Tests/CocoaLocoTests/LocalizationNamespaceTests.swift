@@ -20,7 +20,7 @@ class LocalizationNamespaceTests: XCTestCase {
                 "other": "%lu clips"
             ]
         ]
-        let result = LocalizationNamespace.parseValue(dict, namespace: "namespace", normalizedName: "name", prefix: "")
+        let result = LocalizationNamespace.parseValue(dict, namespace: "namespace", name: "name", prefix: "")
         XCTAssertEqual(result.plurals.count, 1)
         XCTAssertEqual(result.namespaces.count, 0)
         XCTAssertEqual(result.strings.count, 0)
@@ -33,7 +33,7 @@ class LocalizationNamespaceTests: XCTestCase {
                 "value": "yay this is nice"
             ]
         ]
-        let result = LocalizationNamespace.parseValue(dict, namespace: "namespace", normalizedName: "name", prefix: "")
+        let result = LocalizationNamespace.parseValue(dict, namespace: "namespace", name: "name", prefix: "")
         XCTAssertEqual(result.plurals.count, 0)
         XCTAssertEqual(result.namespaces.count, 0)
         XCTAssertEqual(result.strings.count, 1)
@@ -49,7 +49,7 @@ class LocalizationNamespaceTests: XCTestCase {
                 ]
             ]
         ]
-        let result = LocalizationNamespace.parseValue(dict, namespace: "namespace", normalizedName: "name", prefix: "")
+        let result = LocalizationNamespace.parseValue(dict, namespace: "namespace", name: "name", prefix: "")
         XCTAssertEqual(result.plurals.count, 0)
         XCTAssertEqual(result.namespaces.count, 1)
         XCTAssertEqual(result.namespaces.first?.normalizedName, "someNamespace")
@@ -63,7 +63,7 @@ class LocalizationNamespaceTests: XCTestCase {
                 "value": "yay this is nice"
             ]
         ]
-        let result = LocalizationNamespace.parseValue(dict, namespace: nil, normalizedName: "name", prefix: "")
+        let result = LocalizationNamespace.parseValue(dict, namespace: nil, name: "name", prefix: "")
         XCTAssertEqual(result.strings.first?.swiftKey, "someString")
         XCTAssertEqual(result.strings.first?.swiftFullFunc, "someString")
     }
@@ -144,7 +144,7 @@ internal enum testName {
 }
 
 private let exampleNestedNamespace = [
-    LocalizationNamespace(normalizedName: "nested", namespaces: [], strings: [], plurals: [])
+    LocalizationNamespace(name: "nested", namespaces: [], strings: [], plurals: [])
 ]
 private let examplePlurals = [
     Plural(key: "one", namespace: "oneName", prefix: "", comment: nil, other: "%lu clips", one: "1 clip", zero: nil, two: nil, few: nil, many: nil)!,
@@ -154,7 +154,7 @@ private let exampleStrings = [
     LocalizedString(key: "one", namespace: "oneName", value: "test1", prefix: "", comment: nil, arguments: []),
     LocalizedString(key: "two", namespace: "twoName", value: "test2", prefix: "", comment: nil, arguments: [])
 ]
-private let exampleNamespace = LocalizationNamespace(normalizedName: "testName",
+private let exampleNamespace = LocalizationNamespace(name: "testName",
                                                      namespaces: exampleNestedNamespace,
                                                      strings: exampleStrings,
                                                      plurals: examplePlurals)

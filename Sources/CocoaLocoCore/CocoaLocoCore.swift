@@ -50,7 +50,7 @@ public struct CocoaLocoCore {
         let initialName: String = "\(namePrefix)\(defaultName)"
         let namespace = LocalizationNamespace.parseValue(jsonResult,
                                                          namespace: nil,
-                                                         normalizedName: initialName,
+                                                         name: initialName,
                                                          prefix: namePrefix)
         let swiftOutputFile = SwiftOutputFile(namespace: namespace)
         let baseStringsDictFile = StringsDictOutputFile(namespace: namespace)

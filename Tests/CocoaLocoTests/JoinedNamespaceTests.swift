@@ -21,4 +21,9 @@ class JoinedNamespaceTests: XCTestCase {
         XCTAssertEqual(result, "Part1.Tester")
     }
     
+    func testParentEmpty() {
+        let result = joinedNamespace(part1: "", part2: "Tester")
+        XCTAssertEqual(result, "Tester")
+    }
+    
 }

@@ -32,7 +32,7 @@ class SwiftOutputFile {
             @objcMembers
             @available(swift, obsoleted: 1.0, message: "Use \(prefix)LocalizableStrings instead")
             \(visibility.rawValue) class \(prefix)ObjCLocalizableStrings: Foundation.NSObject {
-            \(namespace.toObjcCode(visibility: visibility, baseName: namespace.normalizedName))
+            \(namespace.toObjcCode(visibility: visibility, baseName: namespace.name))
             }
 
             """

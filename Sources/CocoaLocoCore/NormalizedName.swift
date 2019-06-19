@@ -42,7 +42,7 @@ func normalizeName(rawName: String) -> String {
 ///   - part2: The child namespace string.
 /// - Returns: The full namespace combining the two provided parts.
 func joinedNamespace(part1: String?, part2: String) -> String {
-    if let part1 = part1 {
+    if let part1 = part1, !part1.isEmpty {
         return "\(part1).\(part2)"
     } else {
         return part2

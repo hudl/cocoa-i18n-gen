@@ -115,7 +115,7 @@ private class BundleReference {}
 
 }
 
-private let exampleNamespace = LocalizationNamespace(normalizedName: "testName",
+private let exampleNamespace = LocalizationNamespace(name: "testName",
                                                      namespaces: [],
                                                      strings: [],
                                                      plurals: [])

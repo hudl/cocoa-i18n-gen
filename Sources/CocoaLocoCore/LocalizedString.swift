@@ -31,7 +31,7 @@ struct LocalizedString: CodeGeneratable {
         self.arguments = arguments
         self.normalizedName = normalizeName(rawName: key)
         self.swiftKey = joinedNamespace(part1: namespace, part2: key)
-        self.swiftFullFunc = joinedNamespace(part1: namespace, part2: normalizedName)
+        self.swiftFullFunc = joinedNamespace(part1: normalizeName(rawName: namespace ?? ""), part2: normalizedName)
     }
 
     func toSwiftCode(visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
