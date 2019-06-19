@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CocoaLoco'
-  s.version          = '1.0.6'
+  s.version          = '1.0.7'
   s.summary          = 'A Swift command line tool to help you make sense of large quantities of localizable strings.'
   s.description      = <<-DESC
 A Swift command line tool to help you make sense of large quantities of localizable strings.
