@@ -1866,26 +1866,26 @@
         "actions": {
             "sendToAssist": {
                 "title": {
-                    "value": "Send to Assist",
-                    "comment": "Nav Title and button to send video to Assist for breakdown"
+                    "value": "Send to Hudl Assist",
+                    "comment": "Nav Title and button to send video to Hudl Assist for breakdown"
                 },
                 "description": {
                     "available": {
                         "value": "We'll return your breakdown within 24 hours of the completed upload.",
-                        "comment": "Description of Assist"
+                        "comment": "Description of Hudl Assist"
                     },
                     "invalidEventType": {
-                        "value": "Mark the video as Game or Scout before sending to Assist. We'll return your breakdown within 24 hours of the completed upload.",
-                        "comment": "Description of why Assist isn't available for Practice event types"
+                        "value": "Mark the video as Game or Scout before sending to Hudl Assist. We'll return your breakdown within 24 hours of the completed upload.",
+                        "comment": "Description of why Hudl Assist isn't available for Practice event types"
                     },
                     "emptyScheduledEvent": {
-                        "value": "Select a scheduled event before sending to Assist. We'll return your breakdown within 24 hours of the completed upload.",
-                        "comment": "Description of why Assist isn't available for Events with a scheduled event"
+                        "value": "Select a scheduled event before sending to Hudl Assist. We'll return your breakdown within 24 hours of the completed upload.",
+                        "comment": "Description of why Hudl Assist isn't available for Events with a scheduled event"
                     }
                 },
                 "toast": {
-                    "value": "Sent to Assist",
-                    "comment": "Toast indicating video has been successfully sent to Assist for breakdown"
+                    "value": "Sent to Hudl Assist",
+                    "comment": "Toast indicating video has been successfully sent to Hudl Assist for breakdown"
                 }
             }
         }
