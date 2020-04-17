@@ -134,6 +134,14 @@ private static let _nameBlahTest = Foundation.NSLocalizedString("Namespace-test-
 """)
     }
 
+    func testSwiftWithNewlineChars() {
+        let string = LocalizedString(key: "name", namespace: "Namespace", value: "Test\n\n Test Again", prefix: "TableName", comment: "MyComment", arguments: [])
+        XCTAssertEqual(string.toSwiftCode(visibility: .public, swiftEnum: testNamespace), """
+public static func name() -> String { return bigName._name }
+private static let _name = Foundation.NSLocalizedString("Namespace.name", tableName: "TableNameLocalizable", bundle: __bundle, value: "Test\\n\\n Test Again", comment: "MyComment")
+""")
+    }
+
     // MARK: - Objective-C conversation
 
     func testObjcSimpleCase() {

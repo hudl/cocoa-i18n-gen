@@ -3302,5 +3302,21 @@
                 "comment": "Alert message when attempting to play a deleted or no-longer-shared classic playlist."
             }
         }
+    },
+    "coreData": {
+        "setupFailureAlert": {
+            "title": {
+                "value": "Important - Please Read",
+                "comment": "The title of the alert displayed when the Core Data migration during app startup fails, and we detect that there might be lost video on their device."
+            },
+            "message": {
+                "value": "The recent app update caused some issues. We screwed up, we're sorry.\n\nLuckily the video you recorded is safe, but you need to call Support ASAP to get it uploaded to Hudl.com. If you don't, your video may be lost.\n\nHudl Support: (402) 817-0060",
+                "comment": "The message of the alert displayed when the Core Data migration during app startup fails, and we detect that there might be lost video on their device."
+            },
+            "button": {
+                "value": "I understand. I will call.",
+                "comment": "The text of the only button on the alert displayed when the Core Data migration during app startup fails, and we detect that there might be lost video on their device."
+            }
+        }
     }
 }

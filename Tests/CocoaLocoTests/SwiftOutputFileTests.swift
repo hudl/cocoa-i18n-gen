@@ -15,8 +15,7 @@ class SwiftOutputFileTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        tempURL = URL(fileURLWithPath: NSTemporaryDirectory(),
-            isDirectory: true).appendingPathComponent(UUID().uuidString)
+        tempURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent(UUID().uuidString)
     }
 
     override func tearDown() {

@@ -37,7 +37,7 @@ struct LocalizedString: CodeGeneratable {
     func toSwiftCode(visibility: Visibility, swiftEnum: LocalizationNamespace) -> String {
         let privateVal = "\(swiftEnum.normalizedName)._\(normalizedName)"
         let body: String
-        let newValue: String
+        var newValue: String
         if !arguments.isEmpty {
             body = "String.localizedStringWithFormat(\(privateVal), \(arguments.asFormatting))"
             // This will take "Hello {firstName} welcome to {something}" with "Hello %@ welcome to %@"
@@ -49,6 +49,7 @@ struct LocalizedString: CodeGeneratable {
             body = privateVal
             newValue = value
         }
+        newValue = newValue.replacingOccurrences(of: "\n", with: "\\n")
 
         let tableName = prefix.isEmpty ? "" : #", tableName: "\#(prefix)Localizable""#
         let code = """

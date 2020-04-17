@@ -48,8 +48,8 @@ extension Array where Element == Argument {
 
     var asInvocation: String {
         return sorted(by: { $0.name < $1.name })
-        .map { "\($0.name): \($0.name)" }
-        .joined(separator: ", ")
+            .map { "\($0.name): \($0.name)" }
+            .joined(separator: ", ")
     }
 
 }
